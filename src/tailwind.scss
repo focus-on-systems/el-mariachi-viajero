@@ -1,0 +1,13 @@
+html, body {
+	min-height: 100%;
+	min-width: 100%;
+	height: auto
+}
+
+/*body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }*/
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
