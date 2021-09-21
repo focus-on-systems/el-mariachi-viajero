@@ -1,10 +1,23 @@
 <header class="z-40 fixed w-full h-12 bg-white bg-opacity-80 flex justify-between items-center px-4 md:px-6 lg:px-8">
 	<div>Mariachi viajero Imagen aquí</div>
-	<nav class="flex justify-around w-full max-w-lg">
-		<a class="text-xl">Inicio</a>
-		<a class="text-xl">Tours</a>
-		<a class="text-xl">Nosotros</a>
-		<a class="text-xl">Blog</a>
+	<nav class="flex justify-around w-full max-w-lg h-full">
+		<app-nav-option class="h-full px-2" optionTxt="Inicio" optionTxtClasses="text-xl"></app-nav-option>
+		<app-nav-option class="h-full px-2" optionTxt="Tours" optionTxtClasses="text-xl">
+			<app-nav-option optionTxt="Románticos">
+				<a class="w-full" href="">Locación 1</a>
+				<a class="w-full" href="">Locación 2</a>
+			</app-nav-option>
+			<app-nav-option optionTxt="Supersónicos">
+				<a href="">Locación 1</a>
+				<a href="">Locación 2</a>
+			</app-nav-option>
+		</app-nav-option>
+		<app-nav-option class="h-full px-2" optionTxt="Nosotros" optionTxtClasses="text-xl">
+			<a class="w-full" href="">Contacto</a>
+			<a class="w-full" href="">Misión</a>
+			<a class="w-full" href="">Visión</a>
+		</app-nav-option>
+		<app-nav-option class="h-full px-2" optionTxt="Blog" optionTxtClasses="text-xl"></app-nav-option>
 	</nav>
 </header>
 
