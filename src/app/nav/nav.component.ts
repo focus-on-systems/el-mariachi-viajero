@@ -10,12 +10,17 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 			state('hide', style({
 				opacity: 0,
 				height: '0px',
+				display: 'none'
 			})),
 			state('show', style({
 				opacity: 1,
-				height: '3rem'
+				height: '3rem',
+				display: 'flex'
 			})),
 			transition('hide => show', [
+				style({
+					display: 'flex'
+				}),
 				animate('500ms ease-out')
 			]),
 			transition('show => hide', [
