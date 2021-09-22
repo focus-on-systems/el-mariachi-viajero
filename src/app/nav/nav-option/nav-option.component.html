@@ -1,0 +1,35 @@
+<div (focusin)="toggle()"
+     (focusout)="toggle()"
+     (mouseenter)="toggle()"
+     (mouseleave)="toggle()"
+     class="relative inline-block text-left h-full w-full">
+	<a class="h-full w-full flex items-center hover:bg-white hover:bg-opacity-90 transition duration-300 ease-in-out"
+	   routerLink="{{this.link}}"
+	   aria-haspopup="true">
+		<img class="w-6" *ngIf="this.icon && iconPosition === 'left'" src="{{this.icon}}"/>
+		<span class="flex-grow {{optionTxtClasses}}">{{optionTxt}}</span>
+		<img class="w-6" *ngIf="this.icon && iconPosition === 'right'" src="{{this.icon}}"/>
+	</a>
+	<!--	<div class="h-full w-full table hover:bg-white hover:bg-opacity-90">-->
+	<!--		<a aria-expanded="true"-->
+	<!--		   routerLink="{{this.link}}"-->
+	<!--		   aria-haspopup="true"-->
+	<!--		   class="h-full align-middle table-cell whitespace-nowrap {{optionTxtClasses}}">-->
+	<!--			<span>{{optionTxt}}</span>-->
+	<!--			<img class="w-2" *ngIf="iconPosition === 'right'" src="{{this.icon}}"/>-->
+	<!--		</a>-->
+	<!--	</div>-->
+
+
+	<div #menu
+	     [@openClose]="{value: isOpen ? 'open' : 'closed', params: { height: this.menuHeight }}"
+	     aria-labelledby="menu-button"
+	     aria-orientation="vertical"
+	     class="origin-top-right absolute {{this.positionClasses}} w-32 lg:w-36 xl:w-40 shadow-lg bg-white bg-opacity-90"
+	     role="menu"
+	     tabindex="-1">
+		<div class="relative flex flex-col items-stretch z-10">
+			<ng-content></ng-content>
+		</div>
+	</div>
+</div>

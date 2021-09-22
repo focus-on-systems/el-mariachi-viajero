@@ -9,7 +9,8 @@ import {
 	Renderer2,
 	ViewChild
 } from '@angular/core';
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {RouterLinkWithHref} from "@angular/router";
 
 @Component({
 	selector: 'app-nav-option',
@@ -19,7 +20,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 		trigger('openClose', [
 			state('open', style({
 				opacity: 1,
-				display: 'flex',
+				display: 'block',
 				height: '{{height}}px'
 			}), {
 				params: {
@@ -53,6 +54,21 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 	@Input()
 	public optionTxt: string = '';
 
+	@Input()
+	public icon: string = '';
+
+	@Input()
+	public iconPosition: 'left' | 'right' = 'right';
+
+	@Input()
+	public position: NavOptionPosition = 'top-right';
+
+	/**
+	 * Same parameter as given to {@link RouterLinkWithHref#routerLink}
+	 */
+	@Input()
+	public link: any[] | string | null = null;
+
 	@ViewChild('menu')
 	public menuEl: ElementRef | undefined;
 
@@ -61,10 +77,29 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 	 */
 	public menuHeight: number = 0;
 
+	/**
+	 * Set of classes to achieve the desired position in {@link position}
+	 */
+	public positionClasses: string = '';
+
 	constructor(private _changeDetectorRef: ChangeDetectorRef, private _renderer: Renderer2) {
 	}
 
 	ngOnInit(): void {
+		switch (this.position) {
+			case 'left':
+				this.positionClasses = '-top-0 -left-32 lg:-left-36 xl:-left-40';
+				break;
+			case 'right':
+				this.positionClasses = '-top-0 -right-32 lg:-right-36 xl:-right-40';
+				break;
+			case 'top-left':
+				this.positionClasses = 'left-0';
+				break;
+			case 'top-right':
+				this.positionClasses = 'right-0';
+				break;
+		}
 	}
 
 	ngAfterViewInit() {
@@ -84,3 +119,5 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 		this.isOpen = !this.isOpen;
 	}
 }
+
+export type NavOptionPosition = 'left' | 'right' | 'top-right' | 'top-left';
