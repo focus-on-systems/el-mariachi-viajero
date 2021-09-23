@@ -1,13 +1,13 @@
-<div #topBar class="w-full bg-gray-300 flex justify-around py-2">
-	<div class="md:flex">
+<div #topBar class="w-full bg-gray-300 flex justify-around py-2 bg-aztec">
+	<div class="md:flex hidden">
 		<img class="w-6 mr-1" src="assets/icons/phone.svg" alt="phone"/>
 		<span>+52 5578 7878 78</span>
 	</div>
-	<div class="md:flex">
+	<div class="md:flex hidden">
 		<img class="w-6 mr-1" src="assets/icons/mail.svg" alt="phone"/>
 		<span>contacto@elmariachiviajero.com.mx</span>
 	</div>
-	<div class="flex gap-2">
+	<div class="flex md:gap-4 gap-6">
 		<a href="https://facebook.com" target="_blank">
 			<img class="w-6" src="assets/icons/facebook.svg" alt="Facebook" title="Facebook">
 		</a>
@@ -25,6 +25,7 @@
 <main class="h-screen bg-purple-600">
 	<app-carousel-item class="w-full h-full"></app-carousel-item>
 </main>
-hola
-mundo
+
 <router-outlet></router-outlet>
+
+<app-footer></app-footer>

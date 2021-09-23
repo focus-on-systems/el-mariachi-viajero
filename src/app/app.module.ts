@@ -7,13 +7,15 @@ import {CarouselItemComponent} from './landing/carousel-item/carousel-item.compo
 import {NavOptionComponent} from './nav/nav-option/nav-option.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NavComponent} from './nav/nav.component';
+import {FooterComponent} from './footer/footer.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		CarouselItemComponent,
 		NavOptionComponent,
-		NavComponent
+		NavComponent,
+		FooterComponent
 	],
 	imports: [
 		BrowserModule,
