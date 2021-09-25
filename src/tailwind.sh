@@ -12,7 +12,7 @@ if [ "$NODE_ENV"  == "production" ]; then
 
 	echo "minifying..."
 	# minify generated file
-	npx minify --css < tailwind.scss > tailwind.min.css
+	npx minify --css < tailwind.css > tailwind.min.css
 
 	# remove uncompressed intermediate file
 	rm tailwind.css
