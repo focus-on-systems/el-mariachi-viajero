@@ -1,28 +1,31 @@
-<header class="z-40 fixed w-full h-12 bg-white bg-opacity-80 flex justify-between items-center px-4 md:px-6 lg:px-8">
-	<div>Mariachi viajero Imagen aquí</div>
-	<nav class="flex justify-around w-full max-w-lg h-full">
-		<app-nav-option class="h-full px-2" optionTxt="Inicio" optionTxtClasses="text-xl"></app-nav-option>
-		<app-nav-option class="h-full px-2" optionTxt="Tours" optionTxtClasses="text-xl">
-			<app-nav-option optionTxt="Románticos">
-				<a class="w-full" href="">Locación 1</a>
-				<a class="w-full" href="">Locación 2</a>
-			</app-nav-option>
-			<app-nav-option optionTxt="Supersónicos">
-				<a href="">Locación 1</a>
-				<a href="">Locación 2</a>
-			</app-nav-option>
-		</app-nav-option>
-		<app-nav-option class="h-full px-2" optionTxt="Nosotros" optionTxtClasses="text-xl">
-			<a class="w-full" href="">Contacto</a>
-			<a class="w-full" href="">Misión</a>
-			<a class="w-full" href="">Visión</a>
-		</app-nav-option>
-		<app-nav-option class="h-full px-2" optionTxt="Blog" optionTxtClasses="text-xl"></app-nav-option>
-	</nav>
-</header>
+<div #topBar class="w-full bg-gray-300 flex justify-around py-2 bg-aztec">
+	<div class="md:flex hidden">
+		<img class="w-6 mr-1" src="assets/icons/phone.svg" alt="phone"/>
+		<span>+52 5578 7878 78</span>
+	</div>
+	<div class="md:flex hidden">
+		<img class="w-6 mr-1" src="assets/icons/mail.svg" alt="phone"/>
+		<span>contacto@elmariachiviajero.com.mx</span>
+	</div>
+	<div class="flex md:gap-4 gap-6">
+		<a href="https://facebook.com" target="_blank">
+			<img class="w-6" src="assets/icons/facebook.svg" alt="Facebook" title="Facebook">
+		</a>
+		<a href="https://instagram.com" target="_blank">
+			<img class="w-6" src="assets/icons/instagram.svg" alt="Instagram" title="Instagram">
+		</a>
+		<a href="https://twitter.com" target="_blank">
+			<img class="w-6" src="assets/icons/twitter.svg" alt="Twitter" title="Twitter">
+		</a>
+	</div>
+</div>
+
+<app-nav #nav class="w-full top-0 fixed z-40"></app-nav>
 
 <main class="h-screen bg-gray-100">
 	<app-carousel-item class="w-full h-full"></app-carousel-item>
 </main>
 
 <router-outlet></router-outlet>
+
+<app-footer></app-footer>
