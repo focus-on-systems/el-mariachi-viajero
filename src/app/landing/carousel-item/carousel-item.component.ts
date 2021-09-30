@@ -7,10 +7,10 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CarouselItemComponent implements OnInit {
 	@Input()
-	public title: string = "Super Tour";
+	public title: string = "El mariachi viajero";
 
 	@Input()
-	public category: string = "Categoría"; // TODO it may be a better idea to use an enum or a singleton
+	public category: string = "Coloniales"; // TODO it may be a better idea to use an enum or a singleton
 
 	constructor() {
 	}

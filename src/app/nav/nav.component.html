@@ -1,6 +1,32 @@
+<div #topBar class="w-full bg-gray-300 flex justify-around py-2 bg-red-500 bg-aztec text-white">
+	<div class="md:flex hidden">
+		<img class="w-6 mr-1 filter-green" src="assets/icons/phone.svg" alt="phone"/>
+		<span>+52 5578 7878 78</span>
+	</div>
+	<div class="md:flex hidden">
+		<img class="w-6 mr-1" src="assets/icons/mail.svg" alt="phone"/>
+		<span>contacto@elmariachiviajero.com.mx</span>
+	</div>
+	<div class="flex md:gap-4 gap-6">
+		<a href="https://facebook.com" target="_blank">
+			<img class="w-6" src="assets/icons/facebook.svg" alt="Facebook" title="Facebook">
+		</a>
+		<a href="https://instagram.com" target="_blank">
+			<img class="w-6" src="assets/icons/instagram.svg" alt="Instagram" title="Instagram">
+		</a>
+		<a href="https://twitter.com" target="_blank">
+			<img class="w-6" src="assets/icons/twitter.svg" alt="Twitter" title="Twitter">
+		</a>
+	</div>
+</div>
 <header [@hideShow]="navAnimationState"
-        class="z-40 w-full h-12 bg-white bg-opacity-70 flex justify-between items-center pl-4 md:pl-6 lg:pl-8">
-	<div>Mariachi viajero Imagen aquí</div>
+        class="flex h-60 justify-between items-center shadow z-40 w-full bg-white pl-4 md:pl-6 lg:pl-8"
+		style="height: 7rem;"
+		>
+	<div class="h-full flex">
+		<img class="h-full w-full" src="../assets/img/logoV4.png" alt="">
+	</div>	
+		
 	<nav class="flex justify-around w-full max-w-lg h-full relative">
 		<app-nav-option class="h-full w-full mx-2"
 		                optionTxt="Inicio"

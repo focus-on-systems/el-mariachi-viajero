@@ -9,6 +9,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { ManageToursComponent } from './tours/manage-tours/manage-tours.component';
 import {NavComponent} from './nav/nav.component';
 import {FooterComponent} from './footer/footer.component';
+import { LandingComponent } from './landing/landing/landing.component';
+import { TourItemComponent } from './tours/tour-item/tour-item.component';
+import { TourDetailsComponent } from './tours/tour-details/tour-details.component';
 
 @NgModule({
 	declarations: [
@@ -16,7 +19,11 @@ import {FooterComponent} from './footer/footer.component';
 		CarouselItemComponent,
 		NavOptionComponent,
 		NavComponent,
-		FooterComponent
+		FooterComponent,
+		ManageToursComponent,
+  LandingComponent,
+  TourItemComponent,
+  TourDetailsComponent
 	],
 	imports: [
 		BrowserModule,

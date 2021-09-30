@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
@@ -31,10 +31,48 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavComponent {
-	public _navAnimationState: NavAnimationState = 'hide';
+	@ViewChild('topBar')
+	public topBar: ElementRef | undefined;
+
+	@ViewChild('nav')
+	// @ts-ignore
+	public nav: NavComponent;
+
+	/**
+	 * After this height the nav should be shown
+	 * Height is in px
+	 */
+	public minHeight2ShowNav: number = 10;
+
+	public isNavShowing: boolean = false;
+
+	public _navAnimationState: NavAnimationState = 'show';
 
 	constructor(private _changeDetectorRef: ChangeDetectorRef) {
 	}
+
+	ngAfterViewInit(): void {
+		this.minHeight2ShowNav = this.topBar?.nativeElement.clientHeight + 10;
+	}
+
+	@HostListener('window:scroll', [])
+	onWindowScroll() {
+		console.log(window.pageYOffset, this.minHeight2ShowNav);
+		if (window.pageYOffset > this.minHeight2ShowNav) { // nav should be shown
+			if (this.isNavShowing)
+				return;
+
+			this.isNavShowing = true;
+			this.nav.navAnimationState = 'show';
+		} else { // nav should be hidden
+			if (!this.isNavShowing)
+				return;
+
+			this.isNavShowing = false;
+			this.nav.navAnimationState = 'hide';
+		}
+	}
+	
 
 	set navAnimationState(state: NavAnimationState) {
 		if (state === this._navAnimationState) // do nothing if the new state is the current one
