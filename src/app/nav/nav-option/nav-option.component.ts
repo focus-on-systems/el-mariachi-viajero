@@ -24,7 +24,7 @@ import {RouterLinkWithHref} from "@angular/router";
 				height: '{{height}}px'
 			}), {
 				params: {
-					height: 1 // this height will eventually  change to the real component's height
+					height: 1 // this height will eventually change to the real component's height
 				}
 			}),
 			state('closed', style({
@@ -46,8 +46,6 @@ import {RouterLinkWithHref} from "@angular/router";
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavOptionComponent implements OnInit, AfterViewInit {
-	public isOpen: boolean = false;
-
 	@Input()
 	public optionTxtClasses: string = '';
 
@@ -76,6 +74,8 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 	 * Height in px for the menu div height
 	 */
 	public menuHeight: number = 0;
+
+	public isOpen: boolean = false;
 
 	/**
 	 * Set of classes to achieve the desired position in {@link position}
@@ -115,8 +115,19 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 		this._changeDetectorRef.detectChanges();
 	}
 
-	public toggle(): void {
-		this.isOpen = !this.isOpen;
+	public toggle(e: Event): void {
+		switch (e.type) {
+			case 'focusin':
+			case 'mouseenter':
+				this.isOpen = true;
+				break;
+			case 'focusout':
+			case 'mouseleave':
+				this.isOpen = false;
+				break;
+			default:
+				console.log('Weird event occurred on nav option', e);
+		}
 	}
 }
 

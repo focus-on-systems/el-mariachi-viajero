@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 
 @Component({
 	selector: 'app-carousel-item',
@@ -7,15 +7,29 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CarouselItemComponent implements OnInit {
 	@Input()
-	public title: string = "El mariachi viajero";
+	public category: string = "";
 
 	@Input()
-	public category: string = "Coloniales"; // TODO it may be a better idea to use an enum or a singleton
+	public description: string = "";
 
-	constructor() {
+	private _bgImageStyle: string = "";
+
+	@Input()
+	public link: string = "";
+
+	constructor(private _changeDetectorRef: ChangeDetectorRef) {
 	}
 
 	ngOnInit(): void {
 	}
 
+	@Input()
+	set bgImageStyle(bgImage: string) {
+		this._bgImageStyle = `background-image: url(${bgImage})`;
+		this._changeDetectorRef.markForCheck();
+	}
+
+	get bgImageStyle(): string {
+		return this._bgImageStyle;
+	}
 }

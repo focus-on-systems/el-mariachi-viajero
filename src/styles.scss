@@ -1,4 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~swiper/scss";
+@import "~swiper/scss/pagination";
+@import "~swiper/scss/navigation";
+:root {
+	--swiper-theme-color: #EF4444;
+	--swiper-pagination-bullet-inactive-color: #FFFFFF;
+}
+
 .bg-aztec {
 	/* made with https://www.heropatterns.com/ */
 	background-color: #e7e7e7;

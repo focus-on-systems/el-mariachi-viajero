@@ -1,3 +1,22 @@
-<main class="h-screen bg-white">
-	<app-carousel-item class="w-full h-full"></app-carousel-item>
+<main class="w-full h-screen bg-white">
+	<div class="text-6xl absolute bottom-10 right-10 text-white font-extrabold z-20 uppercase">
+		<img src="assets/img/logoV4.png" alt="El Mariachi Viajero" class="max-w-sm w-16 md:w-20 block">
+	</div>
+	<swiper class="w-full h-full" [pagination]="true" [navigation]="true" [loop]="true">
+		<ng-template swiperSlide>
+			<app-carousel-item bgImageStyle="https://images.pexels.com/photos/763429/pexels-photo-763429.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+			                   category="Coloniales"
+			                   description="Conoce lugares impresionantes con historias increíbles del México prehispánico"></app-carousel-item>
+		</ng-template>
+		<ng-template swiperSlide>
+			<app-carousel-item bgImageStyle="https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+			                   category="de Aventura"
+			                   description="Siente la adrenalina de aventarse de una tirolesa, subir una montaña... acompañado de nuestros profesionales"></app-carousel-item>
+		</ng-template>
+		<ng-template swiperSlide>
+			<app-carousel-item bgImageStyle="https://images.pexels.com/photos/4932184/pexels-photo-4932184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+			                   category="Tropicales"
+			                   description="Conoce lugares exóticos con mucha biodiversidad"></app-carousel-item>
+		</ng-template>
+	</swiper>
 </main>

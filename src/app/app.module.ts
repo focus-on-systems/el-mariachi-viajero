@@ -11,6 +11,7 @@ import {FooterComponent} from './footer/footer.component';
 import {LandingComponent} from './landing/landing/landing.component';
 import {TourItemComponent} from './tours/tour-item/tour-item.component';
 import {TourDetailsComponent} from './tours/tour-details/tour-details.component';
+import {SwiperModule} from "swiper/angular";
 
 @NgModule({
 	declarations: [
@@ -27,7 +28,8 @@ import {TourDetailsComponent} from './tours/tour-details/tour-details.component'
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		AppRoutingModule
+		AppRoutingModule,
+		SwiperModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

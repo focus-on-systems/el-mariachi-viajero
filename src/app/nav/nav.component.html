@@ -25,42 +25,69 @@
 		>
 	<div class="h-full flex">
 		<img class="h-full w-full" src="../assets/img/logoV4.png" alt="">
-	</div>	
-		
+	</div>
+
 	<nav class="flex justify-around w-full max-w-lg h-full relative">
 		<app-nav-option class="h-full w-full mx-2"
+		                link="/"
 		                optionTxt="Inicio"
 		                optionTxtClasses="md:text-lg lg:text-xl text-center"></app-nav-option>
 		<app-nav-option class="h-full w-full mx-2"
 		                optionTxt="Tours"
+		                link="/tours"
 		                optionTxtClasses="md:text-lg lg:text-xl text-center">
 			<app-nav-option class="w-full h-full"
+			                link="/tours/romanticos"
 			                optionTxt="Románticos"
 			                optionTxtClasses="px-3 py-2"
 			                position="left"
 			                icon="assets/icons/chevron-left.svg"
 			                iconPosition="left">
-				<app-nav-option class="w-full" optionTxt="Locación 1" optionTxtClasses="px-3 py-2"></app-nav-option>
-				<app-nav-option class="w-full" optionTxt="Locación 2" optionTxtClasses="px-3 py-2"></app-nav-option>
+				<app-nav-option class="w-full"
+				                link="/tours/romanticos/loc1"
+				                optionTxt="Locación 1"
+				                optionTxtClasses="px-3 py-2"></app-nav-option>
+				<app-nav-option class="w-full"
+				                link="/tours/romanticos/loc2"
+				                optionTxt="Locación 2"
+				                optionTxtClasses="px-3 py-2"></app-nav-option>
 			</app-nav-option>
 			<app-nav-option class="w-full h-full"
+			                link="/tours/supersonicos"
 			                optionTxt="Supersónicos"
 			                optionTxtClasses="px-3 py-2"
 			                position="left"
 			                icon="assets/icons/chevron-left.svg"
 			                iconPosition="left">
-				<app-nav-option class="w-full" optionTxt="Locación 1" optionTxtClasses="px-3 py-2"></app-nav-option>
-				<app-nav-option class="w-full" optionTxt="Locación 2" optionTxtClasses="px-3 py-2"></app-nav-option>
+				<app-nav-option class="w-full"
+				                link="/tours/supersonicos/loc1"
+				                optionTxt="Locación 1"
+				                optionTxtClasses="px-3 py-2"></app-nav-option>
+				<app-nav-option class="w-full"
+				                link="/tours/supersonicos/loc2"
+				                optionTxt="Locación 2"
+				                optionTxtClasses="px-3 py-2"></app-nav-option>
 			</app-nav-option>
 		</app-nav-option>
 		<app-nav-option class="h-full w-full mx-2"
+		                link="/tours/supersonicos"
 		                optionTxt="Nosotros"
 		                optionTxtClasses="px-3 py-2 md:text-lg lg:text-xl text-center">
-			<app-nav-option class="w-full" optionTxt="Contacto" optionTxtClasses="px-3 py-2"></app-nav-option>
-			<app-nav-option class="w-full" optionTxt="Misión" optionTxtClasses="px-3 py-2"></app-nav-option>
-			<app-nav-option class="w-full" optionTxt="Visión" optionTxtClasses="px-3 py-2"></app-nav-option>
+			<app-nav-option class="w-full"
+			                link="/nosotros#contacto"
+			                optionTxt="Contacto"
+			                optionTxtClasses="px-3 py-2"></app-nav-option>
+			<app-nav-option class="w-full"
+			                link="/nosotros#mision"
+			                optionTxt="Misión"
+			                optionTxtClasses="px-3 py-2"></app-nav-option>
+			<app-nav-option class="w-full"
+			                link="/nosotros#vision"
+			                optionTxt="Visión"
+			                optionTxtClasses="px-3 py-2"></app-nav-option>
 		</app-nav-option>
 		<app-nav-option class="h-full w-full mx-2"
+		                link="/blog"
 		                optionTxt="Blog"
 		                optionTxtClasses="md:text-lg lg:text-xl text-center"></app-nav-option>
 	</nav>
