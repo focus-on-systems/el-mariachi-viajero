@@ -8,14 +8,8 @@ function build_tailwind() {
 if [ "$NODE_ENV"  == "production" ]; then
 	echo "NODE_ENV is production. Output will be small which is good 👌"
 
-	build_tailwind "tailwind.css"
-
-	echo "minifying..."
-	# minify generated file
-	npx minify --css < tailwind.css > tailwind.min.css
-
-	# remove uncompressed intermediate file
-	rm tailwind.css
+	build_tailwind "tailwind.min.css"
+	# Actual minify work is done by ng build command
 else
 	echo "NODE_ENV is NOT production (actual value is \"$NODE_ENV\"). Output will be BIG"
 
