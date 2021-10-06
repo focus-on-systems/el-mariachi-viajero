@@ -21,7 +21,7 @@ import {RouterLinkWithHref} from "@angular/router";
 			state('open', style({
 				opacity: 1,
 				display: 'block',
-				height: '{{height}}px'
+				// height: '{{height}}px'
 			}), {
 				params: {
 					height: 1 // this height will eventually change to the real component's height
@@ -30,7 +30,7 @@ import {RouterLinkWithHref} from "@angular/router";
 			state('closed', style({
 				opacity: 0,
 				display: 'none',
-				height: '0'
+				// height: '0'
 			})),
 			transition('open => closed', [
 				animate('200ms ease-out')

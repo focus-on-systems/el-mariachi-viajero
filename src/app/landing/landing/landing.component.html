@@ -1,6 +1,31 @@
-<main class="w-full h-screen bg-white">
-	<div class="text-6xl absolute bottom-10 right-10 text-white font-extrabold z-20 uppercase">
+<div class="z-40 w-full flex justify-around py-2 bg-green-400 bg-aztec text-white">
+	<div class="md:flex hidden">
+		<img class="w-6 mr-1 filter-green" src="assets/icons/phone.svg" alt="phone"/>
+		<span>+52 5578 7878 78</span>
+	</div>
+	<div class="md:flex hidden">
+		<img class="w-6 mr-1" src="assets/icons/mail.svg" alt="phone"/>
+		<span>contacto@elmariachiviajero.com.mx</span>
+	</div>
+	<div class="flex md:gap-4 gap-6">
+		<a href="https://facebook.com" target="_blank">
+			<img class="w-6" src="assets/icons/facebook.svg" alt="Facebook" title="Facebook">
+		</a>
+		<a href="https://instagram.com" target="_blank">
+			<img class="w-6" src="assets/icons/instagram.svg" alt="Instagram" title="Instagram">
+		</a>
+		<a href="https://twitter.com" target="_blank">
+			<img class="w-6" src="assets/icons/twitter.svg" alt="Twitter" title="Twitter">
+		</a>
+	</div>
+</div>
+<app-nav class="w-full" position="sticky"></app-nav>
+<main class="w-full -mt-12 h-full bg-white">
+	<div class="absolute bottom-0 right-5 z-20">
 		<img src="assets/img/logoV4.png" alt="El Mariachi Viajero" class="max-w-sm w-16 md:w-20 block">
+	</div>
+	<div class="absolute bottom-0 w-full flex justify-center z-20">
+		<img src="assets/icons/chevron-double-down.svg" alt="Ver abajo" class="max-w-sm w-8 margin-auto animate-bounce"/>
 	</div>
 	<swiper class="w-full h-full" [pagination]="true" [navigation]="true" [loop]="true">
 		<ng-template swiperSlide>
