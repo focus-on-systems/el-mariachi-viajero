@@ -12,6 +12,7 @@ import {LandingComponent} from './landing/landing/landing.component';
 import {TourItemComponent} from './tours/tour-item/tour-item.component';
 import {TourDetailsComponent} from './tours/tour-details/tour-details.component';
 import {SwiperModule} from "swiper/angular";
+import { AboutCompanyComponent } from './about-company/about-company.component';
 
 @NgModule({
 	declarations: [
@@ -23,7 +24,8 @@ import {SwiperModule} from "swiper/angular";
 		ManageToursComponent,
 		LandingComponent,
 		TourItemComponent,
-		TourDetailsComponent
+		TourDetailsComponent,
+  AboutCompanyComponent
 	],
 	imports: [
 		BrowserModule,
