@@ -128,6 +128,9 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 			case 'mouseleave':
 				this.isOpen = false;
 				break;
+			case 'click':
+				this.isOpen = !this.isOpen;
+				break;
 			default:
 				console.log('Weird event occurred on nav option', e);
 		}
