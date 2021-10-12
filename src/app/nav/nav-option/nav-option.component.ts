@@ -91,10 +91,10 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 	ngOnInit(): void {
 		switch (this.dropdownPosition) {
 			case 'left':
-				this.positionClasses = '-top-0 -left-40';
+				this.positionClasses = '-top-0 -left-36 md:-left-40';
 				break;
 			case 'right':
-				this.positionClasses = '-top-0 -right-40';
+				this.positionClasses = '-top-0 -right-36 md:-right-40';
 				break;
 			case 'bottom-left':
 				this.positionClasses = 'left-0';
