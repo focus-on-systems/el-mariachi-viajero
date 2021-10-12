@@ -7,9 +7,13 @@
 	   routerLink="{{this.link}}"
 	   routerLinkActive="text-green-500"
 	   aria-haspopup="true">
-		<img class="w-5 ml-1" *ngIf="this.icon && iconPosition === 'left'" src="{{this.icon}}" alt=""/>
-		<span class="flex-grow {{optionTxtClasses}}">{{optionTxt}}</span>
-		<img class="w-5 mr-1" *ngIf="this.icon && iconPosition === 'right'" src="{{this.icon}}" alt=""/>
+		<!-- only display the icon -->
+		<img class="w-5 {{iconClasses}}" *ngIf="icon && iconPosition === 'fill'" src="{{icon}}" alt="">
+
+		<!-- display icon and/or text -->
+		<img class="w-5 ml-1 {{iconClasses}}" *ngIf="icon && iconPosition === 'left'" src="{{icon}}" alt=""/>
+		<span class="flex-grow {{optionTxtClasses}}" *ngIf="optionTxt.length > 0">{{optionTxt}}</span>
+		<img class="w-5 mr-1 {{iconClasses}}" *ngIf="icon && iconPosition === 'right'" src="{{icon}}" alt=""/>
 	</a>
 	<!--	<div class="h-full w-full table hover:bg-white hover:bg-opacity-90">-->
 	<!--		<a aria-expanded="true"-->
@@ -26,7 +30,7 @@
 	     [@openClose]="{value: isOpen ? 'open' : 'closed', params: { height: this.menuHeight }}"
 	     aria-labelledby="menu-button"
 	     aria-orientation="vertical"
-	     class="origin-top-right absolute {{this.positionClasses}} w-32 lg:w-36 xl:w-40 shadow-lg"
+	     class="origin-top-right absolute {{this.positionClasses}} w-40 shadow-lg"
 	     role="menu"
 	     tabindex="-1">
 		<div class="relative flex flex-col items-stretch z-10 bg-white bg-opacity-70 backdrop-filter backdrop-blur">
