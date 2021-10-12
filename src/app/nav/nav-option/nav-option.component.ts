@@ -85,6 +85,12 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 	 */
 	public positionClasses: string = '';
 
+	/**
+	 * True when the touchstart event has been produced, but the touchend hasn't been produced yet
+	 * @private
+	 */
+	private _touchStarted: boolean = false;
+
 	constructor(private _changeDetectorRef: ChangeDetectorRef, private _renderer: Renderer2) {
 	}
 
@@ -122,13 +128,21 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 		switch (e.type) {
 			case 'focusin':
 			case 'mouseenter':
+				// if focus was produced because user touched the button, do nothing, let touch handlers do their work
+				if (this._touchStarted)
+					break;
+
 				this.isOpen = true;
 				break;
 			case 'focusout':
 			case 'mouseleave':
 				this.isOpen = false;
 				break;
-			case 'click':
+			case 'touchstart':
+				this._touchStarted = true;
+				break;
+			case 'touchend': // for mobile devices
+				this._touchStarted = false;
 				this.isOpen = !this.isOpen;
 				break;
 			default:

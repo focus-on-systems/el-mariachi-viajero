@@ -2,7 +2,8 @@
      (focusout)="toggle($event)"
      (mouseenter)="toggle($event)"
      (mouseleave)="toggle($event)"
-     (click)="toggle($event)"
+     (touchstart)="toggle($event)"
+     (touchend)="toggle($event)"
      class="relative inline-block text-left h-full w-full">
 	<!-- template for nav options content -->
 	<ng-template #aRef>
