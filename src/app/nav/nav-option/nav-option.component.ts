@@ -47,6 +47,9 @@ import {RouterLinkWithHref} from "@angular/router";
 })
 export class NavOptionComponent implements OnInit, AfterViewInit {
 	@Input()
+	public iconClasses: string = '';
+
+	@Input()
 	public optionTxtClasses: string = '';
 
 	@Input()
@@ -56,10 +59,10 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 	public icon: string = '';
 
 	@Input()
-	public iconPosition: 'left' | 'right' = 'right';
+	public iconPosition: 'left' | 'right' | 'fill' = 'right';
 
 	@Input()
-	public position: NavOptionPosition = 'top-right';
+	public dropdownPosition: DropdownPosition = 'bottom-right';
 
 	/**
 	 * Same parameter as given to {@link RouterLinkWithHref#routerLink}
@@ -78,25 +81,31 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 	public isOpen: boolean = false;
 
 	/**
-	 * Set of classes to achieve the desired position in {@link position}
+	 * Set of classes to achieve the desired position in {@link dropdownPosition}
 	 */
 	public positionClasses: string = '';
+
+	/**
+	 * True when the touchstart event has been produced, but the touchend hasn't been produced yet
+	 * @private
+	 */
+	private _touchStarted: boolean = false;
 
 	constructor(private _changeDetectorRef: ChangeDetectorRef, private _renderer: Renderer2) {
 	}
 
 	ngOnInit(): void {
-		switch (this.position) {
+		switch (this.dropdownPosition) {
 			case 'left':
-				this.positionClasses = '-top-0 -left-32 lg:-left-36 xl:-left-40';
+				this.positionClasses = '-top-0 -left-36 md:-left-40';
 				break;
 			case 'right':
-				this.positionClasses = '-top-0 -right-32 lg:-right-36 xl:-right-40';
+				this.positionClasses = '-top-0 -right-36 md:-right-40';
 				break;
-			case 'top-left':
+			case 'bottom-left':
 				this.positionClasses = 'left-0';
 				break;
-			case 'top-right':
+			case 'bottom-right':
 				this.positionClasses = 'right-0';
 				break;
 		}
@@ -119,11 +128,22 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 		switch (e.type) {
 			case 'focusin':
 			case 'mouseenter':
+				// if focus was produced because user touched the button, do nothing, let touch handlers do their work
+				if (this._touchStarted)
+					break;
+
 				this.isOpen = true;
 				break;
 			case 'focusout':
 			case 'mouseleave':
 				this.isOpen = false;
+				break;
+			case 'touchstart':
+				this._touchStarted = true;
+				break;
+			case 'touchend': // for mobile devices
+				this._touchStarted = false;
+				this.isOpen = !this.isOpen;
 				break;
 			default:
 				console.log('Weird event occurred on nav option', e);
@@ -131,4 +151,4 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 	}
 }
 
-export type NavOptionPosition = 'left' | 'right' | 'top-right' | 'top-left';
+export type DropdownPosition = 'left' | 'right' | 'bottom-right' | 'bottom-left';
