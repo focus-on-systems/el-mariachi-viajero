@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 
 @Component({
 	selector: 'app-nav',
@@ -6,10 +6,20 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input} from '@ang
 	styleUrls: ['./nav.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavComponent {
+export class NavComponent implements OnInit {
 	@Input()
 	public position: 'sticky' | 'fixed' = 'fixed';
 
+	/**
+	 * Tells if the device is connected to the internet
+	 */
+	public isOnline: boolean = true;
+
 	constructor(private _changeDetectorRef: ChangeDetectorRef) {
+	}
+
+	ngOnInit(): void {
+		this.isOnline = navigator.onLine;
+		this._changeDetectorRef.markForCheck();
 	}
 }

@@ -1,15 +1,17 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import SwiperCore, {Navigation, Pagination} from "swiper";
 import {Apollo} from "apollo-angular";
 import {ApolloQueryResult, gql} from "@apollo/client/core";
 import {Subscription} from "rxjs";
+import {SwiperComponent} from "swiper/angular";
 
 SwiperCore.use([Pagination, Navigation]);
 
 @Component({
 	selector: 'app-landing',
 	templateUrl: './landing.component.html',
-	styleUrls: ['./landing.component.scss']
+	styleUrls: ['./landing.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingComponent implements OnInit, OnDestroy {
 	private subscriptions: Subscription[] = [];
@@ -26,27 +28,65 @@ export class LandingComponent implements OnInit, OnDestroy {
 	 */
 	public isBackendReachable: boolean = true;
 
+	@ViewChild('carousel')
+	public carousel?: SwiperComponent;
+
+	public tourCategories: LandingTourCategory[] = [];
+
 	constructor(private _apollo: Apollo, private _changeDetectorRef: ChangeDetectorRef) {
 	}
 
 	ngOnInit(): void {
-		const healthSubscription = this._apollo.query<{ health: boolean }>({
+		// retrieve carousel slides information
+		const subscription = this._apollo.query<GQLTourCategoriesQuery>({
 			query: gql`{
 				health
+				tourCategories {
+					edges {
+						node {
+							id
+							name
+							bgImage {
+								url
+							}
+							summary
+						}
+					}
+				}
 			}`
-		}).subscribe((res: ApolloQueryResult<{ health: boolean }>) => {
-			this.isBackendReachable = !!(res.error || res.errors);
+		}).subscribe((res: ApolloQueryResult<GQLTourCategoriesQuery>) => {
+			this.isBackendReachable = !(res.error || res.errors);
 
 			if (!this.isBackendReachable)
 				return;
 
 			this.isBackendHealthy = res.data.health;
+			this.tourCategories = res.data.tourCategories.edges.map(node => node.node);
+			// console.log(this.tourCategories);
+			this._changeDetectorRef.markForCheck();
 		});
-
-		this.subscriptions.push(healthSubscription);
+		this.subscriptions.push(subscription);
 	}
 
 	ngOnDestroy(): void {
 		this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
+	}
+}
+
+interface LandingTourCategory {
+	id: string;
+	name: string;
+	bgImage: {
+		url: string;
+	};
+	summary: string;
+}
+
+interface GQLTourCategoriesQuery {
+	health: boolean;
+	tourCategories: {
+		edges: {
+			node: LandingTourCategory
+		}[];
 	}
 }

@@ -20,28 +20,21 @@
 	</div>
 </div>
 <app-nav class="w-full" position="sticky"></app-nav>
-<main class="w-full -mt-12 h-full bg-white">
+<main class="w-full -mt-12 h-full bg-green-400 bg-aztec">
 	<div class="absolute bottom-0 right-5 z-20">
 		<img src="assets/img/logoV4.png" alt="El Mariachi Viajero" class="max-w-sm w-16 md:w-20 block">
 	</div>
 	<div class="absolute bottom-0 w-full flex justify-center z-20">
-		<img src="assets/icons/chevron-double-down.svg" alt="Ver abajo" class="max-w-sm w-8 margin-auto animate-bounce"/>
+		<img src="assets/icons/chevron-double-down.svg"
+		     alt="Ver abajo"
+		     class="max-w-sm w-8 margin-auto animate-bounce"/>
 	</div>
-	<swiper class="w-full h-full" [pagination]="true" [navigation]="true" [loop]="true">
-		<ng-template swiperSlide>
-			<app-carousel-item bgImageStyle="https://images.pexels.com/photos/763429/pexels-photo-763429.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-			                   category="Coloniales"
-			                   description="Conoce lugares impresionantes con historias increíbles del México prehispánico"></app-carousel-item>
-		</ng-template>
-		<ng-template swiperSlide>
-			<app-carousel-item bgImageStyle="https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-			                   category="de Aventura"
-			                   description="Siente la adrenalina de aventarse de una tirolesa, subir una montaña... acompañado de nuestros profesionales"></app-carousel-item>
-		</ng-template>
-		<ng-template swiperSlide>
-			<app-carousel-item bgImageStyle="https://images.pexels.com/photos/4932184/pexels-photo-4932184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-			                   category="Tropicales"
-			                   description="Conoce lugares exóticos con mucha biodiversidad"></app-carousel-item>
+	<swiper class="w-full h-full" [pagination]="true" [navigation]="true" #carousel>
+		<ng-template swiperSlide *ngFor="let tourCategory of tourCategories">
+			<app-carousel-item bgImageStyle="{{tourCategory.bgImage.url}}"
+			                   category="{{tourCategory.name}}"
+			                   summary="{{tourCategory.summary}}"
+			                   link="/tours/{{tourCategory.id}}"></app-carousel-item>
 		</ng-template>
 	</swiper>
 </main>
