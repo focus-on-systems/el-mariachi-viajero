@@ -12,6 +12,8 @@ import {LandingComponent} from './landing/landing/landing.component';
 import {TourItemComponent} from './tours/tour-item/tour-item.component';
 import {TourDetailsComponent} from './tours/tour-details/tour-details.component';
 import {SwiperModule} from "swiper/angular";
+import {GraphQLModule} from './graphql.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
 	declarations: [
@@ -29,7 +31,9 @@ import {SwiperModule} from "swiper/angular";
 		BrowserModule,
 		BrowserAnimationsModule,
 		AppRoutingModule,
-		SwiperModule
+		SwiperModule,
+		GraphQLModule,
+		HttpClientModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
