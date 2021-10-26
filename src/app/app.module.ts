@@ -13,6 +13,8 @@ import {TourItemComponent} from './tours/tour-item/tour-item.component';
 import {TourDetailsComponent} from './tours/tour-details/tour-details.component';
 import {SwiperModule} from "swiper/angular";
 import { AboutCompanyComponent } from './about-company/about-company.component';
+import {GraphQLModule} from './graphql.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
 	declarations: [
@@ -31,7 +33,9 @@ import { AboutCompanyComponent } from './about-company/about-company.component';
 		BrowserModule,
 		BrowserAnimationsModule,
 		AppRoutingModule,
-		SwiperModule
+		SwiperModule,
+		GraphQLModule,
+		HttpClientModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

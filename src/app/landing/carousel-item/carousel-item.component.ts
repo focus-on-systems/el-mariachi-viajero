@@ -1,16 +1,17 @@
-import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 
 @Component({
 	selector: 'app-carousel-item',
 	templateUrl: './carousel-item.component.html',
-	styleUrls: ['./carousel-item.component.scss']
+	styleUrls: ['./carousel-item.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselItemComponent implements OnInit {
 	@Input()
 	public category: string = "";
 
 	@Input()
-	public description: string = "";
+	public summary: string = "";
 
 	private _bgImageStyle: string = "";
 
