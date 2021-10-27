@@ -2,14 +2,14 @@
   "name": "el-mariachi-viajero",
   "version": "0.0.0",
   "scripts": {
-	  "ng": "ng",
-	  "tailwind": "cd src && ./tailwind.sh && cd ..",
-	  "prestart": "export NODE_ENV=development && npm run tailwind",
-	  "start": "ng serve --configuration=development",
-	  "prebuild": "export NODE_ENV=production && npm run tailwind",
-	  "build": "ng build --configuration=production --aot=true --build-optimizer=true",
-	  "watch": "ng build --watch --configuration development",
-	  "test": "ng test"
+    "ng": "ng",
+    "tailwind": "cd src && ./tailwind.sh && cd ..",
+    "prestart": "export NODE_ENV=development && npm run tailwind",
+    "start": "ng serve --configuration=development",
+    "prebuild": "export NODE_ENV=production && npm run tailwind",
+    "build": "ng build --configuration=production --aot=true --build-optimizer=true",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
