@@ -15,6 +15,7 @@ import {SwiperModule} from "swiper/angular";
 import { AboutCompanyComponent } from './about-company/about-company.component';
 import {GraphQLModule} from './graphql.module';
 import {HttpClientModule} from '@angular/common/http';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
 	declarations: [
@@ -27,7 +28,8 @@ import {HttpClientModule} from '@angular/common/http';
 		LandingComponent,
 		TourItemComponent,
 		TourDetailsComponent,
-  AboutCompanyComponent
+  AboutCompanyComponent,
+  BlogComponent
 	],
 	imports: [
 		BrowserModule,
