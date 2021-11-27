@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TourItemComponent } from './tour-item.component';
+import {TourItemComponent} from './tour-item.component';
 
 describe('TourItemComponent', () => {
   let component: TourItemComponent;

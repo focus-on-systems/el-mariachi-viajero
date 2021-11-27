@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import {CONTACT_EMAIL, CONTACT_PHONE_NUMBER} from '../globals';
+import {CONTACT_EMAIL, CONTACT_PHONE_NUMBER} from '../../globals';
 
 @Component({
 	selector: 'app-nav',

@@ -1,22 +1,22 @@
 <div *ngIf="type === 'contact-bar'"
      class="z-40 relative w-full flex justify-around py-2 bg-green-400 bg-aztec text-white pointer-events-auto">
 	<div class="md:flex hidden">
-		<img class="w-6 mr-1 filter-green" src="assets/icons/phone.svg" alt="phone"/>
+		<img class="w-6 mr-1 filter-green" src="../../../assets/icons/phone.svg" alt="phone"/>
 		<span>{{CONTACT_PHONE_NUMBER}}</span>
 	</div>
 	<div class="md:flex hidden">
-		<img class="w-6 mr-1" src="assets/icons/mail.svg" alt="phone"/>
+		<img class="w-6 mr-1" src="../../../assets/icons/mail.svg" alt="phone"/>
 		<span>{{CONTACT_EMAIL}}</span>
 	</div>
 	<div class="flex md:gap-4 gap-6">
 		<a href="https://facebook.com" target="_blank">
-			<img class="w-6" src="assets/icons/facebook.svg" alt="Facebook" title="Facebook">
+			<img class="w-6" src="../../../assets/icons/facebook.svg" alt="Facebook" title="Facebook">
 		</a>
 		<a href="https://instagram.com" target="_blank">
-			<img class="w-6" src="assets/icons/instagram.svg" alt="Instagram" title="Instagram">
+			<img class="w-6" src="../../../assets/icons/instagram.svg" alt="Instagram" title="Instagram">
 		</a>
 		<a href="https://twitter.com" target="_blank">
-			<img class="w-6" src="assets/icons/twitter.svg" alt="Twitter" title="Twitter">
+			<img class="w-6" src="../../../assets/icons/twitter.svg" alt="Twitter" title="Twitter">
 		</a>
 	</div>
 </div>
@@ -25,7 +25,7 @@
         class="top-0 flex h-14 justify-between items-center shadow z-40 w-full bg-white backdrop-filter backdrop-blur flex-row-reverse md:flex-row pointer-events-auto"
         [ngClass]="{'sticky': type === 'contact-bar', 'fixed': type === 'normal'}">
 	<div class="h-full flex py-1.5 md:pl-6 lg:pl-8 pr-4">
-		<img class="h-full w-full" src="assets/img/logoV9.svg" alt="">
+		<img class="h-full w-full" src="../../../assets/img/logoV9.svg" alt="">
 	</div>
 
 	<!-- Nav bar for small screens -->
@@ -109,6 +109,7 @@
 		                optionTxt="Inicio"
 		                optionTxtClasses="px-3 py-2 md:text-lg lg:text-xl text-center"></app-nav-option>
 		<app-nav-option class="h-full w-full mx-2"
+		                link="/tours"
 		                optionTxt="Tours"
 		                optionTxtClasses="px-3 py-2 md:text-lg lg:text-xl text-center">
 			<app-nav-option class="w-full h-full"
