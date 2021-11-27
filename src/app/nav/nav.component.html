@@ -1,5 +1,30 @@
-<header id="header" class="{{position}} top-0 flex h-16 justify-between items-center shadow z-40 w-full bg-white p-2 pr-4 md:pl-6 lg:pl-8 backdrop-filter backdrop-blur flex-row-reverse md:flex-row">
-	<div class="h-full flex">
+<div *ngIf="type === 'contact-bar'"
+     class="z-40 relative w-full flex justify-around py-2 bg-green-400 bg-aztec text-white pointer-events-auto">
+	<div class="md:flex hidden">
+		<img class="w-6 mr-1 filter-green" src="assets/icons/phone.svg" alt="phone"/>
+		<span>{{CONTACT_PHONE_NUMBER}}</span>
+	</div>
+	<div class="md:flex hidden">
+		<img class="w-6 mr-1" src="assets/icons/mail.svg" alt="phone"/>
+		<span>{{CONTACT_EMAIL}}</span>
+	</div>
+	<div class="flex md:gap-4 gap-6">
+		<a href="https://facebook.com" target="_blank">
+			<img class="w-6" src="assets/icons/facebook.svg" alt="Facebook" title="Facebook">
+		</a>
+		<a href="https://instagram.com" target="_blank">
+			<img class="w-6" src="assets/icons/instagram.svg" alt="Instagram" title="Instagram">
+		</a>
+		<a href="https://twitter.com" target="_blank">
+			<img class="w-6" src="assets/icons/twitter.svg" alt="Twitter" title="Twitter">
+		</a>
+	</div>
+</div>
+
+<header id="header"
+        class="top-0 flex h-14 justify-between items-center shadow z-40 w-full bg-white backdrop-filter backdrop-blur flex-row-reverse md:flex-row pointer-events-auto"
+        [ngClass]="{'sticky': type === 'contact-bar', 'fixed': type === 'normal'}">
+	<div class="h-full flex py-1.5 md:pl-6 lg:pl-8 pr-4">
 		<img class="h-full w-full" src="assets/img/logoV9.svg" alt="">
 	</div>
 
@@ -78,14 +103,13 @@
 	</nav>
 
 	<!-- Nav bar for medium+ screens -->
-	<nav class="hidden md:flex justify-around w-full max-w-lg h-full relative">
+	<nav class="hidden md:flex justify-around w-full max-w-xl h-full relative">
 		<app-nav-option class="h-full w-full mx-2"
 		                link="/inicio"
 		                optionTxt="Inicio"
 		                optionTxtClasses="px-3 py-2 md:text-lg lg:text-xl text-center"></app-nav-option>
 		<app-nav-option class="h-full w-full mx-2"
 		                optionTxt="Tours"
-		                link="/tours"
 		                optionTxtClasses="px-3 py-2 md:text-lg lg:text-xl text-center">
 			<app-nav-option class="w-full h-full"
 			                link="/tours/romanticos"
@@ -248,6 +272,10 @@
 				                optionTxtClasses="px-3 py-2"></app-nav-option>
 			</app-nav-option>
 		</app-nav-option>
+		<app-nav-option class="h-full w-full mx-2"
+		                link="/ubicaciones"
+		                optionTxt="Ubicaciones"
+		                optionTxtClasses="px-3 py-2 md:text-lg lg:text-xl text-center"></app-nav-option>
 		<app-nav-option class="h-full w-full mx-2"
 		                link="/nosotros"
 		                optionTxt="Nosotros"

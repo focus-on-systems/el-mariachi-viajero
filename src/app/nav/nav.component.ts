@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {CONTACT_EMAIL, CONTACT_PHONE_NUMBER} from '../globals';
 
 @Component({
 	selector: 'app-nav',
@@ -7,8 +8,11 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} fr
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavComponent implements OnInit {
+	public readonly CONTACT_PHONE_NUMBER = CONTACT_PHONE_NUMBER;
+	public readonly CONTACT_EMAIL = CONTACT_EMAIL;
+
 	@Input()
-	public position: 'sticky' | 'fixed' = 'fixed';
+	public type: 'contact-bar' | 'normal' = 'normal';
 
 	/**
 	 * Tells if the device is connected to the internet

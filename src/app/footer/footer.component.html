@@ -1,63 +1,69 @@
 <footer class="w-full bg-green-400 bg-aztec text-white">
-	<div class="w-full p-10 md:p-20 lg:20">
-		<div class="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-6">
-			<div class="block p-4">
-				<div class="w-full">
-					<img class="w-1/2" src="assets/img/logoV9White.svg" alt="">
-				</div>
-				<div class="mt-5">
-					<p class="text-md text-left md:text-justify lg:text-justify">El Mariachi Viajero 
-						agradece tu preferencia. Seguiremos trabajando duro 
-						para ofrecerte el mejor servicio.</p>
-				</div>
-				<div class="mt-5">
-					<div class="mt-4 flex flex-col gap-2">
-						<div class="flex gap-2">
-							<img class="w-6 h-full" src="assets/icons/location.svg" alt="phone"/>
-							<span class="font-bold italic">
-								Dirección bien padre #123,
-								Los Programadores,
-								CDMX,
-								México, CP. 00000
-							</span>
-						</div>
-						<div class="flex gap-2">
-							<img class="w-6" src="assets/icons/phone.svg" alt="phone"/>
-							<span>+52 5578 7878 78</span>
-						</div>
-						<div class="flex gap-2">
-							<img class="w-6" src="assets/icons/mail.svg" alt="phone"/>
-							<span>contacto@elmariachiviajero.com.mx</span>
-						</div>
-					</div>
-				</div>
+	<div class="w-11/12 mx-auto md:py-5">
+		<div class="grid justify-center justify-items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			<!-- EMV logo -->
+			<div class="flex flex-col gap-8">
+				<img class="mx-auto w-1/2" src="assets/img/logoV9White.svg" alt="">
+				<p class="text-md text-left md:text-justify">
+					El Mariachi Viajero agradece tu preferencia.
+					Seguiremos trabajando duro para ofrecerte el mejor servicio.
+				</p>
 			</div>
-			<div class="p-4">
-				<p class="text-3xl font-black md:mt-10 lg:mt-10">Links</p>
-				<ul class="list-disc m-5">
+
+			<!-- Contact info -->
+			<div class="flex flex-col gap-6">
+				<p class="text-2xl md:text-3xl font-bold">Links</p>
+				<ul class="flex flex-col gap-2 list-disc">
 					<li>Los 5 lugares más visitados en México</li>
-					<li class="mt-5">Conoce el Palacio de Bellas Artes</li>
-					<li class="mt-5">Descubre los publos mágicos en México</li>
-					<li class="mt-5">las catedrales más emblemáticas en México</li>
+					<li>Conoce el Palacio de Bellas Artes</li>
+					<li>Descubre los publos mágicos en México</li>
+					<li>las catedrales más emblemáticas en México</li>
 				</ul>
 			</div>
-			<div class="p-4">
-				<p class="text-3xl font-black md:mt-10 lg:mt-10">Síguenos</p>
-				<div class="flex gap-4 mt-5">
-					<a href="https://facebook.com" target="_blank">
-						<img class="w-6" src="assets/icons/facebook.svg" alt="Facebook" title="Facebook">
-					</a>
-					<a href="https://instagram.com" target="_blank">
-						<img class="w-6" src="assets/icons/instagram.svg" alt="Instagram" title="Instagram">
-					</a>
-					<a href="https://twitter.com" target="_blank">
-						<img class="w-6" src="assets/icons/twitter.svg" alt="Twitter" title="Twitter">
-					</a>
+
+			<!-- Social Media & Contact -->
+			<div class="col-span-1 md:col-span-2 lg:col-span-1 flex flex-col gap-10">
+				<!-- Social Media -->
+				<div class="w-full flex flex-col gap-4">
+					<p class="text-2xl md:text-3xl font-bold">Síguenos</p>
+					<div class="flex gap-4">
+						<a href="https://facebook.com" target="_blank">
+							<img class="w-6" src="assets/icons/facebook.svg" alt="Facebook" title="Facebook">
+						</a>
+						<a href="https://instagram.com" target="_blank">
+							<img class="w-6" src="assets/icons/instagram.svg" alt="Instagram" title="Instagram">
+						</a>
+						<a href="https://twitter.com" target="_blank">
+							<img class="w-6" src="assets/icons/twitter.svg" alt="Twitter" title="Twitter">
+						</a>
+					</div>
+				</div>
+
+				<!-- Contact -->
+				<div class="flex flex-col gap-4">
+					<p class="text-2xl md:text-3xl font-bold">Contacto</p>
+					<div class="flex gap-2">
+						<img class="w-6 h-full" src="assets/icons/location.svg" alt="phone"/>
+						<span class="font-bold italic">
+							Dirección bien padre #123,
+							Los Programadores,
+							CDMX,
+							México, CP. 00000
+						</span>
+					</div>
+					<div class="flex gap-2">
+						<img class="w-6" src="assets/icons/phone.svg" alt="phone"/>
+						<span>{{CONTACT_PHONE_NUMBER}}</span>
+					</div>
+					<div class="flex gap-2">
+						<img class="w-6" src="assets/icons/mail.svg" alt="phone"/>
+						<span>{{CONTACT_EMAIL}}</span>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="w-full bg-green-500 text-center p-4">
-			<p class="font-light mt-2">Copyright &copy; El Mariachi Viajero 2021</p>
-		</div>
+	<div class="w-full bg-green-500 text-center p-3">
+		<p class="font-light">Copyright &copy; El Mariachi Viajero 2021</p>
+	</div>
 </footer>

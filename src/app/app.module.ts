@@ -12,10 +12,11 @@ import {LandingComponent} from './landing/landing/landing.component';
 import {TourItemComponent} from './tours/tour-item/tour-item.component';
 import {TourDetailsComponent} from './tours/tour-details/tour-details.component';
 import {SwiperModule} from "swiper/angular";
-import { AboutCompanyComponent } from './about-company/about-company.component';
+import {AboutCompanyComponent} from './about-company/about-company.component';
 import {GraphQLModule} from './graphql.module';
 import {HttpClientModule} from '@angular/common/http';
-import { BlogComponent } from './blog/blog.component';
+import {BlogComponent} from './blog-module/blog/blog.component';
+import {BasicCardComponent} from './utils/basic-card/basic-card.component';
 
 @NgModule({
 	declarations: [
@@ -28,8 +29,9 @@ import { BlogComponent } from './blog/blog.component';
 		LandingComponent,
 		TourItemComponent,
 		TourDetailsComponent,
-  AboutCompanyComponent,
-  BlogComponent
+		AboutCompanyComponent,
+		BlogComponent,
+		BasicCardComponent
 	],
 	imports: [
 		BrowserModule,

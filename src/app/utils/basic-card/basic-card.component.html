@@ -1,0 +1,9 @@
+<div class="w-full h-full bg-center bg-cover relative flex justify-center items-center"
+     [ngStyle]="{backgroundImage: bgImage}">
+	<div class="absolute overflow-hidden h-full w-full bg-black opacity-50 z-10 pointer-events-none"></div>
+	<a class="w-full h-full flex items-center justify-center z-20 px-5 py-16 text-center text-xl md:text-2xl text-white font-semibold transform hover:scale-110 motion-reduce:transform-none transition-transform"
+	   [routerLink]="link"
+	   title="{{linkTitle}}">
+		{{linkTxt}}
+	</a>
+</div>

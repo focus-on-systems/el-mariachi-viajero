@@ -1,36 +1,7 @@
-<div class="z-40 w-full flex justify-around py-2 bg-green-400 bg-aztec text-white">
-	<div class="md:flex hidden">
-		<img class="w-6 mr-1 filter-green" src="assets/icons/phone.svg" alt="phone"/>
-		<span>+52 5578 7878 78</span>
-	</div>
-	<div class="md:flex hidden">
-		<img class="w-6 mr-1" src="assets/icons/mail.svg" alt="phone"/>
-		<span>contacto@elmariachiviajero.com.mx</span>
-	</div>
-	<div class="flex md:gap-4 gap-6">
-		<a href="https://facebook.com" target="_blank">
-			<img class="w-6" src="assets/icons/facebook.svg" alt="Facebook" title="Facebook">
-		</a>
-		<a href="https://instagram.com" target="_blank">
-			<img class="w-6" src="assets/icons/instagram.svg" alt="Instagram" title="Instagram">
-		</a>
-		<a href="https://twitter.com" target="_blank">
-			<img class="w-6" src="assets/icons/twitter.svg" alt="Twitter" title="Twitter">
-		</a>
-	</div>
-</div>
-<app-nav class="w-full" position="sticky"></app-nav>
-<main class="w-full -mt-12 h-full bg-white">
-	<!--<div class="absolute bottom-0 right-5 z-20">
-<main class="w-full -mt-12 h-full bg-green-400 bg-aztec">
-	<div class="absolute bottom-0 right-5 z-20">
-		<img src="assets/img/logoV4.png" alt="El Mariachi Viajero" class="max-w-sm w-16 md:w-20 block">
-	</div>-->
-	<div class="absolute bottom-0 w-full flex justify-center z-20">
-		<img src="assets/icons/chevron-double-down.svg"
-		     alt="Ver abajo"
-		     class="max-w-sm w-8 margin-auto animate-bounce"/>
-	</div>
+<app-nav class="absolute pointer-events-none block w-full min-h-full" type="contact-bar"></app-nav>
+
+<!-- Carousel -->
+<div class="w-full h-screen bg-aztec relative">
 	<swiper class="w-full h-full" [pagination]="true" [navigation]="true" #carousel>
 		<ng-template swiperSlide *ngFor="let tourCategory of tourCategories">
 			<app-carousel-item bgImageStyle="{{tourCategory.bgImage.url}}"
@@ -39,166 +10,152 @@
 			                   link="/tours/{{tourCategory.id}}"></app-carousel-item>
 		</ng-template>
 	</swiper>
-</main>
-<div class="p-10 grid grid-cols-1 p-0 m-0 md:grid-cols-2 md:p-16 lg:grid-cols-2 lg:p-20">
-    <div class="">
-        <p class="text-2xl font-light uppercase text-black md:text-3xl lg:text-4xl">
-            Tu <span class="text-2xl font-black uppercase text-black md:text-3xl lg:text-4xl">
-            diversión</span> es nuestra obligación
-        </p>
-        <p class="mt-8 font-xs text-gray-500 font-light tracking-widest">
-            Visita <span class="font-bold">México</span> y descubre sus museos, monumentos, tradiciones, gastronomía, 
-            folclore y costumbres, que harán de tu viaje una <span class="font-bold">aventura</span> llena de emociones
-            que <span class="font-bold">no podrás olvidar</span>.
-        </p>
-    </div>
-    <div></div>
+	<!--	<div class="absolute bottom-6 w-full flex justify-center z-20">-->
+	<!--		<img src="assets/icons/chevron-double-down.svg"-->
+	<!--		     alt="Ver abajo"-->
+	<!--		     class="max-w-sm w-8 margin-auto animate-bounce"/>-->
+	<!--	</div>-->
 </div>
-<div class="grid grid-cols-1 p-0 m-0 md:grid-cols-2 lg:grid-cols-3 bg-white">
-    <!--Who we are?-->
-    <div class="h-full bg-cover bg-center"
-    title="Image goes here" style="background-image: url('https://images.pexels.com/photos/3722817/pexels-photo-3722817.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');"> 
-        
-    </div>
-    <div id="whoWeAre" class="p-12 bg-green-400">
-		<p class="text-2xl font-semibold uppercase text-white text-left">El hombre y el turismo</p>
-        <p class="mt-5 text-left text-md font-sm text-white tracking-widest">
-            Las necesidades del hombre a través de la historia han sido viajar, 
-			trasladarse de un lugar a otro solo con el afán de conocer, 
-			divertirse y sentirse satisfecho con los conocimientos adquiridos 
-			en sus aventuras.
-		</p>
-    </div>
-    <div class="bg-cover bg-center block"
-    title="Image goes here" style="background-image: url('https://images.pexels.com/photos/784707/pexels-photo-784707.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');"> 
-    </div>
 
-    <!--Mission-->
-    <div id="mision" class="p-12">
-        <p class="text-2xl font-semibold uppercase text-red-500 text-left">Tus opinión es importante</p>
-        <p class="mt-5 text-sm font-light text-left text-gray-500 tracking-widest">
-			Tus valoraciones ayudarán a nuestro <span class="font-bold">crecimiento</span> y tus recomendaciones
-			nos motivarán a ser cada día más <span class="font-bold">profesionales</span> con cada uno de 
-			nuestros clientes.  
-        </p>
-    </div>
-    <div class="bg-cover bg-center"
-    title="Image goes here" style="background-image: url('https://images.pexels.com/photos/5862697/pexels-photo-5862697.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');"> 
-    </div>
+<!-- Content -->
+<p class="p-5 md:p-10 text-center font-light uppercase text-2xl md:text-3xl lg:text-4xl">
+	Tu <span class="font-semibold">Recreación</span> es nuestra obligación
+</p>
 
-    <div id="vision" class="p-12">
-        <p class="text-2xl font-semibold uppercase text-red-500 text-left">Nuestra meta es ayudarte</p>
-        <p class="mt-5 text-sm font-light text-left text-gray-500 tracking-widest">
-            Cuéntanos qué tipo de experiencia quieres vivir y será un placer
-			brindarte apoyo profesional para encontrar el tour que necesitas.
-        </p>
-    </div>
+<!-- Promociones -->
+<div class="w-5/6 mx-auto p-5 text-center border-b-4 border-gray-600">
+	<p class="text-2xl font-light uppercase text-black md:text-3xl lg:text-4xl">
+		<span class="font-semibold">Promociones</span> del mes
+	</p>
 </div>
-<div class="p-10 mt-10 text-center">
-	<div class="p-10 border-b-4 border-gray-600">
-		<p class="text-2xl font-light uppercase text-black md:text-3xl lg:text-4xl">
-			Conoce nuestra variedad de  <span class="text-2xl font-black uppercase text-black md:text-3xl lg:text-4xl">
-			recorridos</span> 
-		</p>
-		<p class="mt-5 text-left text-medium font-light text-left text-gray-500 tracking-widest"> 
-			Planificar tu viaje es importante, por ese motivo, 
-			<span class="font-bold">El Mariachi Viajero</span>
-			te ofrece una amplia gama de destinos que podrás disfrutar.
-		</p>
-	</div>
+<p class="text-center">PROMOCIONSOTAS POR AQUÍ</p>
+
+<!-- Tours por categoría -->
+<div class="w-5/6 mx-auto p-5 text-center border-b-4 border-gray-600">
+	<p class="text-2xl font-light uppercase text-black md:text-3xl lg:text-4xl">
+		Tours por <span class="font-semibold">categoría</span>
+	</p>
 </div>
-<div class="p-10 grid grid-cols-2 grid-rows-2  md:grid-cols-2 gap-1 md:p-16 lg:grid-cols-5 gap-1 lg:p-20">
-	<div class="p-8 row-span-1 col-span-1 bg-center bg-cover relative flex justify-center items-center
-	before:absolute before:absolute before:inset-0"
-	style="background-image: url('https://images.pexels.com/photos/2239854/pexels-photo-2239854.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
-		<div class="absolute overflow-hidden h-full w-full bg-black opacity-50 z-10 pointer-events-none"></div>
-		<div class="flex flex-col m-5 relative justify-center 
-		items-center h-1/2 text-white z-30
-		transform hover:scale-110 motion-reduce:transform-none">
-			<a href="#">
-				<p class="text-center text-2xl text-white font-bold">Recorridos de 1 día</p>
-			</a>
-		</div>
-	</div>
-	<div class="p-8 row-span-2 col-span-1 bg-center bg-cover relative flex justify-center items-center
-	before:absolute before:absolute before:inset-0"
-	style="background-image: url('https://images.pexels.com/photos/9307997/pexels-photo-9307997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
-		<div class="absolute overflow-hidden h-full w-full bg-black opacity-50 z-10 pointer-events-none"></div>
-		<div class="flex flex-col m-5 relative justify-center 
-		items-center h-1/2 text-white z-30
-		transform hover:scale-110 motion-reduce:transform-none">
-			<a href="#">
-				<p class="text-center text-2xl text-white font-bold">Recorridos de 2 días</p>
-			</a>
-		</div>	
-	</div>
-	<div class="p-8 row-span-1 col-span-1 bg-center bg-cover relative flex justify-center items-center
-	before:absolute before:absolute before:inset-0"
-	style="background-image: url('https://images.pexels.com/photos/604661/pexels-photo-604661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
-		<div class="absolute overflow-hidden h-full w-full bg-black opacity-50 z-10 pointer-events-none"></div>
-		<div class="flex flex-col m-5 relative justify-center 
-		items-center h-1/2 text-white z-30
-		transform hover:scale-110 motion-reduce:transform-none">
-			<a href="#">
-				<p class="text-center text-2xl text-white font-bold">Recorridos de 3 días</p>
-			</a>
-		</div>
-	</div>
-	<div class="p-8 row-span-2 col-span-2 bg-center bg-cover relative flex justify-center items-center
-	before:absolute before:absolute before:inset-0"
-	style="background-image: url('https://images.pexels.com/photos/763429/pexels-photo-763429.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
-		<div class="absolute overflow-hidden h-full w-full bg-black opacity-50 z-10 pointer-events-none"></div>
-		<div class="flex flex-col m-5 relative justify-center
-		items-center h-1/2 text-white z-30
-		transform hover:scale-110 motion-reduce:transform-none">
-			<a href="#">
-				<p class="text-center text-2xl text-white font-bold">Circuitos de 8 días</p>
-			</a>
-		</div>
-	</div>
-	<div class="p-8 row-span-1 col-span-1 bg-center bg-cover relative flex justify-center items-center
-		before:absolute before:absolute before:inset-0"
-	style="background-image: url('https://images.pexels.com/photos/794912/pexels-photo-794912.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
-		<div class="absolute overflow-hidden h-full w-full bg-black opacity-50 z-10 pointer-events-none"></div>
-		<div class="flex flex-col m-5 relative justify-center 
-		items-center h-1/2 text-white z-30
-		transform hover:scale-110 motion-reduce:transform-none">
-			<a href="#">
-				<p class="text-center text-2xl text-white font-bold">Circuitos de 10 días</p>
-			</a>
-		</div>
-	</div>
-	<div class="row-span-1 col-span-1 bg-center bg-cover relative flex justify-center items-center
-	before:absolute before:absolute before:inset-0"
-	style="background-image: url('https://images.pexels.com/photos/3757136/pexels-photo-3757136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
-		<div class="absolute overflow-hidden h-full w-full bg-black opacity-50 z-10 pointer-events-none"></div>
-		<div class="flex flex-col m-5 relative justify-center 
-		items-center h-1/2 text-white z-30
-		transform hover:scale-110 motion-reduce:transform-none">
-			<a href="#">
-				<p class="text-center text-2xl text-white font-bold">Recorridos religiosos</p>
-			</a>
-		</div>
-	</div>
+<div class="w-5/6 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-2 my-10">
+	<app-basic-card linkTxt="Categoría 1"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/2239854/pexels-photo-2239854.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
+	<app-basic-card class="row-span-2"
+	                linkTxt="Categoría 2"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/9307997/pexels-photo-9307997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
+	<app-basic-card linkTxt="Super categoría 3"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/604661/pexels-photo-604661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
+	<app-basic-card class="row-span-2"
+	                linkTxt="Super categoría 4"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/763429/pexels-photo-763429.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
+	<app-basic-card linkTxt="Super categoría 5"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/794912/pexels-photo-794912.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
+	<app-basic-card linkTxt="Super categoría 6"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/3757136/pexels-photo-3757136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
 </div>
+
+<!-- Tours por ubicación -->
+<div class="w-5/6 mx-auto p-5 text-center border-b-4 border-gray-600">
+	<p class="text-2xl font-light uppercase text-black md:text-3xl lg:text-4xl">
+		Tours por <span class="font-semibold">ubicación</span>
+	</p>
+</div>
+<div class="w-5/6 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-2 my-10">
+	<app-basic-card linkTxt="Ubicación 1"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/2239854/pexels-photo-2239854.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
+	<app-basic-card class="row-span-2"
+	                linkTxt="Ubicación 2"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/9307997/pexels-photo-9307997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
+	<app-basic-card linkTxt="Super ubicación 3"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/604661/pexels-photo-604661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
+	<app-basic-card class="row-span-2"
+	                linkTxt="Super ubicación 4"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/763429/pexels-photo-763429.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
+	<app-basic-card linkTxt="Super ubicación 5"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/794912/pexels-photo-794912.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
+	<app-basic-card linkTxt="Super ubicación 6"
+	                link="/hola"
+	                bgImage="https://images.pexels.com/photos/3757136/pexels-photo-3757136.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+	</app-basic-card>
+</div>
+
+<!--<div class="grid grid-cols-1 p-0 m-0 md:grid-cols-2 lg:grid-cols-3 bg-white">-->
+<!--	&lt;!&ndash; Who we are? &ndash;&gt;-->
+<!--	<div class="h-full bg-cover bg-center"-->
+<!--	     title="Image goes here" style="background-image: url('https://images.pexels.com/photos/3722817/pexels-photo-3722817.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');">-->
+
+<!--	</div>-->
+<!--	<div id="whoWeAre" class="p-12 bg-green-400">-->
+<!--		<p class="text-2xl font-semibold uppercase text-white text-left">El hombre y el turismo</p>-->
+<!--		<p class="mt-5 text-left text-md font-sm text-white tracking-widest">-->
+<!--			Las necesidades del hombre a través de la historia han sido viajar,-->
+<!--			trasladarse de un lugar a otro solo con el afán de conocer,-->
+<!--			divertirse y sentirse satisfecho con los conocimientos adquiridos-->
+<!--			en sus aventuras.-->
+<!--		</p>-->
+<!--	</div>-->
+<!--	<div class="bg-cover bg-center block"-->
+<!--	     title="Image goes here" style="background-image: url('https://images.pexels.com/photos/784707/pexels-photo-784707.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">-->
+<!--	</div>-->
+
+<!--	&lt;!&ndash;Mission&ndash;&gt;-->
+<!--	<div id="mision" class="p-12">-->
+<!--		<p class="text-2xl font-semibold uppercase text-red-500 text-left">Tus opinión es importante</p>-->
+<!--		<p class="mt-5 text-sm font-light text-left text-gray-500 tracking-widest">-->
+<!--			Tus valoraciones ayudarán a nuestro <span class="font-semibold">crecimiento</span> y tus recomendaciones-->
+<!--			nos motivarán a ser cada día más <span class="font-semibold">profesionales</span> con cada uno de-->
+<!--			nuestros clientes.-->
+<!--		</p>-->
+<!--	</div>-->
+<!--	<div class="bg-cover bg-center"-->
+<!--	     title="Image goes here" style="background-image: url('https://images.pexels.com/photos/5862697/pexels-photo-5862697.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">-->
+<!--	</div>-->
+
+<!--	<div id="vision" class="p-12">-->
+<!--		<p class="text-2xl font-semibold uppercase text-red-500 text-left">Nuestra meta es ayudarte</p>-->
+<!--		<p class="mt-5 text-sm font-light text-left text-gray-500 tracking-widest">-->
+<!--			Cuéntanos qué tipo de experiencia quieres vivir y será un placer-->
+<!--			brindarte apoyo profesional para encontrar el tour que necesitas.-->
+<!--		</p>-->
+<!--	</div>-->
+<!--</div>-->
+
 <div id="contacto" class="p-10 grid grid-cols-1 p-0 m-0 md:grid-cols-2 md:p-16 lg:grid-cols-2 lg:p-20">
-    <div class="">
-        <p class="text-2xl font-light uppercase text-black md:text-3xl lg:text-4xl">
-            <span class="text-2xl font-black uppercase text-black md:text-3xl lg:text-4xl">Contáctanos.</span> 
-            Será un gusto atenderte y descubrir cual es el viaje que necesitas.
-        </p>
-        <div class="mt-5">
-            <div class="mt-4 flex flex-col gap-2">
-                <div class="flex gap-2">
-                    <img class="w-6" src="assets/icons/phoneGray.svg" alt="phone"/>
-                    <span class="text-md font-xs text-gray-500 text-justify5">+52 5578 7878 78</span>
-                </div>
-                <div class="flex gap-2">
-                    <img class="w-6" src="assets/icons/mailGray.svg" alt="phone"/>
-                    <span class="text-md font-xs text-gray-500 text-justify5">contacto@elmariachiviajero.com.mx</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div></div>
+	<p class="text-2xl font-light uppercase text-black md:text-3xl lg:text-4xl">
+		<span class="text-2xl font-semibold uppercase text-black md:text-3xl lg:text-4xl">Contáctanos.</span>
+		Será un gusto atenderte y descubrir cuál es el viaje que necesitas.
+	</p>
+	<div class="mt-5">
+		<div class="mt-4 flex flex-col gap-2">
+			<div class="flex gap-2">
+				<img class="w-6" src="assets/icons/phoneGray.svg" alt="phone"/>
+				<span class="text-md font-xs text-gray-500 text-justify5">+52 5578 7878 78</span>
+			</div>
+			<div class="flex gap-2">
+				<img class="w-6" src="assets/icons/mailGray.svg" alt="phone"/>
+				<span class="text-md font-xs text-gray-500 text-justify5">contacto@elmariachiviajero.com.mx</span>
+			</div>
+		</div>
+	</div>
 </div>

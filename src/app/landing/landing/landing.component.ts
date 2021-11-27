@@ -4,6 +4,8 @@ import {Apollo} from "apollo-angular";
 import {ApolloQueryResult, gql} from "@apollo/client/core";
 import {Subscription} from "rxjs";
 import {SwiperComponent} from "swiper/angular";
+import {CONTACT_EMAIL, CONTACT_PHONE_NUMBER} from "../../globals";
+
 
 SwiperCore.use([Pagination, Navigation]);
 
@@ -15,6 +17,9 @@ SwiperCore.use([Pagination, Navigation]);
 })
 export class LandingComponent implements OnInit, OnDestroy {
 	private subscriptions: Subscription[] = [];
+
+	public readonly CONTACT_PHONE_NUMBER = CONTACT_PHONE_NUMBER;
+	public readonly CONTACT_EMAIL = CONTACT_EMAIL;
 
 	/**
 	 * Tells if the backend health check succeeded

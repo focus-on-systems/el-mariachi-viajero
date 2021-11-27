@@ -4,7 +4,7 @@ import {ManageToursComponent} from "./tours/manage-tours/manage-tours.component"
 import {TourDetailsComponent} from "./tours/tour-details/tour-details.component";
 import {LandingComponent} from "./landing/landing/landing.component";
 import {AboutCompanyComponent} from "./about-company/about-company.component";
-import { BlogComponent } from './blog/blog.component';
+import {BlogComponent} from './blog-module/blog/blog.component';
 
 const routes: Routes = [
 	{path: "", redirectTo: "/inicio", pathMatch: "full"},
