@@ -23,7 +23,7 @@
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
-						"outputPath": "dist/el-mariachi-viajero",
+						"outputPath": "dist/el-mariachi-viajero/browser",
 						"index": "src/index.html",
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
@@ -44,8 +44,8 @@
 							"budgets": [
 								{
 									"type": "initial",
-									"maximumWarning": "500kb",
-									"maximumError": "1mb"
+									"maximumWarning": "3mb",
+									"maximumError": "6mb"
 								},
 								{
 									"type": "anyComponentStyle",
@@ -114,6 +114,71 @@
 						],
 						"scripts": []
 					}
+				},
+				"server": {
+					"builder": "@angular-devkit/build-angular:server",
+					"options": {
+						"outputPath": "dist/el-mariachi-viajero/server",
+						"main": "server.ts",
+						"tsConfig": "tsconfig.server.json",
+						"inlineStyleLanguage": "scss"
+					},
+					"configurations": {
+						"production": {
+							"outputHashing": "media",
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.prod.ts"
+								}
+							]
+						},
+						"development": {
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.dev.ts"
+								}
+							],
+							"optimization": false,
+							"sourceMap": true,
+							"extractLicenses": false
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve-ssr": {
+					"builder": "@nguniversal/builders:ssr-dev-server",
+					"configurations": {
+						"development": {
+							"browserTarget": "el-mariachi-viajero:build:development",
+							"serverTarget": "el-mariachi-viajero:server:development"
+						},
+						"production": {
+							"browserTarget": "el-mariachi-viajero:build:production",
+							"serverTarget": "el-mariachi-viajero:server:production"
+						}
+					},
+					"defaultConfiguration": "development"
+				},
+				"prerender": {
+					"builder": "@nguniversal/builders:prerender",
+					"options": {
+						"routes": [
+							"/"
+						]
+					},
+					"configurations": {
+						"production": {
+							"browserTarget": "el-mariachi-viajero:build:production",
+							"serverTarget": "el-mariachi-viajero:server:production"
+						},
+						"development": {
+							"browserTarget": "el-mariachi-viajero:build:development",
+							"serverTarget": "el-mariachi-viajero:server:development"
+						}
+					},
+					"defaultConfiguration": "production"
 				}
 			}
 		}

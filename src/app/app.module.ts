@@ -29,7 +29,7 @@ import {InputComponent} from './utils/input/input.component';
 		InputComponent
 	],
 	imports: [
-		BrowserModule,
+		BrowserModule.withServerTransition({appId: 'serverApp'}),
 		BrowserAnimationsModule,
 		AppRoutingModule,
 		SwiperModule,

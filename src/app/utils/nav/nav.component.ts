@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
 import {CONTACT_EMAIL, CONTACT_PHONE_NUMBER} from '../../globals';
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
 	selector: 'app-nav',
@@ -19,11 +20,12 @@ export class NavComponent implements OnInit {
 	 */
 	public isOnline: boolean = true;
 
-	constructor(private _changeDetectorRef: ChangeDetectorRef) {
+	constructor(private _changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private _platformId: Object) {
 	}
 
 	ngOnInit(): void {
-		this.isOnline = navigator.onLine;
+		if (isPlatformBrowser(this._platformId))
+			this.isOnline = navigator.onLine;
 		this._changeDetectorRef.markForCheck();
 	}
 }
