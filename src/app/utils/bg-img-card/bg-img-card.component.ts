@@ -2,11 +2,11 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
 @Component({
 	selector: 'app-basic-card',
-	templateUrl: './basic-card.component.html',
-	styleUrls: ['./basic-card.component.scss'],
+	templateUrl: './bg-img-card.component.html',
+	styleUrls: ['./bg-img-card.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BasicCardComponent implements OnInit {
+export class BgImgCardComponent implements OnInit {
 	private _bgImage: string = '';
 
 	/**

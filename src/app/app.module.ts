@@ -11,7 +11,10 @@ import {LandingComponent} from './landing/landing/landing.component';
 import {SwiperModule} from "swiper/angular";
 import {GraphQLModule} from './graphql.module';
 import {HttpClientModule} from '@angular/common/http';
-import {BasicCardComponent} from './utils/basic-card/basic-card.component';
+import {BgImgCardComponent} from './utils/bg-img-card/bg-img-card.component';
+import {ContactFormComponent} from './utils/contact-form/contact-form.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {InputComponent} from './utils/input/input.component';
 
 @NgModule({
 	declarations: [
@@ -21,7 +24,9 @@ import {BasicCardComponent} from './utils/basic-card/basic-card.component';
 		NavComponent,
 		FooterComponent,
 		LandingComponent,
-		BasicCardComponent
+		BgImgCardComponent,
+		ContactFormComponent,
+		InputComponent
 	],
 	imports: [
 		BrowserModule,
@@ -29,7 +34,8 @@ import {BasicCardComponent} from './utils/basic-card/basic-card.component';
 		AppRoutingModule,
 		SwiperModule,
 		GraphQLModule,
-		HttpClientModule
+		HttpClientModule,
+		ReactiveFormsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

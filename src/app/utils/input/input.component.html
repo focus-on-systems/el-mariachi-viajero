@@ -1,0 +1,18 @@
+<label for="{{name}}" class="font-light" [ngClass]="{'text-white': textColor === 'white'}">
+	<span>{{label}}</span>&nbsp;<span *ngIf="required">*</span><span *ngIf="!required">(opcional)</span>
+</label>
+<input *ngIf="!isTextArea"
+       type="{{type}}"
+       id="{{name}}"
+       name="{{name}}"
+       placeholder="{{placeholder}}"
+       class="w-full outline-none focus:border-green-600 border-b-2 border-green-400 px-3 py-2 bg-transparent transition-colors"
+       [ngClass]="{'text-white': textColor === 'white'}"
+       [required]="required">
+<textarea *ngIf="isTextArea"
+          id="{{name}}"
+          name="{{name}}"
+          placeholder="{{placeholder}}"
+          class="w-full outline-none focus:border-green-600 border-b-2 border-green-400 px-3 py-2 bg-transparent transition-colors"
+          [ngClass]="{'text-white': textColor === 'white'}"
+          [required]="required"></textarea>

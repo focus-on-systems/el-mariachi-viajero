@@ -1,0 +1,69 @@
+<div [@openClose]="isOpen ? 'open' : 'closed'"
+     class="min-w-min w-96 max-w-xl max-h-screen hidden md:block fixed bottom-6 right-6 bg-white z-40 shadow-2xl rounded">
+	<div class="w-full flex justify-between gap-2 px-5 py-3">
+		<img class="w-10 h-auto" src="assets/img/logoV9.png" alt="EMV">
+		<p class="text-xl">Contacta con nosotros</p>
+		<button title="Cerrar" (click)="toggle()">
+			<img class="w-8" src="assets/icons/cross.svg" alt="Cerrar">
+		</button>
+	</div>
+	<form class="w-full flex flex-col gap-2 px-3"
+	      name="contact"
+	      method="POST"
+	      data-netlify="true"
+	      data-netlify-recaptcha="true"
+	      ngNativeValidate>
+		<app-input class="flex flex-col"
+		           name="name"
+		           placeholder="Benjamín Guzmán"
+		           label="Nombre"
+		           [required]="true"></app-input>
+		<app-input class="flex flex-col"
+		           name="email"
+		           placeholder="benjamin@example.com"
+		           label="Correo electrónico"
+		           type="email"
+		           [required]="true"></app-input>
+		<app-input class="flex flex-col"
+		           name="message"
+		           placeholder="Quiero cotizar un tour para mí y mi novia..."
+		           label="¿En qué te podemos ayudar?"
+		           [required]="true"
+		           [isTextArea]="true"></app-input>
+		<app-input class="flex flex-col"
+		           name="phone"
+		           placeholder="+52 55 5555 5555"
+		           type="tel"
+		           label="Número telefónico"></app-input>
+
+		<!--		<p class="text-white text-center">Nuestra información de contacto</p>-->
+		<!--		<div class="w-full mx-auto text-white text-sm">-->
+		<!--			<div class="flex justify-center gap-1">-->
+		<!--				<img class="w-6" src="assets/icons/phone.svg" alt="phone"/>-->
+		<!--				<span>{{CONTACT_PHONE_NUMBER}}</span>-->
+		<!--			</div>-->
+		<!--			<div class="flex justify-center gap-1">-->
+		<!--				<img class="w-6" src="assets/icons/mail.svg" alt="email"/>-->
+		<!--				<span>{{CONTACT_EMAIL}}</span>-->
+		<!--			</div>-->
+		<!--		</div>-->
+		<div data-netlify-recaptcha="true"></div>
+		<div class="w-full flex justify-around text-white py-3">
+			<button type="submit" class="flex gap-2 px-3 py-2 bg-green-500 rounded-full rounded-full">
+				<img src="assets/icons/send.svg" alt="send">
+				<span>Enviar</span>
+			</button>
+		</div>
+	</form>
+</div>
+
+<div class="md:hidden w-full h-full fixed top-0 p-6 z-40">
+	<div class="bg-green-400 w-full h-full"></div>
+</div>
+
+<button (click)="toggle()"
+        [@openClose]="isOpen ? 'closed' : 'open'"
+        class="w-14 h-14 bg-green-500 rounded-full flex justify-center fixed bottom-6 right-6 z-40 shadow-lg"
+        title="Contacto">
+	<img class="w-2/3" src="assets/icons/chat.svg" alt="Contacto">
+</button>
