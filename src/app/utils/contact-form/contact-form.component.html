@@ -14,12 +14,11 @@
 				<mat-icon class="w-8">close</mat-icon>
 			</button>
 		</div>
+
+		<!-- this is the actual form that will be sent to netlify, not the form at the end of this file -->
 		<form class="w-full flex flex-col gap-2 px-3"
-		      name="contact"
 		      [formGroup]="form"
 		      (ngSubmit)="onSubmit()"
-		      data-netlify="true"
-		      netlify-honeypot="honey"
 		      ngNativeValidate>
 			<input type="hidden" name="form-name" value="contact"/>
 			<app-input class="flex flex-col"
