@@ -30,76 +30,22 @@
 
 	<!-- Nav bar for small screens -->
 	<nav class="flex md:hidden justify-around h-full relative">
-		<app-nav-option class="h-full w-full"
-		                icon="menu"
-		                dropdownPosition="bottom-left"
-		                iconPosition="fill"
-		                iconClass="w-14 px-3">
-			<app-nav-option class="h-full w-full"
-			                link="/inicio"
-			                optionTxt="Inicio"
-			                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center"></app-nav-option>
-			<app-nav-option class="h-full w-full"
-			                optionTxt="Tours"
-			                link="/tours"
-			                dropdownPosition="right"
-			                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center">
-				<app-nav-option class="w-full h-full"
-				                link="/tours/romanticos"
-				                optionTxt="Románticos"
-				                optionTxtClass="px-3 py-2"
-				                dropdownPosition="right"
-				                icon="chevron_right"
-				                iconPosition="right">
-					<app-nav-option class="w-full"
-					                link="/tours/romanticos/loc1"
-					                optionTxt="Locación 1"
-					                optionTxtClass="px-3 py-2"></app-nav-option>
-					<app-nav-option class="w-full"
-					                link="/tours/romanticos/loc2"
-					                optionTxt="Locación 2"
-					                optionTxtClass="px-3 py-2"></app-nav-option>
-				</app-nav-option>
-				<app-nav-option class="w-full h-full"
-				                link="/tours/supersonicos"
-				                optionTxt="Supersónicos"
-				                optionTxtClass="px-3 py-2"
-				                dropdownPosition="right"
-				                icon="chevron_right"
-				                iconPosition="right">
-					<app-nav-option class="w-full"
-					                link="/tours/supersonicos/loc1"
-					                optionTxt="Locación 1"
-					                optionTxtClass="px-3 py-2"></app-nav-option>
-					<app-nav-option class="w-full"
-					                link="/tours/supersonicos/loc2"
-					                optionTxt="Locación 2"
-					                optionTxtClass="px-3 py-2"></app-nav-option>
-				</app-nav-option>
-			</app-nav-option>
-			<app-nav-option class="h-full w-full"
-			                link="/nosotros"
-			                optionTxt="Nosotros"
-			                dropdownPosition="right"
-			                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center">
-				<app-nav-option class="w-full"
-				                link="/nosotros#contacto"
-				                optionTxt="Contacto"
-				                optionTxtClass="px-3 py-2"></app-nav-option>
-				<app-nav-option class="w-full"
-				                link="/nosotros#mision"
-				                optionTxt="Misión"
-				                optionTxtClass="px-3 py-2"></app-nav-option>
-				<app-nav-option class="w-full"
-				                link="/nosotros#vision"
-				                optionTxt="Visión"
-				                optionTxtClass="px-3 py-2"></app-nav-option>
-			</app-nav-option>
-			<app-nav-option class="h-full w-full"
-			                link="/blog"
-			                optionTxt="Blog"
-			                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center"></app-nav-option>
-		</app-nav-option>
+		<div class="relative inline-block select-none">
+			<div class="h-full flex justify-center items-center w-14" (click)="isSmallNavOpen = !isSmallNavOpen">
+				<mat-icon>menu</mat-icon>
+			</div>
+			<div [@smallOpenClose]="isSmallNavOpen ? 'open' : 'closed'"
+			     class="origin-top-right absolute top-14 flex flex-col gap-8 justify-center items-center text-center bg-white bg-opacity-90"
+			     style="width: calc(100vw - 0.91rem)"> <!-- FIXME IDK WHICH WIDTH VALUE IS THE RIGHT ONE -->
+				<a routerLink="/inicio" (click)="isSmallNavOpen = false" routerLinkActive="text-green-500">Inicio</a>
+				<a routerLink="/tours" (click)="isSmallNavOpen = false" routerLinkActive="text-green-500">Tours</a>
+				<a routerLink="/nosotros"
+				   (click)="isSmallNavOpen = false"
+				   routerLinkActive="text-green-500">Nosotros</a>
+				<a routerLink="/ubicaciones" (click)="isSmallNavOpen = false" routerLinkActive="text-green-500">Ubicaciones</a>
+				<a routerLink="/blog" (click)="isSmallNavOpen = false" routerLinkActive="text-green-500">Blog</a>
+			</div>
+		</div>
 	</nav>
 
 	<!-- Nav bar for medium+ screens -->
