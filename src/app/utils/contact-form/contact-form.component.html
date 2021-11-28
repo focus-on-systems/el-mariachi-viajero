@@ -15,6 +15,7 @@
 	      data-netlify="true"
 	      netlify-honeypot="honey"
 	      ngNativeValidate>
+		<input type="hidden" name="form-name" value="contact"/>
 		<app-input class="flex flex-col"
 		           name="name"
 		           placeholder="Benjamín Guzmán"
@@ -45,9 +46,10 @@
 			<label class="font-light">Contáctame por </label>
 			<select name="contact-via"
 			        class="bg-transparent"
+			        formControlName="contactVia"
 			        [ngClass]="{'text-gray-400': !isContactViaEnabled}"
 			        [disabled]="!isContactViaEnabled">
-				<option value="Whatsapp">Whatsapp</option>
+				<option value="Whatsapp" selected>Whatsapp</option>
 				<option value="Telegram">Telegram</option>
 				<option value="Signal">Signal</option>
 				<option value="SMS">SMS</option>
@@ -96,6 +98,7 @@
 		      data-netlify="true"
 		      netlify-honeypot="honey"
 		      ngNativeValidate>
+			<input type="hidden" name="form-name" value="contact"/>
 			<app-input class="flex flex-col"
 			           name="name"
 			           placeholder="Benjamín Guzmán"
@@ -126,9 +129,10 @@
 				<label class="font-light">Contáctame por </label>
 				<select name="contact-via"
 				        class="bg-transparent"
+				        formControlName="contactVia"
 				        [ngClass]="{'text-gray-400': !isContactViaEnabled}"
 				        [disabled]="!isContactViaEnabled">
-					<option value="Whatsapp">Whatsapp</option>
+					<option value="Whatsapp" selected>Whatsapp</option>
 					<option value="Telegram">Telegram</option>
 					<option value="Signal">Signal</option>
 					<option value="SMS">SMS</option>
