@@ -47,7 +47,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 		message: new FormControl(!environment.production ? 'Quiero salir con mi novia' : undefined),
 		phone: new FormControl(!environment.production ? '+52 5555 5555' : undefined),
 		contactVia: new FormControl('Whatsapp'),
-		'form-name': new FormControl(), // form name. Required for netlify forms
+		'form-name': new FormControl('contact'), // form name. Required for netlify forms
 		honey: new FormControl() // honeypot field
 	};
 	public form: FormGroup;
