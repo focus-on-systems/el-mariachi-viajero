@@ -46,7 +46,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 		email: new FormControl(!environment.production ? 'example@example.com' : undefined),
 		message: new FormControl(!environment.production ? 'Quiero salir con mi novia' : undefined),
 		phone: new FormControl(!environment.production ? '+52 5555 5555' : undefined),
-		contactVia: new FormControl('Whatsapp'),
+		'contact-via': new FormControl('Whatsapp'),
 		'form-name': new FormControl('contact'), // form name. Required for netlify forms
 		honey: new FormControl() // honeypot field
 	};
@@ -58,7 +58,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 	constructor(private _http: HttpClient, private _changeDetectionRef: ChangeDetectorRef) {
 		this.form = new FormGroup(this.formControls);
 		this.isContactViaEnabled = !!this.formControls.phone.value;
-		this.formControls.contactVia.disable(); // it'll be enabled as soon as the user enters a phone number
+		this.formControls["contact-via"].disable(); // it'll be enabled as soon as the user enters a phone number
 	}
 
 	ngOnInit(): void {
@@ -67,12 +67,12 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 				if (!this.isContactViaEnabled) // if it is already disabled, do nothing
 					return;
 				this.isContactViaEnabled = false;
-				this.formControls.contactVia.disable();
+				this.formControls["contact-via"].disable();
 			} else { // if there is a phone number, contact via select should be enabled
 				if (this.isContactViaEnabled) // if it is already enabled, do nothing
 					return;
 				this.isContactViaEnabled = true;
-				this.formControls.contactVia.enable();
+				this.formControls["contact-via"].enable();
 			}
 		});
 		this._subscriptions.push(subscription);

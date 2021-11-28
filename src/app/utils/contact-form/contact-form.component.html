@@ -51,7 +51,7 @@
 				<label class="font-light">Contáctame por </label>
 				<select name="contact-via"
 				        class="bg-transparent"
-				        formControlName="contactVia"
+				        formControlName="contact-via"
 				        [ngClass]="{'text-gray-400': !isContactViaEnabled}"
 				        [disabled]="!isContactViaEnabled">
 					<option value="Whatsapp">Whatsapp</option>
@@ -93,7 +93,7 @@
 		<p class="text-sm">
 			Recibirás un correo de <span class="font-medium">{{CONTACT_EMAIL}}</span>
 			<span *ngIf="formControls.phone.value">&nbsp;o un mensaje a&nbsp;
-				<span class="font-medium">{{formControls.contactVia.value}}</span> de <span class="font-medium">{{CONTACT_PHONE_NUMBER}}</span>
+				<span class="font-medium">{{formControls["contact-via"].value}}</span> de <span class="font-medium">{{CONTACT_PHONE_NUMBER}}</span>
 			</span>
 		</p>
 		<p class="text-sm">
