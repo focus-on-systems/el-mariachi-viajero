@@ -96,15 +96,19 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 		this._http.post("/", body, {
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded"
-			}
+			},
+			responseType: 'text'
 		}).subscribe({
 			next: (response) => {
-				console.log(response);
+				// console.log(response);
 				this.toggle(); // close the form
 				this.successDialog.open(); // show the success dialog
 			},
 			error: (error) => {
-				alert(`Ocurrió un error en el formulario. Por favor reporte a ${CONTACT_EMAIL}/${CONTACT_PHONE_NUMBER} la siguiente información: ${JSON.stringify(error)}`);
+				console.error(
+					`Ocurrió un error en el formulario. Por favor reporte a ${CONTACT_EMAIL}/${CONTACT_PHONE_NUMBER} la siguiente información`,
+					error
+				);
 			}
 		});
 	}
