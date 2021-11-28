@@ -47,10 +47,10 @@ import {RouterLinkWithHref} from "@angular/router";
 })
 export class NavOptionComponent implements OnInit, AfterViewInit {
 	@Input()
-	public iconClasses: string = '';
+	public iconClass: string = '';
 
 	@Input()
-	public optionTxtClasses: string = '';
+	public optionTxtClass: string = '';
 
 	@Input()
 	public optionTxt: string = '';

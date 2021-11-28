@@ -16,6 +16,7 @@ import {ContactFormComponent} from './utils/contact-form/contact-form.component'
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputComponent} from './utils/input/input.component';
 import {DialogComponent} from './utils/dialog/dialog.component';
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
 	declarations: [
@@ -38,7 +39,8 @@ import {DialogComponent} from './utils/dialog/dialog.component';
 		GraphQLModule,
 		HttpClientModule,
 		ReactiveFormsModule,
-		FormsModule
+		FormsModule,
+		MatIconModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

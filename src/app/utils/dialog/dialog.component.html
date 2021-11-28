@@ -1,14 +1,30 @@
 <div [@openClose]="isOpen ? 'open' : 'closed'"
-     class="w-full h-full fixed bottom-0 right-0 p-6 z-40 flex justify-center items-center">
+     class="w-full h-full fixed bottom-0 right-0 p-6 z-50 flex justify-center items-center">
 	<div class="bg-black absolute w-full h-full z-0 bg-opacity-25 bg-opacity-50-no-blur backdrop-filter backdrop-blur"
 	     (click)="toggle('OUTSIDE')">
 	</div>
-	<div class="bg-white bg-opacity-90 rounded-lg w-full z-10">
+	<div class="bg-white bg-opacity-90 rounded-lg w-full md:w-11/12 lg:w-5/6 xl:w-2/3 z-10">
 		<!-- Header -->
-		<div class="w-full flex justify-between">
-			<img src="assets/img/logoV9.svg" alt="">
+		<div class="w-full flex justify-between items-center px-2 py-2">
+			<img class="w-16 block" src="assets/img/logoV9.svg" alt="">
+			<p class="text-xl md:text-2xl lg:text-3xl">{{title}}</p>
+			<button (click)="toggle('CLOSE')">
+				<mat-icon class="w-8">close</mat-icon>
+			</button>
 		</div>
+
 		<!-- Content -->
+		<div class="px-4 py-2">
+			<ng-content></ng-content>
+		</div>
+
 		<!-- Footer/actions -->
+		<div class="bg-gray-50 bg-opacity-10 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+			<button type="button"
+			        class="w-full rounded-md shadow-sm px-4 py-2 bg-green-400 text-base font-medium text-white transition-colors hover:bg-green-600 sm:ml-3 sm:w-auto sm:text-sm"
+			        (click)="toggle('OK')">
+				OK
+			</button>
+		</div>
 	</div>
 </div>

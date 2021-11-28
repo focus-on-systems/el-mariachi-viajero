@@ -8,12 +8,12 @@
 	<!-- template for nav options content -->
 	<ng-template #aRef>
 		<!-- only display the icon -->
-		<img class="w-5 {{iconClasses}}" *ngIf="icon && iconPosition === 'fill'" src="{{icon}}" alt="">
+		<mat-icon class="w-5 {{iconClass}}" *ngIf="icon && iconPosition === 'fill'">{{icon}}</mat-icon>
 
 		<!-- display icon and/or text -->
-		<img class="w-5 ml-1 {{iconClasses}}" *ngIf="icon && iconPosition === 'left'" src="{{icon}}" alt=""/>
-		<span class="flex-grow {{optionTxtClasses}}" *ngIf="optionTxt.length > 0">{{optionTxt}}</span>
-		<img class="w-5 mr-1 {{iconClasses}}" *ngIf="icon && iconPosition === 'right'" src="{{icon}}" alt=""/>
+		<mat-icon class="w-5 ml-1 {{iconClass}}" *ngIf="icon && iconPosition === 'left'">{{icon}}</mat-icon>
+		<span class="flex-grow {{optionTxtClass}}" *ngIf="optionTxt.length > 0">{{optionTxt}}</span>
+		<mat-icon class="w-5 mr-1 {{iconClass}}" *ngIf="icon && iconPosition === 'right'">{{icon}}</mat-icon>
 	</ng-template>
 
 	<!-- a tag for nav options without link -->

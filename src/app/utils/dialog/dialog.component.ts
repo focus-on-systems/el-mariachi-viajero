@@ -1,4 +1,12 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	ChangeDetectorRef,
+	Component,
+	EventEmitter,
+	Input,
+	OnInit,
+	Output
+} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
@@ -20,13 +28,16 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 				animate('250ms ease-in')
 			]),
 			transition('closed => open', [
-				animate('250ms ease-out')
+				animate('200ms ease-out')
 			]),
 		])
 	]
 })
 export class DialogComponent implements OnInit {
 	public isOpen: boolean = false;
+
+	@Input()
+	public title: string = '';
 
 	@Output()
 	public closeEvent = new EventEmitter<CLOSE_REASON>();
@@ -37,7 +48,7 @@ export class DialogComponent implements OnInit {
 	ngOnInit(): void {
 	}
 
-	toggle(closeReason?: 'OK' | 'CANCEL' | 'OUTSIDE'): void {
+	toggle(closeReason?: 'OK' | 'CLOSE' | 'OUTSIDE'): void {
 		this.isOpen = !this.isOpen;
 
 		if (!this.isOpen && closeReason)
@@ -68,9 +79,9 @@ export enum CLOSE_REASON {
 	OK = 'OK',
 
 	/**
-	 * The user clicked CANCEL button
+	 * The user clicked CLOSE button
 	 */
-	CANCEL = 'CANCEL',
+	CLOSE = 'CLOSE',
 
 	/**
 	 * The user clicked outside the dialog

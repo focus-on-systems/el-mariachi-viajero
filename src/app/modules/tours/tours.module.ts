@@ -4,6 +4,7 @@ import {TourDetailsComponent} from "./tour-details/tour-details.component";
 import {ManageToursComponent} from "./manage-tours/manage-tours.component";
 import {TourItemComponent} from "./tour-item/tour-item.component";
 import {ToursRoutingModule} from "./tours-routing.module";
+import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
 	declarations: [
@@ -13,7 +14,8 @@ import {ToursRoutingModule} from "./tours-routing.module";
 	],
 	imports: [
 		ToursRoutingModule,
-		CommonModule
+		CommonModule,
+		MatIconModule
 	]
 })
 export class ToursModule {
