@@ -2,17 +2,23 @@
 	<span>{{label}}</span>&nbsp;<span *ngIf="required">*</span><span *ngIf="!required">(opcional)</span>
 </label>
 <input *ngIf="!isTextArea"
+       #inputEl
        type="{{type}}"
        id="{{name}}"
+       [(ngModel)]="this.value"
        name="{{name}}"
        placeholder="{{placeholder}}"
        class="w-full outline-none focus:border-green-600 border-b-2 border-green-400 px-3 py-2 bg-transparent transition-colors"
        [ngClass]="{'text-white': textColor === 'white'}"
-       [required]="required">
+       [required]="required"
+       (blur)="onBlur()">
 <textarea *ngIf="isTextArea"
+          #textAreaEl
+          [(ngModel)]="this.value"
           id="{{name}}"
           name="{{name}}"
           placeholder="{{placeholder}}"
           class="w-full outline-none focus:border-green-600 border-b-2 border-green-400 px-3 py-2 bg-transparent transition-colors"
           [ngClass]="{'text-white': textColor === 'white'}"
-          [required]="required"></textarea>
+          [required]="required"
+          (blur)="onBlur()"></textarea>

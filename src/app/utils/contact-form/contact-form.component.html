@@ -1,3 +1,4 @@
+<!-- Large screens form contact -->
 <div [@openClose]="isOpen ? 'open' : 'closed'"
      class="min-w-min w-96 max-w-xl max-h-screen hidden md:block fixed bottom-6 right-6 bg-white bg-opacity-80 bg-opacity-95-no-blur backdrop-filter backdrop-blur z-40 shadow-2xl rounded">
 	<div class="w-full flex justify-between gap-2 px-5 py-3">
@@ -9,32 +10,37 @@
 	</div>
 	<form class="w-full flex flex-col gap-2 px-3"
 	      name="contact"
-	      method="POST"
+	      [formGroup]="form"
+	      (ngSubmit)="onSubmit()"
 	      data-netlify="true"
-	      data-netlify-recaptcha="true"
+	      netlify-honeypot="honey"
 	      ngNativeValidate>
 		<app-input class="flex flex-col"
 		           name="name"
 		           placeholder="Benjamín Guzmán"
 		           label="Nombre"
+		           formControlName="name"
 		           [required]="true"></app-input>
 		<app-input class="flex flex-col"
 		           name="email"
 		           placeholder="benjamin@example.com"
 		           label="Correo electrónico"
+		           formControlName="email"
 		           type="email"
 		           [required]="true"></app-input>
 		<app-input class="flex flex-col"
 		           name="message"
 		           placeholder="Quiero cotizar un tour para mí y mi novia..."
 		           label="¿En qué te podemos ayudar?"
+		           formControlName="message"
 		           [required]="true"
 		           [isTextArea]="true"></app-input>
 		<app-input class="flex flex-col"
 		           name="phone"
 		           placeholder="+52 55 5555 5555"
 		           type="tel"
-		           label="Número telefónico"></app-input>
+		           label="Número telefónico"
+		           formControlName="phone"></app-input>
 
 		<!--		<p class="text-white text-center">Nuestra información de contacto</p>-->
 		<!--		<div class="w-full mx-auto text-white text-sm">-->
@@ -47,7 +53,8 @@
 		<!--				<span>{{CONTACT_EMAIL}}</span>-->
 		<!--			</div>-->
 		<!--		</div>-->
-		<div data-netlify-recaptcha="true"></div>
+		<input class="hidden" name="honey" formControlName="honey"/> <!-- Honeypot field -->
+		<!--		<div data-netlify-recaptcha="true"></div>-->
 		<div class="w-full flex justify-around text-white py-3">
 			<button type="submit" class="flex gap-2 px-3 py-2 bg-green-500 rounded-full rounded-full">
 				<img src="assets/icons/send.svg" alt="send">
@@ -57,10 +64,12 @@
 	</form>
 </div>
 
+<!-- Small screens form contact -->
 <div [@openClose]="isOpen ? 'open' : 'closed'"
      class="md:hidden w-full h-full fixed bottom-0 right-0 p-6 z-40 flex justify-center items-center">
 	<div class="bg-black absolute w-full h-full z-0 bg-opacity-25 bg-opacity-50-no-blur backdrop-filter backdrop-blur"
-	     (click)="toggle()"></div>
+	     (click)="toggle()">
+	</div>
 	<div class="bg-white bg-opacity-90 rounded-lg w-full z-10">
 		<div class="w-full flex justify-between gap-2 px-5 py-3">
 			<img class="w-10 h-auto" src="assets/img/logoV9.png" alt="EMV">
@@ -71,32 +80,37 @@
 		</div>
 		<form class="w-full flex flex-col gap-2 px-3"
 		      name="contact"
-		      method="POST"
+		      [formGroup]="form"
+		      (ngSubmit)="onSubmit()"
 		      data-netlify="true"
-		      data-netlify-recaptcha="true"
+		      netlify-honeypot="honey"
 		      ngNativeValidate>
 			<app-input class="flex flex-col"
 			           name="name"
 			           placeholder="Benjamín Guzmán"
 			           label="Nombre"
+			           formControlName="name"
 			           [required]="true"></app-input>
 			<app-input class="flex flex-col"
 			           name="email"
 			           placeholder="benjamin@example.com"
 			           label="Correo electrónico"
+			           formControlName="email"
 			           type="email"
 			           [required]="true"></app-input>
 			<app-input class="flex flex-col"
 			           name="message"
 			           placeholder="Quiero cotizar un tour para mí y mi novia..."
 			           label="¿En qué te podemos ayudar?"
+			           formControlName="message"
 			           [required]="true"
 			           [isTextArea]="true"></app-input>
 			<app-input class="flex flex-col"
 			           name="phone"
 			           placeholder="+52 55 5555 5555"
 			           type="tel"
-			           label="Número telefónico"></app-input>
+			           label="Número telefónico"
+			           formControlName="phone"></app-input>
 
 			<!--		<p class="text-white text-center">Nuestra información de contacto</p>-->
 			<!--		<div class="w-full mx-auto text-white text-sm">-->
@@ -109,7 +123,8 @@
 			<!--				<span>{{CONTACT_EMAIL}}</span>-->
 			<!--			</div>-->
 			<!--		</div>-->
-			<div data-netlify-recaptcha="true"></div>
+			<input class="hidden" name="honey" formControlName="honey"/> <!-- Honeypot field -->
+			<!--		<div data-netlify-recaptcha="true"></div>-->
 			<div class="w-full flex justify-around text-white py-3">
 				<button type="submit" class="flex gap-2 px-3 py-2 bg-green-500 rounded-full rounded-full">
 					<img src="assets/icons/send.svg" alt="send">
@@ -119,6 +134,79 @@
 		</form>
 	</div>
 </div>
+
+<!-- Success dialog -->
+<div [@openClose]="isOpen ? 'open' : 'closed'"
+     class="w-full h-full fixed bottom-0 right-0 p-6 z-40 flex justify-center items-center">
+	<div class="bg-black absolute w-full h-full z-0 bg-opacity-25 bg-opacity-50-no-blur backdrop-filter backdrop-blur"
+	     (click)="toggle()">
+	</div>
+	<div class="bg-white bg-opacity-90 rounded-lg w-full z-10">
+		<div class="w-full flex justify-between gap-2 px-5 py-3">
+			<img class="w-10 h-auto" src="assets/img/logoV9.png" alt="EMV">
+			<p class="text-xl">Contacta con nosotros</p>
+			<button title="Cerrar" (click)="toggle()">
+				<img class="w-8" src="assets/icons/cross.svg" alt="Cerrar">
+			</button>
+		</div>
+		<form class="w-full flex flex-col gap-2 px-3"
+		      name="contact"
+		      [formGroup]="form"
+		      (ngSubmit)="onSubmit()"
+		      data-netlify="true"
+		      netlify-honeypot="honey"
+		      ngNativeValidate>
+			<app-input class="flex flex-col"
+			           name="name"
+			           placeholder="Benjamín Guzmán"
+			           label="Nombre"
+			           formControlName="name"
+			           [required]="true"></app-input>
+			<app-input class="flex flex-col"
+			           name="email"
+			           placeholder="benjamin@example.com"
+			           label="Correo electrónico"
+			           formControlName="email"
+			           type="email"
+			           [required]="true"></app-input>
+			<app-input class="flex flex-col"
+			           name="message"
+			           placeholder="Quiero cotizar un tour para mí y mi novia..."
+			           label="¿En qué te podemos ayudar?"
+			           formControlName="message"
+			           [required]="true"
+			           [isTextArea]="true"></app-input>
+			<app-input class="flex flex-col"
+			           name="phone"
+			           placeholder="+52 55 5555 5555"
+			           type="tel"
+			           label="Número telefónico"
+			           formControlName="phone"></app-input>
+
+			<!--		<p class="text-white text-center">Nuestra información de contacto</p>-->
+			<!--		<div class="w-full mx-auto text-white text-sm">-->
+			<!--			<div class="flex justify-center gap-1">-->
+			<!--				<img class="w-6" src="assets/icons/phone.svg" alt="phone"/>-->
+			<!--				<span>{{CONTACT_PHONE_NUMBER}}</span>-->
+			<!--			</div>-->
+			<!--			<div class="flex justify-center gap-1">-->
+			<!--				<img class="w-6" src="assets/icons/mail.svg" alt="email"/>-->
+			<!--				<span>{{CONTACT_EMAIL}}</span>-->
+			<!--			</div>-->
+			<!--		</div>-->
+			<input class="hidden" name="honey" formControlName="honey"/> <!-- Honeypot field -->
+			<!--		<div data-netlify-recaptcha="true"></div>-->
+			<div class="w-full flex justify-around text-white py-3">
+				<button type="submit" class="flex gap-2 px-3 py-2 bg-green-500 rounded-full rounded-full">
+					<img src="assets/icons/send.svg" alt="send">
+					<span>Enviar</span>
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<app-dialog #successDialog></app-dialog>
 
 <button (click)="toggle()"
         [@openClose]="isOpen ? 'closed' : 'open'"

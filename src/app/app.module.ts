@@ -13,8 +13,9 @@ import {GraphQLModule} from './graphql.module';
 import {HttpClientModule} from '@angular/common/http';
 import {BgImgCardComponent} from './utils/bg-img-card/bg-img-card.component';
 import {ContactFormComponent} from './utils/contact-form/contact-form.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputComponent} from './utils/input/input.component';
+import {DialogComponent} from './utils/dialog/dialog.component';
 
 @NgModule({
 	declarations: [
@@ -26,7 +27,8 @@ import {InputComponent} from './utils/input/input.component';
 		LandingComponent,
 		BgImgCardComponent,
 		ContactFormComponent,
-		InputComponent
+		InputComponent,
+		DialogComponent
 	],
 	imports: [
 		BrowserModule.withServerTransition({appId: 'serverApp'}),
@@ -35,7 +37,8 @@ import {InputComponent} from './utils/input/input.component';
 		SwiperModule,
 		GraphQLModule,
 		HttpClientModule,
-		ReactiveFormsModule
+		ReactiveFormsModule,
+		FormsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]
