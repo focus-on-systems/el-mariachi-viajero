@@ -21,3 +21,16 @@ body {
 	margin: 0;
 	position: relative;
 }
+
+@supports not (backdrop-filter: blur(1px)) {
+	/* If the browser doesn't support blur, change the opacity */
+	.bg-opacity-95-no-blur {
+		--tw-bg-opacity: 0.95 !important;
+	}
+	.bg-opacity-90-no-blur {
+		--tw-bg-opacity: 0.95 !important;
+	}
+	.bg-opacity-50-no-blur {
+		--tw-bg-opacity: 0.50 !important;
+	}
+}

@@ -1,6 +1,0 @@
-@supports not (backdrop-filter: blur(1px)) {
-	/* If the browser doesn't support blur, make the header background more opaque */
-	#header {
-		--tw-bg-opacity: 0.8;
-	}
-}
