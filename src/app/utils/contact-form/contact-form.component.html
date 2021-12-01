@@ -1,4 +1,4 @@
-<!-- Large screens form contact -->
+<!-- Contact form -->
 <div [@openClose]="isOpen ? 'open' : 'closed'"
      class="w-full h-full md:min-w-min md:w-96 md:max-w-xl md:h-auto max-h-screen flex flex-col fixed bottom-0 right-0 md:bottom-6 md:right-6 md:bg-white md:bg-opacity-80 bg-opacity-95-no-blur backdrop-filter backdrop-blur z-50 md:z-30 md:shadow-2xl rounded justify-center items-center">
 	<!-- overlay for small screens -->
@@ -6,7 +6,7 @@
 	     (click)="toggle()">
 	</div>
 
-	<div class="bg-white bg-opacity-80 rounded md:bg-transparent z-10 w-11/12 md:w-full md:h-full">
+	<div class="bg-white bg-opacity-80 relative rounded md:bg-transparent z-10 w-11/12 md:w-full md:h-full">
 		<div class="w-full flex justify-between gap-2 px-5 py-3">
 			<img class="w-10 h-auto" src="assets/img/logoV9.png" alt="EMV">
 			<p class="text-xl">Déjanos ayudarte</p>
@@ -41,25 +41,27 @@
 			           formControlName="message"
 			           [required]="true"
 			           [isTextArea]="true"></app-input>
-			<app-input class="flex flex-col"
-			           name="phone"
-			           placeholder="+52 55 5555 5555"
-			           type="tel"
-			           label="Número telefónico"
-			           formControlName="phone"></app-input>
-			<fieldset>
-				<label class="font-light">Contáctame por </label>
-				<select name="contact-via"
-				        class="bg-transparent"
-				        formControlName="contact-via"
-				        [ngClass]="{'text-gray-400': !isContactViaEnabled}"
-				        [disabled]="!isContactViaEnabled">
-					<option value="Whatsapp">Whatsapp</option>
-					<option value="Telegram">Telegram</option>
-					<option value="Signal">Signal</option>
-					<option value="SMS">SMS</option>
-				</select>
-			</fieldset>
+			<div class="flex items-center flex-wrap">
+				<app-input class="flex flex-col flex-grow w-auto md:w-full"
+				           name="phone"
+				           placeholder="+52 55 5555 5555"
+				           type="tel"
+				           label="Número telefónico"
+				           formControlName="phone"></app-input>
+				<fieldset>
+					<label class="font-light">Contáctame por </label>
+					<select name="contact-via"
+					        class="bg-transparent"
+					        formControlName="contact-via"
+					        [ngClass]="{'text-gray-400': !isContactViaEnabled}"
+					        [disabled]="!isContactViaEnabled">
+						<option value="Whatsapp">Whatsapp</option>
+						<option value="Telegram">Telegram</option>
+						<option value="Signal">Signal</option>
+						<option value="SMS">SMS</option>
+					</select>
+				</fieldset>
+			</div>
 			<!--		<p class="text-white text-center">Nuestra información de contacto</p>-->
 			<!--		<div class="w-full mx-auto text-white text-sm">-->
 			<!--			<div class="flex justify-center gap-1">-->
@@ -112,6 +114,17 @@
         title="Contacto">
 	<mat-icon class="w-2/3 text-white">chat</mat-icon>
 </button>
+
+<!-- Contact via chat icons -->
+<div class="fixed bottom-20 right-6 z-30 flex flex-col justify-around gap-2 pb-2 w-10"
+     [@openClose]="isOpen ? 'closed' : 'open'">
+	<a href="https://wa.me/5571132221?text={{WA_MESSAGE}}" target="_blank">
+		<img src="assets/icons/whatsapp.svg" alt="WhatsApp" title="WhatsApp" class="w-10">
+	</a>
+	<!--	<a href="https://t.me/emv" target="_blank">-->
+	<!--		<img src="assets/icons/telegram.svg" alt="Telegram" title="Telegram" class="w-10">-->
+	<!--	</a>-->
+</div>
 
 <!-- Form for netlify builder -->
 <!--Netlify builder has problems identifying the form field in the actual form-->

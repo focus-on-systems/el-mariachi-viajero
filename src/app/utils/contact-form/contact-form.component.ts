@@ -35,6 +35,14 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 	public readonly CONTACT_PHONE_NUMBER = CONTACT_PHONE_NUMBER;
 	public readonly CONTACT_EMAIL = CONTACT_EMAIL;
 
+	/**
+	 * Whatsapp default text message
+	 * This is the text set by default when the user clicks the wa button
+	 *
+	 * This should be URI-encoded
+	 */
+	public readonly WA_MESSAGE = encodeURIComponent("Hola, me interesa un viaje turístico...");
+
 	@ViewChild('successDialog')
 	// @ts-ignore
 	public successDialog: DialogComponent;
