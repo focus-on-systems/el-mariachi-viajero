@@ -8,7 +8,7 @@
        [(ngModel)]="this.value"
        name="{{name}}"
        placeholder="{{placeholder}}"
-       class="w-full outline-none focus:border-green-600 border-b-2 border-green-400 px-3 py-2 bg-transparent transition-colors"
+       class="w-full outline-none focus:ring-0 focus:border-green-600 border-b-2 border-green-400 px-3 py-2 bg-transparent transition-colors"
        [ngClass]="{'text-white': textColor === 'white'}"
        [required]="required"
        (blur)="onBlur()">
@@ -18,7 +18,7 @@
           id="{{name}}"
           name="{{name}}"
           placeholder="{{placeholder}}"
-          class="w-full outline-none focus:border-green-600 border-b-2 border-green-400 px-3 py-2 bg-transparent transition-colors"
+          class="w-full outline-none focus:ring-0 focus:border-green-600 border-b-2 border-green-400 px-3 py-2 bg-transparent transition-colors"
           [ngClass]="{'text-white': textColor === 'white'}"
           [required]="required"
           (blur)="onBlur()"></textarea>

@@ -66,7 +66,8 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 	constructor(private _http: HttpClient, private _changeDetectionRef: ChangeDetectorRef) {
 		this.form = new FormGroup(this.formControls);
 		this.isContactViaEnabled = !!this.formControls.phone.value;
-		this.formControls["contact-via"].disable(); // it'll be enabled as soon as the user enters a phone number
+		if (!this.isContactViaEnabled)
+			this.formControls["contact-via"].disable(); // it'll be enabled as soon as the user enters a phone number
 	}
 
 	ngOnInit(): void {
