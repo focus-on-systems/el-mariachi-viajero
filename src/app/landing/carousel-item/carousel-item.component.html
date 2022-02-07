@@ -1,11 +1,35 @@
-<div class="w-full h-full text-center flex flex-col justify-center items-center gap-4 bg-cover"
+<div class="w-full h-full text-center flex flex-col justify-center items-center gap-4 md:gap-8 bg-cover bg-center pt-20"
      [style]="bgImageStyle">
-	 <p class="text-3xl md:text-6xl lg:text-6xl text-white font-black z-20 uppercase">El mariachi viajero</p>
-	<p class="text-2xl md:text-3xl text-white text-sm z-20">Tours <span class="font-bold">{{category}}</span></p>
-	<p class="text-xl md:text-2xl text-white font-light z-20 mx-10">{{summary}}</p>
-	<a class="text-lg md:text-xl text-white z-20 px-4 py-2 md:px-6 md:py-3 border border-white bg-white bg-opacity-20 hover:rounded-lg transition-b-radius"
-	   [routerLink]="link">Ver más</a>
+	<p class="w-full text-2xl md:text-3xl lg:text-4xl text-center text-amber-400 font-black z-20 uppercase mx-6 md:mx-12 lg:mx-24">
+    <span>{{isPromotion() ? "Promoción" : "Paquete"}}</span>&nbsp;
+    <span *ngIf="commonData.name">{{commonData.name}}</span>
+  </p>
+
+	<p class="w-full text-xl md:text-2xl lg:text-3xl text-center text-white font-semibold z-20 mx-5 md:mx-8 lg:mx-16">{{isPromotion() ? promotion.description : pack.shortDescription}}</p>
+	<div class="w-full grid grid-cols-1 md:grid-cols-5 z-20 gap-x-6 gap-y-4 justify-center items-center mx-3 md:mx-5">
+		<p class="font-semibold text-white text-base md:text-lg md:col-span-2 whitespace-pre-wrap">
+			<span class="text-green-400">Incluye:</span><br>
+			{{commonData.featuresIncluded}}
+		</p>
+		<div class="md:col-span-1 flex justify-center items-center">
+			<a class="text-lg md:text-xl font-semibold text-white z-20 px-4 py-2 md:px-6 md:py-3 border border-white bg-white bg-opacity-25 hover:rounded-lg transition-b-radius"
+			   [routerLink]="link">
+				Ver más
+			</a>
+		</div>
+		<p class="font-semibold text-white text-base md:text-lg md:col-span-2" *ngIf="commonData.featuresExcluded">
+			<span class="text-red-400">No incluye:</span><br>
+			{{commonData.featuresExcluded}}
+		</p>
+	</div>
+	<p class="text-xl md:text-2xl lg:text-3xl text-amber-300 font-bold z-20">{{commonData.price}}</p>
+	<p class="text-base md:text-lg lg:text-xl z-20 text-white" *ngIf="isPromotion()">
+		Válida del&nbsp;
+		<span class="font-semibold">{{promotion.validFrom | date:"dd/MM/YY"}}</span>&nbsp;
+		al&nbsp;
+		<span class="font-semibold">{{promotion.validUntil | date:"dd/MM/YY"}}</span>
+	</p>
 
 	<!-- add an overlay to darken the image -->
-	<div class="z-10 bg-black bg-opacity-30 absolute w-full h-full pointer-events-none"></div>
+	<div class="z-10 bg-black bg-opacity-50 absolute w-full h-full pointer-events-none"></div>
 </div>

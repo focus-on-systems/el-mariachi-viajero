@@ -1,6 +1,6 @@
 <!-- Contact form -->
 <div [@openClose]="isOpen ? 'open' : 'closed'"
-     class="w-full h-full md:min-w-min md:w-96 md:max-w-xl md:h-auto max-h-screen flex flex-col fixed bottom-0 right-0 md:bottom-6 md:right-6 md:bg-white md:bg-opacity-80 bg-opacity-95-no-blur backdrop-filter backdrop-blur z-50 md:z-30 md:shadow-2xl rounded justify-center items-center">
+     class="w-full h-full md:min-w-min md:w-96 md:max-w-xl md:h-auto max-h-screen flex flex-col fixed bottom-0 right-0 md:bottom-6 md:right-6 md:bg-white md:bg-opacity-80 bg-opacity-95-no-blur backdrop-filter backdrop-blur z-50 md:shadow-2xl rounded justify-center items-center">
 	<!-- overlay for small screens -->
 	<div class="md:hidden bg-black absolute w-full h-full z-0 bg-opacity-25 bg-opacity-50-no-blur backdrop-filter backdrop-blur"
 	     (click)="toggle()">
@@ -16,7 +16,7 @@
 		</div>
 
 		<!-- this is the actual form that will be sent to netlify, not the form at the end of this file -->
-		<form class="w-full flex flex-col gap-2 px-3"
+		<form class="w-full flex flex-col gap-4 px-3"
 		      [formGroup]="form"
 		      (ngSubmit)="onSubmit()"
 		      ngNativeValidate>
@@ -29,7 +29,7 @@
 			           [required]="true"></app-input>
 			<app-input class="flex flex-col"
 			           name="email"
-			           placeholder="benjamin@example.com"
+			           placeholder="user@example.com"
 			           label="Correo electrónico"
 			           formControlName="email"
 			           type="email"
@@ -41,7 +41,7 @@
 			           formControlName="message"
 			           [required]="true"
 			           [isTextArea]="true"></app-input>
-			<div class="flex items-center flex-wrap">
+			<div class="flex items-center flex-wrap gap-2">
 				<app-input class="flex flex-col flex-grow w-auto md:w-full"
 				           name="phone"
 				           placeholder="+52 55 5555 5555"
@@ -75,8 +75,8 @@
 			<!--		</div>-->
 			<input class="hidden" name="honey" formControlName="honey"/> <!-- Honeypot field -->
 			<!--		<div data-netlify-recaptcha="true"></div>-->
-			<div class="w-full flex justify-around text-white py-3">
-				<button type="submit" class="flex gap-2 px-3 py-2 bg-green-500 rounded-full rounded-full">
+			<div class="w-full flex justify-around text-white pb-3 pt-1">
+				<button type="submit" class="flex gap-2 px-3 py-2 bg-green-500 rounded-full">
 					<mat-icon>send</mat-icon>
 					<span>Enviar</span>
 				</button>
@@ -116,7 +116,7 @@
 </button>
 
 <!-- Contact via chat icons -->
-<div class="fixed bottom-20 right-6 z-30 flex flex-col justify-around gap-2 pb-2 w-10"
+<div class="fixed bottom-20 mb-2 right-6 z-30 flex flex-col justify-around gap-2 pb-2 w-10"
      [@openClose]="isOpen ? 'closed' : 'open'">
 	<a href="https://wa.me/5531154441?text={{WA_MESSAGE}}" target="_blank">
 		<img src="assets/icons/whatsapp.svg" alt="WhatsApp" title="WhatsApp" class="w-10">

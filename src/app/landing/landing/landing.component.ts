@@ -5,6 +5,8 @@ import {ApolloQueryResult, gql} from "@apollo/client/core";
 import {Subscription} from "rxjs";
 import {SwiperComponent} from "swiper/angular";
 import {CONTACT_EMAIL, CONTACT_PHONE_NUMBER} from "../../globals";
+import { LandingPromotion } from '../LandingPromotion';
+import {LandingPack} from "../LandingPack";
 
 
 SwiperCore.use([Pagination, Navigation]);
@@ -36,41 +38,93 @@ export class LandingComponent implements OnInit, OnDestroy {
 	@ViewChild('carousel')
 	public carousel?: SwiperComponent;
 
-	public tourCategories: LandingTourCategory[] = [];
+	public promotions: LandingPromotion[] = [];
+	public packs: LandingPack[] = [];
+
+	/**
+	 * Maximum number of slides present in the carousel
+	 */
+	public readonly nSlides: number = 10;
 
 	constructor(private _apollo: Apollo, private _changeDetectorRef: ChangeDetectorRef) {
 	}
 
 	ngOnInit(): void {
 		// retrieve carousel slides information
-		const subscription = this._apollo.query<GQLTourCategoriesQuery>({
-			query: gql`{
+		const subscription = this._apollo.query<GQLPromotionsQuery>({
+			query: gql`query($limit: Int) {
 				health
-				tourCategories {
+				promotions(first: $limit) {
 					edges {
 						node {
 							id
-							name
-							bgImage {
+							name: promoName
+							img: promoImg {
 								url
 							}
-							summary
+							description: promoDescription
+							featuresIncluded: promoFeaturesIncluded
+							featuresExcluded: promoFeaturesExcluded
+							price: promoPrice
+							validFrom: promoValidFrom
+							validUntil: promoValidUntil
 						}
 					}
 				}
-			}`
-		}).subscribe((res: ApolloQueryResult<GQLTourCategoriesQuery>) => {
+			}`,
+			variables: {
+				limit: this.nSlides
+			}
+		}).subscribe((res: ApolloQueryResult<GQLPromotionsQuery>) => {
 			this.isBackendReachable = !(res.error || res.errors);
 
 			if (!this.isBackendReachable)
 				return;
 
 			this.isBackendHealthy = res.data.health;
-			this.tourCategories = res.data.tourCategories.edges.map(node => node.node);
-			// console.log(this.tourCategories);
-			this._changeDetectorRef.markForCheck();
+			this.promotions = res.data.promotions.edges.map(node => node.node);
+
+      this._changeDetectorRef.markForCheck();
+
+      // fetch packs if there are still room
+      const nAvailableSlides = this.nSlides - this.promotions.length;
+      if (nAvailableSlides <= 0)
+        return;
+
+      const subscription1 = this._apollo.query<GQLPacksQuery>({
+        query: gql`query($limit: Int) {
+          health
+          packs(first: $limit) {
+            edges {
+              node {
+                id
+                name: packName
+                img: packImg {
+                  url
+                }
+                shortDescription: packShortDescription
+                featuresIncluded: packFeaturesIncluded
+                featuresExcluded: packFeaturesExcluded
+                price: packPrice
+              }
+            }
+          }
+        }`,
+        variables: {
+          limit: nAvailableSlides
+        }
+      }).subscribe((res: ApolloQueryResult<GQLPacksQuery>) => {
+        this.packs = res.data.packs.edges.map(node => node.node);
+
+        this._changeDetectorRef.markForCheck();
+        subscription1.unsubscribe();
+      });
+
+      this.subscriptions.push(subscription1);
+      subscription.unsubscribe();
 		});
-		this.subscriptions.push(subscription);
+
+		this.subscriptions.push(subscription); // subscription is still added to the array to be sure there is no leak
 	}
 
 	ngOnDestroy(): void {
@@ -78,20 +132,20 @@ export class LandingComponent implements OnInit, OnDestroy {
 	}
 }
 
-interface LandingTourCategory {
-	id: string;
-	name: string;
-	bgImage: {
-		url: string;
-	};
-	summary: string;
+interface GQLPacksQuery {
+  health: boolean;
+  packs: {
+    edges: {
+      node: LandingPack
+    }[];
+  }
 }
 
-interface GQLTourCategoriesQuery {
+interface GQLPromotionsQuery {
 	health: boolean;
-	tourCategories: {
+	promotions: {
 		edges: {
-			node: LandingTourCategory
+			node: LandingPromotion
 		}[];
 	}
 }

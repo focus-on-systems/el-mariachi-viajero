@@ -1,4 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {LandingPromotion} from "../LandingPromotion";
+import {LandingPack} from "../LandingPack";
 
 @Component({
 	selector: 'app-carousel-item',
@@ -7,16 +9,14 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} fr
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselItemComponent implements OnInit {
-	@Input()
-	public category: string = "";
+	bgImageStyle: string = "";
+	link: string = "";
 
-	@Input()
-	public summary: string = "";
+  private _commonData!: LandingPack | LandingPromotion;
 
-	private _bgImageStyle: string = "";
-
-	@Input()
-	public link: string = "";
+  // bot can be falsy but assertion was added so typescript and angular don't complain
+	private _promotion!: LandingPromotion;
+	private _pack!: LandingPack;
 
 	constructor(private _changeDetectorRef: ChangeDetectorRef) {
 	}
@@ -25,12 +25,50 @@ export class CarouselItemComponent implements OnInit {
 	}
 
 	@Input()
-	set bgImageStyle(bgImage: string) {
-		this._bgImageStyle = `background-image: url(${bgImage})`;
+	set promotion(data: LandingPromotion) {
+    if (!data)
+      return;
+
+    if (!!this._pack)
+      throw new Error("This carousel item is a pack but you tried to set it as promotion");
+
+		this.bgImageStyle = `background-image: url(${data.img.url})`;
+		this.link = `/promo/${data.id}`;
+		this._promotion = data;
 		this._changeDetectorRef.markForCheck();
+
+    this._commonData = data;
 	}
 
-	get bgImageStyle(): string {
-		return this._bgImageStyle;
+	get promotion(): LandingPromotion {
+		return this._promotion;
 	}
+
+  @Input()
+  set pack(data: LandingPack) {
+    if (!data)
+      return;
+
+    if (!!this._promotion)
+      throw new Error("This carousel item is a promotion but you tried to set it as pack");
+
+    this.bgImageStyle = `background-image: url(${data.img.url})`;
+    this.link = `/pack/${data.id}`;
+    this._pack = data;
+    this._changeDetectorRef.markForCheck();
+
+    this._commonData = data;
+  }
+
+  get pack(): LandingPack {
+    return this._pack;
+  }
+
+  get commonData(): LandingPack | LandingPromotion {
+    return this._commonData;
+  }
+
+  isPromotion(): boolean {
+    return !!this._promotion;
+  }
 }

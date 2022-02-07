@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -17,6 +17,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputComponent} from './utils/input/input.component';
 import {DialogComponent} from './utils/dialog/dialog.component';
 import {MatIconModule} from "@angular/material/icon";
+import {registerLocaleData} from "@angular/common";
+import localeEs from "@angular/common/locales/es";
+
+
+registerLocaleData(localeEs, 'es');
 
 @NgModule({
 	declarations: [
@@ -42,7 +47,7 @@ import {MatIconModule} from "@angular/material/icon";
 		FormsModule,
 		MatIconModule
 	],
-	providers: [],
+	providers: [{provide: LOCALE_ID, useValue: 'es-MX' }],
 	bootstrap: [AppComponent]
 })
 export class AppModule {

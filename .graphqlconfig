@@ -7,8 +7,8 @@
 				"url": "https://parseapi.back4app.com/graphql",
 				"headers": {
 					"user-agent": "JS GraphQL",
-					"X-Parse-Application-Id": "1Z0Z8o0MHrrWDdNfEML122sdHgc2EaaOKiU9FsZl",
-					"X-Parse-Javascript-Key": "RvsKmVMFfAfGSRZj42JrrxLnN4LsilfAujQRp1qL"
+					"X-Parse-Application-Id": "4TybHykHLyF4L082Ba0y7E2trf5sLVdQnBcZcXnf",
+					"X-Parse-Javascript-Key": "GyA97KukFcRLXMqSTYfrbRRZv258yF4MUXdRnDYO"
 				},
 				"introspect": true
 			}

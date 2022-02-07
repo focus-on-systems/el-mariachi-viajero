@@ -1,14 +1,14 @@
 <app-nav class="absolute pointer-events-none block w-full min-h-full" type="contact-bar"></app-nav>
 
 <!-- Carousel -->
-<div class="w-full h-screen bg-aztec relative">
+<div class="w-full h-screen bg-aztec bg-green-100 relative">
 	<swiper class="w-full h-full" [pagination]="true" [navigation]="true" #carousel>
-		<ng-template swiperSlide *ngFor="let tourCategory of tourCategories">
-			<app-carousel-item bgImageStyle="{{tourCategory.bgImage.url}}"
-			                   category="{{tourCategory.name}}"
-			                   summary="{{tourCategory.summary}}"
-			                   link="/tours/{{tourCategory.id}}"></app-carousel-item>
+		<ng-template swiperSlide *ngFor="let promo of promotions">
+			<app-carousel-item [promotion]="promo"></app-carousel-item>
 		</ng-template>
+    <ng-template swiperSlide *ngFor="let pack of packs">
+      <app-carousel-item [pack]="pack"></app-carousel-item>
+    </ng-template>
 	</swiper>
 	<!--	<div class="absolute bottom-6 w-full flex justify-center z-20">-->
 	<!--		<mat-icon class="max-w-sm w-8 margin-auto animate-bounce">expand_more</mat-icon>-->
