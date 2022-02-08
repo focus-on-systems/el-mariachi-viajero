@@ -1,0 +1,10 @@
+<div class="w-full">
+  <div class="w-5/6 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-2 my-10">
+    <app-bg-img-card *ngFor="let state of states; let isOdd = odd"
+                     [ngClass]="{'row-span-2': isOdd}"
+                     linkTxt="{{state.name}}"
+                     link="/ubicaciones/{{state.id}}"
+                     bgImage="{{state.thumb.url}}">
+    </app-bg-img-card>
+  </div>
+</div>

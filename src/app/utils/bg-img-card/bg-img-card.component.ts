@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
 @Component({
-	selector: 'app-basic-card',
+	selector: 'app-bg-img-card',
 	templateUrl: './bg-img-card.component.html',
 	styleUrls: ['./bg-img-card.component.scss'],
 	changeDetection: ChangeDetectionStrategy.OnPush
