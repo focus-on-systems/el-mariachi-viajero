@@ -93,7 +93,6 @@ export class LandingComponent implements OnInit, OnDestroy {
 
       const subscription1 = this._apollo.query<GQLPacksQuery>({
         query: gql`query($limit: Int) {
-          health
           packs(first: $limit) {
             edges {
               node {
@@ -133,7 +132,6 @@ export class LandingComponent implements OnInit, OnDestroy {
 }
 
 interface GQLPacksQuery {
-  health: boolean;
   packs: {
     edges: {
       node: LandingPack

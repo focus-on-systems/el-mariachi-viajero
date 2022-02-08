@@ -1,51 +1,67 @@
+<div class="w-full h-72 text-center items-center justify-center flex flex-col bg-cover bg-center relative"
+     [style]="bgImageStyle">
+  <div class="flex flex-col gap-4 lg:gap-8">
+    <p class="text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-white ml-5">{{details.name}}</p>
+    <p class="text-2xl md:text-3xl lg:text-4xl font-semibold text-green-300">{{details.price}}</p>
+  </div>
 
-<div class="w-full h-60 text-center flex flex-col justify-end items-start gap-4 bg-cover bg-center"
-     title="Image goes here"
-     style="background-image: url('https://images.pexels.com/photos/1365425/pexels-photo-1365425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
-	<div class="m-auto">
-		<p class="text-5xl font-bold uppercase text-white ml-5">Lugar del tour</p>
-	</div>
+  <!-- overlay to darken the background image -->
+  <div class="-z-10 w-full h-full bg-black absolute bg-opacity-40 pointer-events-none"></div>
 </div>
-<div class="p-16">
-	<div class="w-full">
-		<p class="text-4xl font-semibold text-green-500">Nombre del tour</p>
-		<p class="text-xl font-medium text-green-500 mt-5">Precio(MXN)/Persona: <span class="text-sm text-gray-500">$320.00</span>
-		</p>
-	</div>
-	<div class="w-full mt-8">
-		<p class="text-sm font-light text-gray-500 text-justify">Descripción. Lorem Ipsum is simply dummy text of the
-			printing and typesetting
-			industry. Lorem Ipsum has been the industry's standard dummy text
-			ever since the 1500s, when an unknown printer took a galley of type
-			and scrambled it to make a type specimen book. It has survived not
-			only five centuries, but also the leap into electronic typesetting,
-			remaining essentially unchanged. It was popularised in the 1960s
-			with the release of Letraset sheets containing Lorem Ipsum passages,
-			and more recently with desktop publishing software like Aldus
-			PageMaker including versions of Lorem Ipsum.</p>
+
+<div class="p-4 md:py-6 md:px-8 lg:py-8 lg:px-12 flex flex-col gap-4 lg:gap-8">
+  <p class="text-lg lg:text-xl text-gray-500 text-center">{{details.shortDescription}}</p>
+  <p class="text-base lg:text-lg font-light text-gray-500 text-justify">{{details.description}}</p>
+
+  <div class="w-full flex flex-wrap gap-x-6 justify-around text-base lg:text-lg">
+    <p class="text-center">
+      <span class="text-green-500 font-medium">Incluye</span>
+      <br/>
+      <span class="whitespace-pre-wrap">{{details.featuresIncluded}}</span>
+    </p>
+    <p class="text-center" *ngIf="details.featuresExcluded">
+      <span class="text-red-500 font-medium">No incluye</span>
+      <br/>
+      <span class="whitespace-pre-wrap">{{details.featuresExcluded}}</span>
+    </p>
+  </div>
+
+  <div class="w-full flex flex-wrap gap-x-6 justify-around text-base lg:text-lg">
+    <div class="text-center" *ngIf="categories.length > 0">
+      <p class="text-green-500 font-medium">Categorías</p>
+      <br/>
+      <ul>
+        <li *ngFor="let category of categories">
+          <a [routerLink]="'/categories/' + category.id" class="hover:underline">{{category.name}}</a>
+        </li>
+      </ul>
     </div>
-    <div class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div class="">
-            <img src="https://images.pexels.com/photos/758744/pexels-photo-758744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-        </div>
-        <div>
-            <img src="https://images.pexels.com/photos/1659437/pexels-photo-1659437.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-        </div>
-        <div>
-            <img src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-        </div>
+    <div class="text-center" *ngIf="places.length > 0">
+      <span class="text-green-500 font-medium">Lugares a visitar</span>
+      <br/>
+      <ul>
+        <li *ngFor="let place of places">
+          <a [routerLink]="'/ubicaciones/lugares/' + place.id" class="hover:underline">{{place.name}}</a>,
+          <a [routerLink]="'/ubicaciones/estado/' + place.state.id" class="hover:underline">{{place.state.name}}</a>
+        </li>
+      </ul>
     </div>
-	<div class="mt-5">
-		<p class="text-xl font-light text-gray-500">Contáctanos para conocer más sobre el Tour</p>
-		<div class="mt-4 flex flex-col gap-2">
-			<div class="flex gap-2 text-gray-500">
-				<mat-icon class="w-6">phone</mat-icon>
-				<span class="text-sm">+52 5578 7878 78</span>
-			</div>
-			<div class="flex gap-2 text-gray-500">
-				<mat-icon class="w-6">email</mat-icon>
-				<span class="text-sm">contacto@elmariachiviajero.com.mx</span>
-			</div>
-		</div>
-	</div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <img *ngFor="let img of images" src="{{img.thumb.url}}" alt="{{details.name}}">
+  </div>
+
+  <p class="text-xl font-light text-gray-500">Contáctanos para conocer más sobre el Tour</p>
+
+  <div class="flex flex-col gap-2">
+    <div class="flex gap-2 text-gray-500">
+      <mat-icon class="w-6">phone</mat-icon>
+      <span class="text-sm">+52 5578 7878 78</span>
+    </div>
+    <div class="flex gap-2 text-gray-500">
+      <mat-icon class="w-6">email</mat-icon>
+      <span class="text-sm">contacto@elmariachiviajero.com.mx</span>
+    </div>
+  </div>
 </div>
