@@ -1,7 +1,19 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID
+} from '@angular/core';
 import {CONTACT_EMAIL, CONTACT_PHONE_NUMBER} from '../../globals';
 import {isPlatformBrowser} from "@angular/common";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Apollo} from "apollo-angular";
+import {ApolloQueryResult, gql} from "@apollo/client/core";
+import {Subscription} from "rxjs";
 
 @Component({
 	selector: 'app-nav',
@@ -27,7 +39,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 		])
 	]
 })
-export class NavComponent implements OnInit {
+export class NavComponent implements OnInit, OnDestroy {
 	public readonly CONTACT_PHONE_NUMBER = CONTACT_PHONE_NUMBER;
 	public readonly CONTACT_EMAIL = CONTACT_EMAIL;
 
@@ -41,12 +53,60 @@ export class NavComponent implements OnInit {
 
 	public isSmallNavOpen: boolean = false;
 
-	constructor(private _changeDetectorRef: ChangeDetectorRef, @Inject(PLATFORM_ID) private _platformId: Object) {
+  public states: StateInfo[] = [];
+
+  private subscriptions: Subscription[] = [];
+
+	constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _apollo: Apollo,
+    @Inject(PLATFORM_ID) private _platformId: Object
+  ) {
 	}
 
 	ngOnInit(): void {
-		if (isPlatformBrowser(this._platformId))
-			this.isOnline = navigator.onLine;
-		this._changeDetectorRef.markForCheck();
+		if (isPlatformBrowser(this._platformId)) {
+      this.isOnline = navigator.onLine;
+      this._changeDetectorRef.markForCheck();
+    }
+
+    // load locations (states)
+    const subscription = this._apollo.query<GQLStatesQuery>({
+      query: gql`query {
+        states {
+          edges {
+            node {
+              id
+              name: stateName
+            }
+          }
+        }
+      }`
+    }).subscribe((res: ApolloQueryResult<GQLStatesQuery>) => {
+      this.states = res.data.states.edges.map(node => node.node);
+
+      this._changeDetectorRef.markForCheck();
+
+      subscription.unsubscribe();
+    });
+
+    this.subscriptions.push(subscription);
 	}
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
+  }
+}
+
+interface StateInfo {
+  id: string;
+  name: string;
+}
+
+interface GQLStatesQuery {
+  states: {
+    edges: {
+      node: StateInfo
+    }[];
+  }
 }

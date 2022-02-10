@@ -23,6 +23,22 @@ body {
 	position: relative;
 }
 
+.heading-title {
+  @apply text-3xl lg:text-4xl font-black;
+}
+
+.heading-subtitle {
+  @apply text-xl lg:text-2xl font-semibold;
+}
+
+.section-title {
+  @apply text-3xl lg:text-4xl font-light;
+}
+
+.content-container {
+  @apply flex flex-col gap-4 md:gap-8 lg:gap-16 px-2 md:px-8 lg:px-16 xl:px-20 pt-6 pb-8;
+}
+
 @supports not (backdrop-filter: blur(1px)) {
 	/* If the browser doesn't support blur, change the opacity */
 	.bg-opacity-95-no-blur {

@@ -1,13 +1,13 @@
 import {
-	AfterViewInit,
-	ChangeDetectionStrategy,
-	ChangeDetectorRef,
-	Component,
-	ElementRef,
-	Input,
-	OnInit,
-	Renderer2,
-	ViewChild
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  Renderer2,
+  ViewChild
 } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {RouterLinkWithHref} from "@angular/router";
@@ -149,6 +149,12 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 				console.log('Weird event occurred on nav option', e);
 		}
 	}
+
+  onContentChange() {
+    // console.log("Changed");
+    // TODO: check if this and the module import (Observers) can be removed
+    this._changeDetectorRef.markForCheck();
+  }
 }
 
 export type DropdownPosition = 'left' | 'right' | 'bottom-right' | 'bottom-left';

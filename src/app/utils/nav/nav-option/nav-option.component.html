@@ -4,6 +4,7 @@
      (mouseleave)="toggle($event)"
      (touchstart)="toggle($event)"
      (touchend)="toggle($event)"
+     (cdkObserveContent)="onContentChange()"
      class="relative inline-block text-left h-full w-full select-none">
 	<!-- template for nav options content -->
 	<ng-template #aRef>
@@ -26,7 +27,7 @@
 	<!-- a tag for nav options with link -->
 	<a class="h-full w-full flex items-center hover:bg-white hover:bg-opacity-80 transition duration-300 ease-in-out"
 	   *ngIf="link"
-	   routerLink="{{link}}"
+	   [routerLink]="link"
 	   routerLinkActive="text-green-500"
 	   aria-haspopup="true">
 		<ng-container *ngTemplateOutlet="aRef"></ng-container>

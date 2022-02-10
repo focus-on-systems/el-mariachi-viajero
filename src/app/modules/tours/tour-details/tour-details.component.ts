@@ -20,11 +20,11 @@ export class TourDetailsComponent implements OnInit, OnDestroy {
 
   public bgImageStyle: string = "";
 
-  constructor(private route: ActivatedRoute, private _apollo: Apollo, private _changeDetectorRef: ChangeDetectorRef) {
+  constructor(private _route: ActivatedRoute, private _apollo: Apollo, private _changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
-    const tourId: string = this.route.snapshot.params.tourId;
+    const tourId: string = this._route.snapshot.params.tourId;
 
     const subscription = this._apollo.query<GQLTourDetailsQuery>({
       query: gql`query($tourId: ID!) {

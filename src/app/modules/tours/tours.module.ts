@@ -7,16 +7,19 @@ import {ToursRoutingModule} from "./tours-routing.module";
 import {MatIconModule} from "@angular/material/icon";
 
 @NgModule({
-	declarations: [
-		TourItemComponent,
-		TourDetailsComponent,
-		ManageToursComponent
-	],
-	imports: [
-		ToursRoutingModule,
-		CommonModule,
-		MatIconModule
-	]
+    declarations: [
+        TourItemComponent,
+        TourDetailsComponent,
+        ManageToursComponent
+    ],
+    exports: [
+        TourItemComponent
+    ],
+    imports: [
+        ToursRoutingModule,
+        CommonModule,
+        MatIconModule
+    ]
 })
 export class ToursModule {
 }

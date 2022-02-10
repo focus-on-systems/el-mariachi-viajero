@@ -218,18 +218,13 @@
 		                link="/ubicaciones"
 		                optionTxt="Ubicaciones"
 		                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center">
-			<app-nav-option class="w-full"
-			                link="/ubicaciones/Quéretaro"
-			                optionTxt="Querétaro"
-			                optionTxtClass="px-3 py-2"></app-nav-option>
-			<app-nav-option class="w-full"
-			                link="/ubicaciones/CDMX"
-			                optionTxt="CDMX"
-			                optionTxtClass="px-3 py-2"></app-nav-option>
-			<app-nav-option class="w-full"
-			                link="/ubicaciones/Veracruz"
-			                optionTxt="Veracruz"
-			                optionTxtClass="px-3 py-2"></app-nav-option>
+      <div>
+        <app-nav-option *ngFor="let state of states"
+                        class="w-full"
+                        link="/ubicaciones/{{state.id}}"
+                        optionTxt="{{state.name}}"
+                        optionTxtClass="px-3 py-2"></app-nav-option>
+      </div>
 		</app-nav-option>
 		<app-nav-option class="h-full w-full mx-2"
 		                link="/nosotros"
@@ -256,7 +251,6 @@
 </header>
 
 <!-- Modal to show when no internet connection is detected -->
-<!-- This example requires Tailwind CSS v2.0+ -->
 <div class="fixed z-50 inset-0 overflow-y-auto"
      aria-labelledby="modal-title"
      role="dialog"

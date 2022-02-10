@@ -5,6 +5,7 @@ import { PlaceComponent } from './place/place.component';
 import { StateComponent } from './state/state.component';
 import {UtilsModule} from "../../utils/utils.module";
 import {LocationsComponent} from "./locations/locations.component";
+import {ToursModule} from "../tours/tours.module";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {LocationsComponent} from "./locations/locations.component";
     LocationsRoutingModule,
     CommonModule,
     UtilsModule,
+    ToursModule,
   ]
 })
 export class LocationsModule { }

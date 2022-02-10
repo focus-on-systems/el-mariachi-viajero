@@ -3,6 +3,7 @@ import {Apollo} from "apollo-angular";
 import {ApolloQueryResult, gql} from "@apollo/client/core";
 import {Subscription} from "rxjs";
 import { TourCardInfo } from '../TourCardInfo';
+import {ToursService} from "../tours.service";
 
 @Component({
   selector: 'app-manage-tours',
@@ -19,7 +20,11 @@ export class ManageToursComponent implements OnInit, OnDestroy {
   private readonly pageSize: number = 10;
   private lastQueriedId: string = '';
 
-  constructor(private _apollo: Apollo, private _changeDetectorRef: ChangeDetectorRef) { }
+  constructor(
+    private _apollo: Apollo,
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _toursService: ToursService
+  ) { }
 
   ngOnInit(): void {
     this.loadTours();
@@ -38,12 +43,7 @@ export class ManageToursComponent implements OnInit, OnDestroy {
         tours(first: $limit, after: $lastQueriedId, where: {tourIsActive: {equalTo: true}}) {
           edges {
             node {
-              id: objectId
-              name: tourName
-              shortDescription: tourShortDescription
-#              featuresIncluded: tourFeaturesIncluded
-#              featuresExcluded: tourFeaturesExcluded
-              price: tourPrice
+              ${this._toursService.tourCardProjection}
             }
           }
         }
@@ -52,52 +52,15 @@ export class ManageToursComponent implements OnInit, OnDestroy {
         limit: this.pageSize,
         lastQueriedId: this.lastQueriedId
       }
-    }).subscribe((res: ApolloQueryResult<GQLToursCardQuery>) => {
+    }).subscribe(async (res: ApolloQueryResult<GQLToursCardQuery>) => {
+      subscription.unsubscribe();
+
       this.tours = res.data.tours.edges.map(node => ({...node.node, thumbs: []}));
 
-      // once tour information has been fetched for each node, fetch their images
-      const subscription1 = this._apollo.query<GQLToursThumbsQuery>({
-        query: gql`query {
-          tourImages(where: {
-            OR: [${this.tours.map(t => `{tourId: {have: {objectId: {equalTo: "${t.id}"}}}}`).join(',')}]
-          }) {
-            edges {
-              node {
-                tourId {
-                  edges {
-                    node {
-                      id: objectId
-                    }
-                  }
-                }
-                thumb: tourThumb {
-                  url
-                }
-              }
-            }
-          }
-        }`
-      }).subscribe((res: ApolloQueryResult<GQLToursThumbsQuery>) => {
-        // map the id of the tour with its index inside the tours array
-        const toursIdIdxMap: {[id: string]: number} = {};
-        for (let i = 0; i < this.tours.length; ++i)
-          toursIdIdxMap[this.tours[i].id] = i;
+      // get images for each tour
+      this.tours = await this._toursService.fillToursThumbs(this.tours);
 
-        // assign each thumb to the corresponding tour object
-        for (const thumb of res.data.tourImages.edges) {
-          const tour = this.tours[toursIdIdxMap[thumb.node.tourId.edges[0].node.id]];
-          tour.thumbs = tour.thumbs.concat(thumb.node.thumb);
-        }
-
-        // update the last queried index and notify angular the array has been updated, so it renders the tour cards
-        this.lastQueriedId = this.tours[this.tours.length - 1].id;
-        this._changeDetectorRef.markForCheck();
-
-        subscription1.unsubscribe();
-      });
-
-      this.subscriptions.push(subscription1);
-      subscription.unsubscribe();
+      this._changeDetectorRef.markForCheck();
     });
 
     this.subscriptions.push(subscription);
@@ -112,19 +75,3 @@ interface GQLToursCardQuery {
   }
 }
 
-interface GQLToursThumbsQuery {
-  tourImages: {
-    edges: {
-      node: {
-        tourId: {
-          edges: {
-            node: {
-              id: string;
-            }
-          }[]
-        };
-        thumb: {url: string}[];
-      };
-    }[];
-  }
-}

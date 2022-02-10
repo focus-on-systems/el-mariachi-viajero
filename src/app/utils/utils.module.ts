@@ -11,6 +11,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import { StatesComponent } from './states/states.component';
+import {ObserversModule} from '@angular/cdk/observers';
+import { HeadingComponent } from './heading/heading.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { StatesComponent } from './states/states.component';
     ContactFormComponent,
     InputComponent,
     DialogComponent,
-    StatesComponent
+    StatesComponent,
+    HeadingComponent
   ],
   exports: [
     BgImgCardComponent,
@@ -30,6 +33,8 @@ import { StatesComponent } from './states/states.component';
     FooterComponent,
     DialogComponent,
     StatesComponent,
+    ObserversModule,
+    HeadingComponent
   ],
   imports: [
     CommonModule,
