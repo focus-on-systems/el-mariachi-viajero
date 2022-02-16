@@ -4,7 +4,7 @@ module.exports = {
 	theme: {
 		extend: {
 			transitionProperty: {
-				"b-radius": "border-radius"
+				// "b-radius": "border-radius"
 			}
 		},
 	},

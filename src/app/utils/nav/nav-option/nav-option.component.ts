@@ -37,6 +37,9 @@ import {RouterLinkWithHref} from "@angular/router";
 				// height: '0'
 			})),
 			transition('open => closed', [
+        style({
+          pointerEvents: 'none'
+        }),
 				animate('200ms ease-out')
 			]),
 			transition('closed => open', [

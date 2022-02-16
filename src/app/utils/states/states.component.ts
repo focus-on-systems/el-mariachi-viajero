@@ -18,6 +18,7 @@ export class StatesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // retrieve carousel slides information
+    // TODO use a service to fetch and cache this stuff
     const subscription = this._apollo.query<GQLStatesQuery>({
       query: gql`query {
         states {
