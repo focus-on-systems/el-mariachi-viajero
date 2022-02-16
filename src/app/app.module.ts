@@ -8,7 +8,6 @@ import {LandingComponent} from './landing/landing/landing.component';
 import {SwiperModule} from "swiper/angular";
 import {GraphQLModule} from './graphql.module';
 import {HttpClientModule} from '@angular/common/http';
-import {MatIconModule} from "@angular/material/icon";
 import {registerLocaleData} from "@angular/common";
 import localeEs from "@angular/common/locales/es";
 import {UtilsModule} from "./utils/utils.module";
@@ -29,7 +28,6 @@ registerLocaleData(localeEs, 'es');
     SwiperModule,
     GraphQLModule,
     HttpClientModule,
-    MatIconModule,
     UtilsModule,
   ],
   providers: [{provide: LOCALE_ID, useValue: 'es-MX'}],

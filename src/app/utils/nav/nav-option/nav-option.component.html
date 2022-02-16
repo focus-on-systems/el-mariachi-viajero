@@ -4,17 +4,16 @@
      (mouseleave)="toggle($event)"
      (touchstart)="toggle($event)"
      (touchend)="toggle($event)"
-     (cdkObserveContent)="onContentChange()"
      class="relative inline-block text-left h-full w-full select-none">
 	<!-- template for nav options content -->
 	<ng-template #aRef>
 		<!-- only display the icon -->
-		<mat-icon class="w-5 {{iconClass}}" *ngIf="icon && iconPosition === 'fill'">{{icon}}</mat-icon>
+		<span class="material-icons material-icons-outlined w-5 {{iconClass}}" *ngIf="icon && iconPosition === 'fill'">{{icon}}</span>
 
 		<!-- display icon and/or text -->
-		<mat-icon class="w-5 ml-1 {{iconClass}}" *ngIf="icon && iconPosition === 'left'">{{icon}}</mat-icon>
+		<span class="material-icons material-icons-outlined w-5 ml-1 {{iconClass}}" *ngIf="icon && iconPosition === 'left'">{{icon}}</span>
 		<span class="flex-grow {{optionTxtClass}}" *ngIf="optionTxt.length > 0">{{optionTxt}}</span>
-		<mat-icon class="w-5 mr-1 {{iconClass}}" *ngIf="icon && iconPosition === 'right'">{{icon}}</mat-icon>
+		<span class="material-icons material-icons-outlined w-5 mr-1 {{iconClass}}" *ngIf="icon && iconPosition === 'right'">{{icon}}</span>
 	</ng-template>
 
 	<!-- a tag for nav options without link -->

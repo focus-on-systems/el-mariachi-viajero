@@ -1,4 +1,5 @@
-<div class="relative w-full h-72 bg-no-repeat bg-cover bg-center bg-fixed"
+<div class="relative w-full h-72 bg-no-repeat bg-cover bg-center"
+     [ngClass]="{'bg-fixed': isBgFixed}"
      [style]="bgImageStyle">
   <div class="relative w-full h-full flex text-center text-white flex-col justify-center items-center gap-4 z-10">
     <ng-content></ng-content>

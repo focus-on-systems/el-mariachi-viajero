@@ -21,6 +21,8 @@ import {RouterLinkWithHref} from "@angular/router";
 			state('open', style({
 				opacity: 1,
 				display: 'block',
+        top: '*',
+        pointerEvents: 'auto'
 				// height: '{{height}}px'
 			}), {
 				params: {
@@ -30,6 +32,8 @@ import {RouterLinkWithHref} from "@angular/router";
 			state('closed', style({
 				opacity: 0,
 				display: 'none',
+        top: 0,
+        pointerEvents: 'none'
 				// height: '0'
 			})),
 			transition('open => closed', [
@@ -37,9 +41,10 @@ import {RouterLinkWithHref} from "@angular/router";
 			]),
 			transition('closed => open', [
 				style({
-					display: 'block'
+					display: 'block',
+          pointerEvents: 'none'
 				}),
-				animate('300ms ease-in-out')
+				animate('200ms ease-in-out')
 			]),
 		]),
 	],
@@ -149,12 +154,6 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 				console.log('Weird event occurred on nav option', e);
 		}
 	}
-
-  onContentChange() {
-    // console.log("Changed");
-    // TODO: check if this and the module import (Observers) can be removed
-    this._changeDetectorRef.markForCheck();
-  }
 }
 
 export type DropdownPosition = 'left' | 'right' | 'bottom-right' | 'bottom-left';

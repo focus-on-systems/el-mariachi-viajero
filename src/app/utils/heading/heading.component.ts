@@ -9,6 +9,9 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} fr
 export class HeadingComponent implements OnInit {
   private _bgImageStyle: string = '';
 
+  @Input()
+  public isBgFixed: boolean = true;
+
   constructor(private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {

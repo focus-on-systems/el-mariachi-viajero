@@ -1,11 +1,11 @@
 <div *ngIf="type === 'contact-bar'"
      class="z-40 relative w-full flex justify-around py-2 bg-green-400 bg-aztec text-white pointer-events-auto">
 	<div class="md:flex hidden">
-		<mat-icon class="w-6 mr-1">phone</mat-icon>
+		<span class="material-icons material-icons-outlined w-6 mr-1">phone</span>
 		<span>{{CONTACT_PHONE_NUMBER}}</span>
 	</div>
 	<div class="md:flex hidden">
-		<mat-icon class="w-6 mr-1">email</mat-icon>
+		<span class="material-icons material-icons-outlined w-6 mr-1">email</span>
 		<span>{{CONTACT_EMAIL}}</span>
 	</div>
 	<div class="flex md:gap-4 gap-6">
@@ -30,7 +30,7 @@
 
 	<!-- Nav bar for small screens -->
 	<div class="md:hidden h-full flex justify-center items-center w-14" (click)="isSmallNavOpen = !isSmallNavOpen">
-		<mat-icon>menu</mat-icon>
+		<span class="material-icons material-icons-outlined">menu</span>
 	</div>
 	<div [@smallOpenClose]="isSmallNavOpen ? 'open' : 'closed'"
 	     class="md:hidden absolute w-full max-w-full left-0 top-14 flex flex-col gap-8 justify-center items-center text-center bg-white bg-opacity-90">
