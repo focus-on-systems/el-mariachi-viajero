@@ -1,12 +1,11 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import SwiperCore, {Navigation, Pagination} from "swiper";
-import {Apollo} from "apollo-angular";
-import {ApolloQueryResult, gql} from "@apollo/client/core";
 import {Subscription} from "rxjs";
 import {SwiperComponent} from "swiper/angular";
 import {CONTACT_EMAIL, CONTACT_PHONE_NUMBER} from "../../globals";
-import { LandingPromotion } from '../LandingPromotion';
+import {LandingPromo} from '../LandingPromo';
 import {LandingPack} from "../LandingPack";
+import {LandingPacksNPromosService} from "../landing-packs-n-promos.service";
 
 
 SwiperCore.use([Pagination, Navigation]);
@@ -38,7 +37,7 @@ export class LandingComponent implements OnInit, OnDestroy {
 	@ViewChild('carousel')
 	public carousel?: SwiperComponent;
 
-	public promotions: LandingPromotion[] = [];
+	public promotions: LandingPromo[] = [];
 	public packs: LandingPack[] = [];
 
 	/**
@@ -46,104 +45,22 @@ export class LandingComponent implements OnInit, OnDestroy {
 	 */
 	public readonly nSlides: number = 10;
 
-	constructor(private _apollo: Apollo, private _changeDetectorRef: ChangeDetectorRef) {
+	constructor(private landingPacksNPromos: LandingPacksNPromosService, private _changeDetectorRef: ChangeDetectorRef) {
 	}
 
-	ngOnInit(): void {
-		// retrieve carousel slides information
-		const subscription = this._apollo.query<GQLPromotionsQuery>({
-			query: gql`query($limit: Int) {
-				health
-				promotions(first: $limit) {
-					edges {
-						node {
-							id
-							name: promoName
-							img: promoImg {
-								url
-							}
-							description: promoDescription
-							featuresIncluded: promoFeaturesIncluded
-							featuresExcluded: promoFeaturesExcluded
-							price: promoPrice
-							validFrom: promoValidFrom
-							validUntil: promoValidUntil
-						}
-					}
-				}
-			}`,
-			variables: {
-				limit: this.nSlides
-			}
-		}).subscribe((res: ApolloQueryResult<GQLPromotionsQuery>) => {
-			this.isBackendReachable = !(res.error || res.errors);
-
-			if (!this.isBackendReachable)
-				return;
-
-			this.isBackendHealthy = res.data.health;
-			this.promotions = res.data.promotions.edges.map(node => node.node);
-
+	async ngOnInit() {
+    try {
+      this.promotions = await this.landingPacksNPromos.getPromos(this.nSlides);
+      this.packs = await this.landingPacksNPromos.getPacks(this.nSlides - this.promotions.length);
+    } catch (e) {
+      alert("Error al obtener los paquetes y promociones disponibles. Los detalles se encuentran en la consola");
+      console.error(e);
+    } finally {
       this._changeDetectorRef.markForCheck();
-
-      // fetch packs if there are still room
-      const nAvailableSlides = this.nSlides - this.promotions.length;
-      if (nAvailableSlides <= 0)
-        return;
-
-      const subscription1 = this._apollo.query<GQLPacksQuery>({
-        query: gql`query($limit: Int) {
-          packs(first: $limit) {
-            edges {
-              node {
-                id
-                name: packName
-                img: packImg {
-                  url
-                }
-                shortDescription: packShortDescription
-                featuresIncluded: packFeaturesIncluded
-                featuresExcluded: packFeaturesExcluded
-                price: packPrice
-              }
-            }
-          }
-        }`,
-        variables: {
-          limit: nAvailableSlides
-        }
-      }).subscribe((res: ApolloQueryResult<GQLPacksQuery>) => {
-        this.packs = res.data.packs.edges.map(node => node.node);
-
-        this._changeDetectorRef.markForCheck();
-        subscription1.unsubscribe();
-      });
-
-      this.subscriptions.push(subscription1);
-      subscription.unsubscribe();
-		});
-
-		this.subscriptions.push(subscription); // subscription is still added to the array to be sure there is no leak
+    }
 	}
 
 	ngOnDestroy(): void {
 		this.subscriptions.forEach((subscription: Subscription) => subscription.unsubscribe());
-	}
-}
-
-interface GQLPacksQuery {
-  packs: {
-    edges: {
-      node: LandingPack
-    }[];
-  }
-}
-
-interface GQLPromotionsQuery {
-	health: boolean;
-	promotions: {
-		edges: {
-			node: LandingPromotion
-		}[];
 	}
 }

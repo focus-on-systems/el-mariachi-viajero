@@ -3,7 +3,7 @@ import {Apollo} from "apollo-angular";
 import {ApolloQueryResult, gql} from "@apollo/client/core";
 import {Subscription} from "rxjs";
 import { TourCardInfo } from '../TourCardInfo';
-import {ToursService} from "../tours.service";
+import {ToursService} from "../../../utils/tours.service";
 
 @Component({
   selector: 'app-manage-tours',
@@ -43,7 +43,7 @@ export class ManageToursComponent implements OnInit, OnDestroy {
         tours(first: $limit, after: $lastQueriedId, where: {tourIsActive: {equalTo: true}}) {
           edges {
             node {
-              ${this._toursService.tourCardProjection}
+              ${ToursService.tourCardProjection}
             }
           }
         }

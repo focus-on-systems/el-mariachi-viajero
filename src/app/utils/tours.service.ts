@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Apollo} from "apollo-angular";
 import {ApolloQueryResult, gql} from "@apollo/client/core";
-import {TourCardInfo} from "./TourCardInfo";
+import {TourCardInfo} from "../modules/tours/TourCardInfo";
 import {Subscription} from "rxjs";
 
 @Injectable({
@@ -11,8 +11,10 @@ export class ToursService {
 
   /**
    * GraphQL fields to get from the tour (as card)
+   *
+   * If you update this -> REMEMBER to also update the interfaces and code depending on this
    */
-  public tourCardProjection = `
+  public static tourCardProjection = `
     id: objectId
     name: tourName
     shortDescription: tourShortDescription

@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {ApolloQueryResult, gql} from "@apollo/client/core";
-import {Apollo} from "apollo-angular";
 import {Subscription} from "rxjs";
+import {LocationsService} from "../locations.service";
+import {StateInfo} from "./StateInfo";
 
 @Component({
   selector: 'app-states',
@@ -10,37 +10,22 @@ import {Subscription} from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatesComponent implements OnInit, OnDestroy {
-  public states: StateCardInfo[] = [];
+  public states: StateInfo[] = [];
 
   private subscriptions: Subscription[] = [];
 
-  constructor(private _apollo: Apollo, private _changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private _locationsService: LocationsService, private _changeDetectorRef: ChangeDetectorRef) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     // retrieve carousel slides information
-    // TODO use a service to fetch and cache this stuff
-    const subscription = this._apollo.query<GQLStatesQuery>({
-      query: gql`query {
-        states {
-          edges {
-            node {
-              id
-              name: stateName
-              thumb: stateThumb {
-                url
-              }
-            }
-          }
-        }
-      }`
-    }).subscribe((res: ApolloQueryResult<GQLStatesQuery>) => {
-      this.states = res.data.states.edges.map(node => node.node);
-
+    try {
+      this.states = await this._locationsService.getStates();
+    } catch (e) {
+      alert("Ocurrió un error al obtener la lista de estados. Los detalles están en la consola");
+      console.error(e);
+    } finally {
       this._changeDetectorRef.markForCheck();
-
-      subscription.unsubscribe();
-    });
-    this.subscriptions.push(subscription); // subscription is still added to the array to be sure there is no leak
+    }
   }
 
   ngOnDestroy() {
@@ -49,16 +34,3 @@ export class StatesComponent implements OnInit, OnDestroy {
 
 }
 
-interface StateCardInfo {
-  id: string;
-  name: string;
-  thumb: {url: string};
-}
-
-interface GQLStatesQuery {
-  states: {
-    edges: {
-      node: StateCardInfo
-    }[];
-  }
-}

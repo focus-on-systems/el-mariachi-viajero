@@ -1,16 +1,16 @@
-<app-heading [bgImage]="stateInfo.img.url">
-  <h2 class="heading-title">{{stateInfo.name}}</h2>
-  <h3 class="heading-subtitle">{{stateInfo.abbr}}</h3>
+<app-heading [bgImage]="stateInfo.state.img.url">
+  <h2 class="heading-title">{{stateInfo.state.name}}</h2>
+  <h3 class="heading-subtitle">{{stateInfo.state.abbr}}</h3>
 </app-heading>
 <div class="content-container">
   <div>
     <p class="text-center section-title">Promociones</p>
-    <p>Promociones bien chidas de {{stateInfo.name}} por aquí...</p>
+    <p>Promociones bien chidas de {{stateInfo.state.name}} por aquí...</p>
   </div>
 
   <div>
     <p class="text-center section-title">Tours</p>
-    <p>Tours bien chidos de {{stateInfo.name}} por aquí...</p>
+    <p>Tours bien chidos de {{stateInfo.state.name}} por aquí...</p>
     <!--  <div class="grid grid-cols-1 gap-6 p-5 md:grid-cols-2 md:p-10 lg:grid-cols-3 lg:p-20 bg-white">-->
     <!--    <app-tour-item *ngFor="let tour of tours" [data]="tour"></app-tour-item>-->
     <!--  </div>-->
@@ -18,7 +18,7 @@
 
   <div>
     <p class="text-center section-title">Paquetes</p>
-    <p>Paquetes bien chidos en {{stateInfo.name}} por aquí...</p>
+    <p>Paquetes bien chidos en {{stateInfo.state.name}} por aquí...</p>
   </div>
 </div>
 <!--<div class="grid grid-cols-1 gap-6 p-5 md:grid-cols-2 md:p-10 lg:grid-cols-3 lg:p-20 bg-white">-->

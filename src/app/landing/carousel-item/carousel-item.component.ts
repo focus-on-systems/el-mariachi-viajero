@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import {LandingPromotion} from "../LandingPromotion";
+import {LandingPromo} from "../LandingPromo";
 import {LandingPack} from "../LandingPack";
 
 @Component({
@@ -12,10 +12,10 @@ export class CarouselItemComponent implements OnInit {
 	bgImageStyle: string = "";
 	link: string = "";
 
-  private _commonData!: LandingPack | LandingPromotion;
+  private _commonData!: LandingPack | LandingPromo;
 
   // bot can be falsy but assertion was added so typescript and angular don't complain
-	private _promotion!: LandingPromotion;
+	private _promotion!: LandingPromo;
 	private _pack!: LandingPack;
 
 	constructor(private _changeDetectorRef: ChangeDetectorRef) {
@@ -25,7 +25,7 @@ export class CarouselItemComponent implements OnInit {
 	}
 
 	@Input()
-	set promotion(data: LandingPromotion) {
+	set promotion(data: LandingPromo) {
     if (!data)
       return;
 
@@ -40,7 +40,7 @@ export class CarouselItemComponent implements OnInit {
     this._commonData = data;
 	}
 
-	get promotion(): LandingPromotion {
+	get promotion(): LandingPromo {
 		return this._promotion;
 	}
 
@@ -64,7 +64,7 @@ export class CarouselItemComponent implements OnInit {
     return this._pack;
   }
 
-  get commonData(): LandingPack | LandingPromotion {
+  get commonData(): LandingPack | LandingPromo {
     return this._commonData;
   }
 

@@ -1,4 +1,4 @@
-export interface LandingPromotion {
+export interface LandingPromo {
 	id: string;
 	name?: string;
 	img: {

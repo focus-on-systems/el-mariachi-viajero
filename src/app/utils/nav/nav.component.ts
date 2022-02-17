@@ -11,9 +11,9 @@ import {
 import {CONTACT_EMAIL, CONTACT_PHONE_NUMBER} from '../../globals';
 import {isPlatformBrowser} from "@angular/common";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {Apollo} from "apollo-angular";
-import {ApolloQueryResult, gql} from "@apollo/client/core";
 import {Subscription} from "rxjs";
+import {LocationsService} from "../locations.service";
+import {StateInfo} from "../states/StateInfo";
 
 @Component({
 	selector: 'app-nav',
@@ -59,38 +59,25 @@ export class NavComponent implements OnInit, OnDestroy {
 
 	constructor(
     private _changeDetectorRef: ChangeDetectorRef,
-    private _apollo: Apollo,
+    private _locationsService: LocationsService,
     @Inject(PLATFORM_ID) private _platformId: Object
   ) {
 	}
 
-	ngOnInit(): void {
+	async ngOnInit() {
 		if (isPlatformBrowser(this._platformId)) {
       this.isOnline = navigator.onLine;
       this._changeDetectorRef.markForCheck();
     }
 
-    // load locations (states)
-    const subscription = this._apollo.query<GQLStatesQuery>({
-      query: gql`query {
-        states {
-          edges {
-            node {
-              id
-              name: stateName
-            }
-          }
-        }
-      }`
-    }).subscribe((res: ApolloQueryResult<GQLStatesQuery>) => {
-      this.states = res.data.states.edges.map(node => node.node);
-
+    try {
+      this.states = await this._locationsService.getStates();
+    } catch (e) {
+      alert("Ocurrió un error al obtener la lista de estados. Los detalles están en la consola");
+      console.error(e);
+    } finally {
       this._changeDetectorRef.markForCheck();
-
-      subscription.unsubscribe();
-    });
-
-    this.subscriptions.push(subscription);
+    }
 	}
 
   ngOnDestroy() {
@@ -98,15 +85,3 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 }
 
-interface StateInfo {
-  id: string;
-  name: string;
-}
-
-interface GQLStatesQuery {
-  states: {
-    edges: {
-      node: StateInfo
-    }[];
-  }
-}

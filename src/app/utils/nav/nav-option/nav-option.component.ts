@@ -22,7 +22,7 @@ import {RouterLinkWithHref} from "@angular/router";
 				opacity: 1,
 				display: 'block',
         top: '*',
-        pointerEvents: 'auto'
+        // pointerEvents: 'auto'
 				// height: '{{height}}px'
 			}), {
 				params: {
@@ -33,19 +33,19 @@ import {RouterLinkWithHref} from "@angular/router";
 				opacity: 0,
 				display: 'none',
         top: 0,
-        pointerEvents: 'none'
+        // pointerEvents: 'none'
 				// height: '0'
 			})),
 			transition('open => closed', [
         style({
-          pointerEvents: 'none'
+          // pointerEvents: 'none'
         }),
 				animate('200ms ease-out')
 			]),
 			transition('closed => open', [
 				style({
 					display: 'block',
-          pointerEvents: 'none'
+          // pointerEvents: 'none'
 				}),
 				animate('200ms ease-in-out')
 			]),
@@ -153,6 +153,9 @@ export class NavOptionComponent implements OnInit, AfterViewInit {
 				this._touchStarted = false;
 				this.isOpen = !this.isOpen;
 				break;
+      case 'click':
+        this.isOpen = !this.isOpen;
+        break;
 			default:
 				console.log('Weird event occurred on nav option', e);
 		}
