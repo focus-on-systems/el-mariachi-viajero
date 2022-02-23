@@ -5,12 +5,14 @@ import {ManageToursComponent} from "./manage-tours/manage-tours.component";
 import {TourItemComponent} from "./tour-item/tour-item.component";
 import {ToursRoutingModule} from "./tours-routing.module";
 import {UtilsModule} from "../../utils/utils.module";
+import { ToursComponent } from './tours/tours.component';
 
 @NgModule({
     declarations: [
         TourItemComponent,
         TourDetailsComponent,
-        ManageToursComponent
+        ManageToursComponent,
+        ToursComponent
     ],
     exports: [
         TourItemComponent
