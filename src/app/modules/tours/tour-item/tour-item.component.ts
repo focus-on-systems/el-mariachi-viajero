@@ -14,6 +14,10 @@ export class TourItemComponent implements OnInit {
   public bgImageStyle: string = "";
   public link: string = "";
 
+  public categories: TourCategory[] = [{name: "Aventura", id: "hdsiohfiosd"}, {name: "Romance", id: "hsdifohsd"}, {name: "Cultural", id: "dhfiosdhoiwe"}];
+  public featuresIncluded: string[] = ["Hotel", "Transportación", "Seguro de viaje"];
+  public featuresExcluded: string[] = ["Comida", "Tirolesa"];
+
   constructor(private _apollo: Apollo, private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -31,4 +35,12 @@ export class TourItemComponent implements OnInit {
     return this._data;
   }
 
+}
+
+/**
+ * TODO: moverlo de aquí y meter los campos correctos
+ */
+interface TourCategory {
+  name: string;
+  id: string;
 }
