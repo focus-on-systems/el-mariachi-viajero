@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {NavOptionComponent} from "./nav/nav-option/nav-option.component";
 import {NavComponent} from "./nav/nav.component";
 import {FooterComponent} from "./footer/footer.component";
@@ -9,8 +9,10 @@ import {InputComponent} from "./input/input.component";
 import {DialogComponent} from "./dialog/dialog.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
-import { StatesComponent } from './states/states.component';
-import { HeadingComponent } from './heading/heading.component';
+import {StatesComponent} from './states/states.component';
+import {HeadingComponent} from './heading/heading.component';
+import {LoaderComponent} from './loader/loader.component';
+import { TourCategoriesComponent } from './tour-categories/tour-categories.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { HeadingComponent } from './heading/heading.component';
     InputComponent,
     DialogComponent,
     StatesComponent,
-    HeadingComponent
+    HeadingComponent,
+    LoaderComponent,
+    TourCategoriesComponent
   ],
   exports: [
     BgImgCardComponent,
@@ -31,7 +35,9 @@ import { HeadingComponent } from './heading/heading.component';
     FooterComponent,
     DialogComponent,
     StatesComponent,
-    HeadingComponent
+    HeadingComponent,
+    LoaderComponent,
+    TourCategoriesComponent
   ],
   imports: [
     CommonModule,
@@ -40,4 +46,5 @@ import { HeadingComponent } from './heading/heading.component';
     RouterModule
   ]
 })
-export class UtilsModule { }
+export class UtilsModule {
+}

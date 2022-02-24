@@ -14,6 +14,8 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Subscription} from "rxjs";
 import {LocationsService} from "../locations.service";
 import {StateInfo} from "../states/StateInfo";
+import {ToursService} from "../tours.service";
+import {Category} from "../tour-categories/Category";
 
 @Component({
 	selector: 'app-nav',
@@ -54,30 +56,42 @@ export class NavComponent implements OnInit, OnDestroy {
 	public isSmallNavOpen: boolean = false;
 
   public states: StateInfo[] = [];
+  public categories: Category[] = [];
 
   private subscriptions: Subscription[] = [];
 
 	constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _locationsService: LocationsService,
-    @Inject(PLATFORM_ID) private _platformId: Object
+    private changeDetectorRef: ChangeDetectorRef,
+    private locationsService: LocationsService,
+    private toursService: ToursService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
 	}
 
-	async ngOnInit() {
-		if (isPlatformBrowser(this._platformId)) {
+	ngOnInit() {
+		if (isPlatformBrowser(this.platformId)) {
       this.isOnline = navigator.onLine;
-      this._changeDetectorRef.markForCheck();
+      this.changeDetectorRef.markForCheck();
     }
 
-    try {
-      this.states = await this._locationsService.getStates();
-    } catch (e) {
-      alert("Ocurrió un error al obtener la lista de estados. Los detalles están en la consola");
-      console.error(e);
-    } finally {
-      this._changeDetectorRef.markForCheck();
-    }
+    // TODO group all this in a single query
+    this.locationsService.getStates()
+      .then((states: StateInfo[]) => {
+        this.states = states;
+      }, err => {
+        alert("Ocurrió un error al obtener la lista de estados. Los detalles están en la consola");
+        console.error(err);
+      })
+      .finally(() => this.changeDetectorRef.markForCheck());
+
+    this.toursService.getCategories()
+      .then((categories: Category[]) => {
+        this.categories = categories;
+      }, err => {
+        alert("Ocurrió un error al obtener las categorías de tours. Los detalles están en la consola");
+        console.error(err);
+      })
+      .finally(() => this.changeDetectorRef.markForCheck());
 	}
 
   ngOnDestroy() {

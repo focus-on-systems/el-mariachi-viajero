@@ -12,9 +12,9 @@
 		<span class="material-icons material-icons-outlined w-5 {{iconClass}}" *ngIf="icon && iconPosition === 'fill'">{{icon}}</span>
 
 		<!-- display icon and/or text -->
-		<span class="material-icons material-icons-outlined w-5 ml-1 {{iconClass}}" *ngIf="icon && iconPosition === 'left'">{{icon}}</span>
+		<span class="material-icons material-icons-outlined w-5 ml-2 {{iconClass}}" *ngIf="icon && iconPosition === 'left'">{{icon}}</span>
 		<span class="flex-grow {{optionTxtClass}}" *ngIf="optionTxt.length > 0">{{optionTxt}}</span>
-		<span class="material-icons material-icons-outlined w-5 mr-1 {{iconClass}}" *ngIf="icon && iconPosition === 'right'">{{icon}}</span>
+		<span class="material-icons material-icons-outlined w-5 mr-2 {{iconClass}}" *ngIf="icon && iconPosition === 'right'">{{icon}}</span>
 	</ng-template>
 
 	<!-- a tag for nav options without link -->

@@ -1,10 +1,10 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
-import {ManageToursComponent} from "./manage-tours/manage-tours.component";
 import {TourDetailsComponent} from "./tour-details/tour-details.component";
+import {ToursComponent} from "./tours/tours.component";
 
 const routes: Routes = [
-	{path: "", component: ManageToursComponent},
+	{path: "", component: ToursComponent},
 	{path: ":tourId", component: TourDetailsComponent}
 ];
 

@@ -17,7 +17,7 @@ export class StatesComponent implements OnInit, OnDestroy {
   constructor(private _locationsService: LocationsService, private _changeDetectorRef: ChangeDetectorRef) { }
 
   async ngOnInit() {
-    // retrieve carousel slides information
+    // retrieve states information
     try {
       this.states = await this._locationsService.getStates();
     } catch (e) {

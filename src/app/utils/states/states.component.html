@@ -1,3 +1,4 @@
+<app-loader *ngIf="states.length === 0"></app-loader>
 <div class="w-full h-full mx-auto grid grid-cols-2 lg:grid-cols-4 gap-2">
   <app-bg-img-card *ngFor="let state of states; let isOdd = odd"
                    [ngClass]="{'row-span-2': isOdd}"
