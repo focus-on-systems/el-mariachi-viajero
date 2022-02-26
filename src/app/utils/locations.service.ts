@@ -95,7 +95,7 @@ export class LocationsService {
 
           const uniqueTours: {[tourId: string]: TourCardInfo} = {};
           for (const tourPlace of res.data.tourPlaces.edges) {
-            for (const tour of tourPlace.node.tourId.edges) { // a place can be related to several () tours
+            for (const tour of tourPlace.node.tourId.edges) { // a place can be related to several tours
               const tourId = tour.node.id;
               if (!(tourId in uniqueTours))
                 uniqueTours[tourId] = tour.node;

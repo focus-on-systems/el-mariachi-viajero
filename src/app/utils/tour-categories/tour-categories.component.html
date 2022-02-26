@@ -3,7 +3,7 @@
   <app-bg-img-card *ngFor="let category of categories; let isOdd = odd"
                    [ngClass]="{'row-span-2': isOdd}"
                    linkTxt="{{category.name}}"
-                   link="/ubicaciones/{{category.id}}"
+                   link="/tours/categoria/{{category.id}}"
                    bgImage="{{category.thumb.url}}">
   </app-bg-img-card>
 </div>

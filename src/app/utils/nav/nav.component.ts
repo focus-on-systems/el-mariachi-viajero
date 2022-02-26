@@ -9,13 +9,15 @@ import {
   PLATFORM_ID
 } from '@angular/core';
 import {CONTACT_EMAIL, CONTACT_PHONE_NUMBER} from '../../globals';
-import {isPlatformBrowser} from "@angular/common";
+import {isPlatformBrowser, Location} from "@angular/common";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Subscription} from "rxjs";
 import {LocationsService} from "../locations.service";
 import {StateInfo} from "../states/StateInfo";
 import {ToursService} from "../tours.service";
-import {Category} from "../tour-categories/Category";
+import {CategoryInfo} from "../tour-categories/CategoryInfo";
+import {Router} from "@angular/router";
+
 
 @Component({
 	selector: 'app-nav',
@@ -56,7 +58,7 @@ export class NavComponent implements OnInit, OnDestroy {
 	public isSmallNavOpen: boolean = false;
 
   public states: StateInfo[] = [];
-  public categories: Category[] = [];
+  public categories: CategoryInfo[] = [];
 
   private subscriptions: Subscription[] = [];
 
@@ -64,9 +66,19 @@ export class NavComponent implements OnInit, OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private locationsService: LocationsService,
     private toursService: ToursService,
+    private router: Router,
+    private location: Location,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
 	}
+
+  isRootUrl(): boolean {
+    return this.router.url.trim() === "/inicio" || this.router.url.trim() === '/';
+  }
+
+  goBack() {
+    this.location.back();
+  }
 
 	ngOnInit() {
 		if (isPlatformBrowser(this.platformId)) {
@@ -85,7 +97,7 @@ export class NavComponent implements OnInit, OnDestroy {
       .finally(() => this.changeDetectorRef.markForCheck());
 
     this.toursService.getCategories()
-      .then((categories: Category[]) => {
+      .then((categories: CategoryInfo[]) => {
         this.categories = categories;
       }, err => {
         alert("Ocurrió un error al obtener las categorías de tours. Los detalles están en la consola");

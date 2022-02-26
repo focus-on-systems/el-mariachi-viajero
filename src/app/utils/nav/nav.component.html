@@ -24,7 +24,11 @@
 <header id="header"
         class="top-0 flex h-14 justify-between items-center shadow z-40 w-full bg-white bg-opacity-80 bg-opacity-90-no-blur backdrop-filter backdrop-blur pointer-events-auto"
         [ngClass]="{'sticky': type === 'contact-bar', 'fixed': type === 'normal'}">
-	<div class="h-full flex py-1.5 px-2 md:px-4 lg:px-6">
+	<div class="h-full flex items-center py-1.5 px-2 md:px-4 lg:px-6">
+    <button class="pr-2 grid" *ngIf="!isRootUrl()" (click)="goBack()" title="Ir atrás">
+      <span class="material-icons material-icons-outlined">arrow_back</span>
+    </button>
+
 		<img class="h-full w-full" src="assets/img/logoV9.svg" alt="">
 	</div>
 

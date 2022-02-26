@@ -3,7 +3,8 @@ import {Apollo} from "apollo-angular";
 import {ApolloQueryResult, gql} from "@apollo/client/core";
 import {TourCardInfo} from "../modules/tours/TourCardInfo";
 import {Subscription} from "rxjs";
-import {Category} from "./tour-categories/Category";
+import {CategoryInfo} from "./tour-categories/CategoryInfo";
+import {CategoryCompleteInfo} from "../modules/tours/tour-category/CategoryCompleteInfo";
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +24,75 @@ export class ToursService {
     price: tourPrice
   `;
 
-  private categories: Category[] = [];
+  private categories: CategoryInfo[] = [];
 
   constructor(private _apollo: Apollo) {
+  }
+
+  /**
+   * Get all the category information directly from backend
+   * @param categoryId id of the state
+   */
+  public getCategory(categoryId: string): Promise<CategoryCompleteInfo> {
+    return new Promise<CategoryCompleteInfo>((resolve, reject) => {
+      // fetch all data for category from backend
+      const subscription: Subscription = this._apollo.query<GQLCategoryCompleteQuery>({
+        query: gql`query($categoryId: ID!) {
+          category(id: $categoryId) {
+            id: objectId
+            name: categoryName
+            icon: categoryIcon
+            iconType: categoryIconType
+            img: categoryImg {
+              url
+            }
+            thumb: categoryThumb {
+              url
+            }
+          }
+          tourCategories(where: {categoryId: {have: {objectId: {equalTo: $categoryId}}}}) {
+            edges {
+              node {
+                tourId {
+                  edges {
+                    node {
+                      ${ToursService.tourCardProjection}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }`,
+        variables: {
+          categoryId
+        }
+      }).subscribe({
+        next: (res: ApolloQueryResult<GQLCategoryCompleteQuery>) => {
+          subscription.unsubscribe();
+
+          const uniqueTours: {[tourId: string]: TourCardInfo} = {};
+          for (const tourCategory of res.data.tourCategories.edges) {
+            for (const tour of tourCategory.node.tourId.edges) { // a category can be related to several tours
+              const tourId = tour.node.id;
+              if (!(tourId in uniqueTours))
+                uniqueTours[tourId] = tour.node;
+            }
+          }
+
+          const category: CategoryCompleteInfo = {
+            category: res.data.category,
+            tours: Object.values(uniqueTours)
+          };
+
+          return resolve(category);
+        },
+        error: err => {
+          subscription.unsubscribe();
+          reject(err);
+        }
+      });
+    });
   }
 
   /**
@@ -33,8 +100,8 @@ export class ToursService {
    *
    * The returned promise will be rejected on error
    */
-  public getCategories(): Promise<Category[]> {
-    return new Promise<Category[]>((resolve, reject) => {
+  public getCategories(): Promise<CategoryInfo[]> {
+    return new Promise<CategoryInfo[]>((resolve, reject) => {
       if (this.categories.length > 0)
         return resolve(this.categories);
 
@@ -147,7 +214,22 @@ interface GQLToursThumbsQuery {
 interface GQLCategoriesQuery {
   categories: {
     edges: {
-      node: Category;
+      node: CategoryInfo;
+    }[];
+  }
+}
+
+interface GQLCategoryCompleteQuery {
+  category: CategoryInfo;
+  tourCategories: {
+    edges: {
+      node: {
+        tourId: {
+          edges: {
+            node: TourCardInfo;
+          }[];
+        }
+      };
     }[];
   }
 }

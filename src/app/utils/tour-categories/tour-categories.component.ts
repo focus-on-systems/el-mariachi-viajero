@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {Category} from "./Category";
+import {CategoryInfo} from "./CategoryInfo";
 import {ToursService} from "../tours.service";
 
 @Component({
@@ -9,7 +9,7 @@ import {ToursService} from "../tours.service";
   styleUrls: ['./tour-categories.component.scss']
 })
 export class TourCategoriesComponent implements OnInit {
-  public categories: Category[] = [];
+  public categories: CategoryInfo[] = [];
 
   private subscriptions: Subscription[] = [];
 
