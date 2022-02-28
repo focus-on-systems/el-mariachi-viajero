@@ -41,7 +41,7 @@ export class LocationsService {
           states {
             edges {
               node {
-                id
+                id: objectId
                 name: stateName
                 abbr: stateAbbr
                 img: stateImg {

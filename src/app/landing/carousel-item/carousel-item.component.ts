@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {LandingPromo} from "../LandingPromo";
 import {LandingPack} from "../LandingPack";
+import {ContactService} from "../../utils/contact.service";
 
 @Component({
 	selector: 'app-carousel-item',
@@ -9,8 +10,8 @@ import {LandingPack} from "../LandingPack";
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CarouselItemComponent implements OnInit {
-	bgImageStyle: string = "";
-	link: string = "";
+	public bgImageStyle: string = "";
+	public link: string = "";
 
   private _commonData!: LandingPack | LandingPromo;
 
@@ -18,7 +19,7 @@ export class CarouselItemComponent implements OnInit {
 	private _promotion!: LandingPromo;
 	private _pack!: LandingPack;
 
-	constructor(private _changeDetectorRef: ChangeDetectorRef) {
+	constructor(private changeDetectorRef: ChangeDetectorRef, public contactService: ContactService) {
 	}
 
 	ngOnInit(): void {
@@ -35,7 +36,7 @@ export class CarouselItemComponent implements OnInit {
 		this.bgImageStyle = `background-image: url(${data.img.url})`;
 		this.link = `/promo/${data.id}`;
 		this._promotion = data;
-		this._changeDetectorRef.markForCheck();
+		this.changeDetectorRef.markForCheck();
 
     this._commonData = data;
 	}
@@ -55,7 +56,7 @@ export class CarouselItemComponent implements OnInit {
     this.bgImageStyle = `background-image: url(${data.img.url})`;
     this.link = `/pack/${data.id}`;
     this._pack = data;
-    this._changeDetectorRef.markForCheck();
+    this.changeDetectorRef.markForCheck();
 
     this._commonData = data;
   }

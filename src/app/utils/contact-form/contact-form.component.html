@@ -62,25 +62,24 @@
 					</select>
 				</fieldset>
 			</div>
-			<!--		<p class="text-white text-center">Nuestra información de contacto</p>-->
-			<!--		<div class="w-full mx-auto text-white text-sm">-->
-			<!--			<div class="flex justify-center gap-1">-->
-			<!--				<span class="material-icons material-icons-outlined w-6">phone</span>-->
-			<!--				<span>{{CONTACT_PHONE_NUMBER}}</span>-->
-			<!--			</div>-->
-			<!--			<div class="flex justify-center gap-1">-->
-			<!--				<span class="material-icons material-icons-outlined w-6">email</span>-->
-			<!--				<span>{{CONTACT_EMAIL}}</span>-->
-			<!--			</div>-->
-			<!--		</div>-->
 			<input class="hidden" name="honey" formControlName="honey"/> <!-- Honeypot field -->
 			<!--		<div data-netlify-recaptcha="true"></div>-->
-			<div class="w-full flex justify-around text-white pb-3 pt-1">
+			<div class="w-full flex justify-around text-white py-0.5">
 				<button type="submit" class="flex gap-2 btn">
 					<span class="material-icons material-icons-outlined">send</span>
 					<span>Enviar</span>
 				</button>
 			</div>
+      <div class="flex justify-around w-full mx-auto text-xs pb-3">
+        <div class="flex justify-center gap-1">
+          <span class="material-icons material-icons-outlined text-sm">phone</span>
+          <span>{{CONTACT_PHONE_NUMBER}}</span>
+        </div>
+        <div class="flex justify-center gap-1">
+          <span class="material-icons material-icons-outlined text-sm">email</span>
+          <span>{{CONTACT_EMAIL}}</span>
+        </div>
+      </div>
 		</form>
 	</div>
 </div>

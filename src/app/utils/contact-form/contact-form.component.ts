@@ -6,6 +6,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {DialogComponent} from "../dialog/dialog.component";
 import {Subscription} from "rxjs";
 import {environment} from "../../../environments/environment";
+import {ContactService} from "../contact.service";
 
 @Component({
 	selector: 'app-contact-form',
@@ -61,13 +62,24 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 	public form: FormGroup;
 	public isContactViaEnabled: boolean;
 
-	private _subscriptions: Subscription[] = [];
+	private subscriptions: Subscription[] = [];
 
-	constructor(private _http: HttpClient, private _changeDetectionRef: ChangeDetectorRef) {
+	constructor(private http: HttpClient, private changeDetectionRef: ChangeDetectorRef, private contactService: ContactService) {
 		this.form = new FormGroup(this.formControls);
 		this.isContactViaEnabled = !!this.formControls.phone.value;
 		if (!this.isContactViaEnabled)
 			this.formControls["contact-via"].disable(); // it'll be enabled as soon as the user enters a phone number
+
+    const subscription = this.contactService.formOpenStateEmitter.subscribe(shouldOpen => {
+      if (shouldOpen && !this.isOpen) { // if it should be open but it's actually closed
+        this.toggle();
+        this.changeDetectionRef.markForCheck();
+      } else if (!shouldOpen && this.isOpen) { // if it should be closed but it's actually open
+        this.toggle();
+        this.changeDetectionRef.markForCheck();
+      }
+    });
+    this.subscriptions.push(subscription);
 	}
 
 	ngOnInit(): void {
@@ -84,12 +96,11 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 				this.formControls["contact-via"].enable();
 			}
 		});
-		this._subscriptions.push(subscription);
+		this.subscriptions.push(subscription);
 	}
 
 	ngOnDestroy() {
-		for (const subscription of this._subscriptions)
-			subscription.unsubscribe();
+    this.subscriptions.forEach(s => s.unsubscribe());
 	}
 
 	public onSubmit(): void {
@@ -102,7 +113,7 @@ export class ContactFormComponent implements OnInit, OnDestroy {
 		for (const [key, value] of Object.entries(this.form.value))
 			body = body.set(key, value as string || '');
 
-		this._http.post("/", body, {
+		this.http.post("/", body, {
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded"
 			},
