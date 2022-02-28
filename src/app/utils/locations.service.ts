@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Apollo} from "apollo-angular";
 import {ApolloQueryResult, gql} from "@apollo/client/core";
 import {StateInfo} from "./states/StateInfo";
-import {TourCardInfo} from "../modules/tours/TourCardInfo";
+import {TourCardInfo} from "../modules/tours/tour-card/TourCardInfo";
 import {StateCompleteInfo} from "../modules/locations/state/StateCompleteInfo";
 import {ToursService} from "./tours.service";
 
@@ -10,6 +10,18 @@ import {ToursService} from "./tours.service";
   providedIn: 'root'
 })
 export class LocationsService {
+  public static stateInfoProjection = `
+    id: objectId
+    name: stateName
+    abbr: stateAbbr
+    img: stateImg {
+      url
+    }
+    thumb: stateThumb {
+      url
+    }
+  `;
+
   private states: StateInfo[] = [];
 
   constructor(private _apollo: Apollo) { }

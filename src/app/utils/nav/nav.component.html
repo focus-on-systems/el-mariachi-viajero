@@ -39,10 +39,8 @@
 	<div [@smallOpenClose]="isSmallNavOpen ? 'open' : 'closed'"
 	     class="md:hidden absolute w-full max-w-full left-0 top-14 flex flex-col gap-8 justify-center items-center text-center bg-white bg-opacity-90">
 		<a routerLink="/inicio" (click)="isSmallNavOpen = false" routerLinkActive="text-green-500">Inicio</a>
-		<a routerLink="/tours" (click)="isSmallNavOpen = false" routerLinkActive="text-green-500">Tours</a>
-		<a routerLink="/nosotros"
-		   (click)="isSmallNavOpen = false"
-		   routerLinkActive="text-green-500">Nosotros</a>
+		<a routerLink="/tours" (click)="isSmallNavOpen = false" routerLinkActive="text-green-500">Categorías</a>
+		<a routerLink="/nosotros" (click)="isSmallNavOpen = false" routerLinkActive="text-green-500">Nosotros</a>
 		<a routerLink="/ubicaciones" (click)="isSmallNavOpen = false" routerLinkActive="text-green-500">Ubicaciones</a>
 		<a routerLink="/blog" (click)="isSmallNavOpen = false" routerLinkActive="text-green-500">Blog</a>
 	</div>
@@ -55,7 +53,7 @@
 		                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center"></app-nav-option>
 		<app-nav-option class="h-full w-full mx-2"
 		                link="/tours"
-		                optionTxt="Tours"
+		                optionTxt="Categorías"
 		                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center">
       <div>
         <app-nav-option *ngFor="let category of categories"

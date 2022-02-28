@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {TourCardInfo} from "../TourCardInfo";
+import {TourCardInfo} from "../tour-card/TourCardInfo";
 import {Subscription} from "rxjs";
 import {Apollo} from "apollo-angular";
 import {ToursService} from "../../../utils/tours.service";

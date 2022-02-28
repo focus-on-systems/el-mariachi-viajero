@@ -1,5 +1,5 @@
 import {CategoryInfo} from "../../../utils/tour-categories/CategoryInfo";
-import {TourCardInfo} from "../TourCardInfo";
+import {TourCardInfo} from "../tour-card/TourCardInfo";
 
 export interface CategoryCompleteInfo {
   category: CategoryInfo;

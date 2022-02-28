@@ -1,22 +1,18 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 import {Apollo} from "apollo-angular";
-import {TourCardInfo} from "../TourCardInfo";
+import {TourCardInfo} from "./TourCardInfo";
 
 @Component({
-  selector: 'app-tour-item',
-  templateUrl: './tour-item.component.html',
-  styleUrls: ['./tour-item.component.scss'],
+  selector: 'app-tour-card',
+  templateUrl: './tour-card.component.html',
+  styleUrls: ['./tour-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TourItemComponent implements OnInit {
+export class TourCardComponent implements OnInit {
   private _data!: TourCardInfo;
 
   public bgImageStyle: string = "";
   public link: string = "";
-
-  public categories: TourCategory[] = [{name: "Aventura", id: "hdsiohfiosd"}, {name: "Romance", id: "hsdifohsd"}, {name: "Cultural", id: "dhfiosdhoiwe"}];
-  public featuresIncluded: string[] = ["Hotel", "Transportación", "Seguro de viaje"];
-  public featuresExcluded: string[] = ["Comida", "Tirolesa"];
 
   constructor(private _apollo: Apollo, private _changeDetectorRef: ChangeDetectorRef) { }
 
@@ -35,12 +31,4 @@ export class TourItemComponent implements OnInit {
     return this._data;
   }
 
-}
-
-/**
- * TODO: moverlo de aquí y meter los campos correctos
- */
-interface TourCategory {
-  name: string;
-  id: string;
 }

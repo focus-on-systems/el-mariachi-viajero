@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
-import {TourCardInfo} from "../../tours/TourCardInfo";
+import {TourCardInfo} from "../../tours/tour-card/TourCardInfo";
 import {ToursService} from "../../../utils/tours.service";
 import {LocationsService} from "../../../utils/locations.service";
 import {StateCompleteInfo} from "./StateCompleteInfo";

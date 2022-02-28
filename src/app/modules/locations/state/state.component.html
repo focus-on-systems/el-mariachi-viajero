@@ -3,24 +3,24 @@
   <h2 class="heading-subtitle">{{stateInfo.state.abbr}}</h2>
 </app-heading>
 <div class="content-container">
-  <div>
-    <p class="text-center section-title">Promociones</p>
-    <p>Promociones bien chidas de {{stateInfo.state.name}} por aquí...</p>
-  </div>
+<!--  <div>-->
+<!--    <p class="text-center section-title">Promociones</p>-->
+<!--    <p>Promociones bien chidas de {{stateInfo.state.name}} por aquí...</p>-->
+<!--  </div>-->
 
   <div>
     <p class="text-center section-title">Tours</p>
-    <p>Tours bien chidos de {{stateInfo.state.name}} por aquí...</p>
-    <!--  <div class="grid grid-cols-1 gap-6 p-5 md:grid-cols-2 md:p-10 lg:grid-cols-3 lg:p-20 bg-white">-->
-    <!--    <app-tour-item *ngFor="let tour of tours" [data]="tour"></app-tour-item>-->
-    <!--  </div>-->
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5" *ngIf="stateInfo.tours.length > 0">
+      <app-tour-card *ngFor="let tour of stateInfo.tours" [data]="tour"></app-tour-card>
+    </div>
+    <p *ngIf="stateInfo.tours.length === 0">Por el momento no tenemos tours en {{stateInfo.state.name}}...</p>
   </div>
 
-  <div>
-    <p class="text-center section-title">Paquetes</p>
-    <p>Paquetes bien chidos en {{stateInfo.state.name}} por aquí...</p>
-  </div>
+<!--  <div>-->
+<!--    <p class="text-center section-title">Paquetes</p>-->
+<!--    <p>Paquetes bien chidos en {{stateInfo.state.name}} por aquí...</p>-->
+<!--  </div>-->
 </div>
 <!--<div class="grid grid-cols-1 gap-6 p-5 md:grid-cols-2 md:p-10 lg:grid-cols-3 lg:p-20 bg-white">-->
-<!--  <app-tour-item *ngFor="let tour of tours" [data]="tour"></app-tour-item>-->
+<!--  <app-tour-card *ngFor="let tour of tours" [data]="tour"></app-tour-card>-->
 <!--</div>-->
