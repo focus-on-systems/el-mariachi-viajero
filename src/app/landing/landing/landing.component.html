@@ -3,12 +3,116 @@
 <!-- Carousel -->
 <div class="w-full h-screen bg-aztec bg-green-100 relative">
 	<swiper class="w-full h-full" [pagination]="true" [navigation]="true" #carousel>
-		<ng-template swiperSlide *ngFor="let promo of promotions">
-			<app-carousel-item [promotion]="promo"></app-carousel-item>
+		<!-- Welcome slide -->
+		<ng-template swiperSlide>
+		  <div class="w-full h-full text-center flex flex-col justify-center items-center gap-4 md:gap-8 bg-cover bg-center pt-20"
+			   style="background-image: url('../../../assets/img/mv2.png')">
+			<div class="flex flex-col gap-y-4 md:gap-y-5 lg:gap-y-6 justify-center items-center text-center text-white z-20">
+				<div class="w-full flex flex-wrap gap-4 items-center justify-center">
+					<p class="text-2xl md:text-4xl lg:text-6xl uppercase">
+						<span class="font-medium">El </span>
+						<span class="font-bold">Mariachi </span>
+						<span class="font-medium">Viajero</span>
+					</p>
+				</div>
+				<div class="px-28">
+					<p class="font-medium text-lg md:text-xl lg:text-2xl" style="font-family: Montserrat;">
+						Nos dedicamos a realizar todo tipo de transportación turística a nivel
+						nacional, con la calidad y garantía que usted y sus familiares merecen.
+					</p>
+				</div>
+				<div class="w-full flex flex-col items-center">
+					<a href="#" class="py-4 px-12 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 border border-green-600 rounded">
+						Ver Tours
+					</a>
+				</div>
+			</div>
+
+	
+			<!-- add an overlay to darken the image -->
+			<div class="z-10 bg-black bg-opacity-50 absolute w-full h-full pointer-events-none"></div>
+		  </div>
 		</ng-template>
-    <ng-template swiperSlide *ngFor="let pack of packs">
-      <app-carousel-item [pack]="pack"></app-carousel-item>
-    </ng-template>
+		<!-- Welcome slide -->
+		<!-- Welcome slide -->
+		<ng-template swiperSlide>
+			<div class="w-full h-full text-center flex flex-col justify-center items-center gap-4 md:gap-8 bg-cover bg-center pt-20"
+				 style="background-image: url('../../../assets/img/mv5.png')">
+				<div class="flex flex-col gap-y-4 md:gap-y-5 lg:gap-y-6 justify-center items-center text-center text-white z-20">
+					<div class="w-full flex flex-wrap gap-4 items-center justify-center">
+						<p class="text-2xl md:text-4xl lg:text-6xl uppercase">
+							<span class="font-light">Nuestros </span>
+							<span class="font-bold">Servicios </span>
+						</p>
+					</div>
+				  	<div class="px-56">
+					  	<p class="font-medium text-lg md:text-xl lg:text-2xl" style="font-family: Montserrat;">
+							Transportación para todo tipo de necesidades y gustos individuales, familiares o grupales.
+						</p>
+					</div>
+					<div class="w-full flex flex-col items-center">
+						<a href="#" class="py-4 px-12 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 border border-green-600 rounded">
+							Ver Tours
+						</a>
+					</div>
+			  	</div>
+				<!-- add an overlay to darken the image -->
+				<div class="z-10 bg-black bg-opacity-50 absolute w-full h-full pointer-events-none"></div>
+			</div>
+		</ng-template>
+		<ng-template swiperSlide>
+			<div class="w-full h-full text-center flex flex-col justify-center items-center gap-4 md:gap-8 bg-cover bg-center pt-20"
+				 style="background-image: url('../../../assets/img/mv4.png')">
+				<div class="flex flex-col gap-y-4 md:gap-y-5 lg:gap-y-6 justify-center items-center text-center text-white z-20">
+					<div class="w-full flex flex-wrap gap-4 items-center justify-center">
+						<p class="text-2xl md:text-4xl lg:text-6xl uppercase">
+							<span class="font-light">Descubre </span>
+							<span class="font-bold">México </span>
+						</p>
+					</div>
+				  	<div class="px-56">
+					  	<p class="font-medium text-lg md:text-xl lg:text-2xl" style="font-family: Montserrat;">
+							Conoce sus museos, monumentos y la increíble gastronomía que espera por tí.
+						</p>
+					</div>
+					<div class="w-full flex flex-col items-center">
+						<a href="#" class="py-4 px-12 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 border border-green-600 rounded">
+							Ver Tours
+						</a>
+					</div>
+			  	</div>
+				<!-- add an overlay to darken the image -->
+				<div class="z-10 bg-black bg-opacity-50 absolute w-full h-full pointer-events-none"></div>
+			</div>
+		</ng-template>
+		<ng-template swiperSlide>
+			<div class="w-full h-full text-center flex flex-col justify-center items-center gap-4 md:gap-8 bg-cover bg-center pt-20"
+				 style="background-image: url('../../../assets/img/mv1.png')">
+				<div class="flex flex-col gap-y-4 md:gap-y-5 lg:gap-y-6 justify-center items-center text-center text-white z-20">
+					<div class="w-full flex flex-wrap gap-4 items-center justify-center">
+						<p class="text-2xl md:text-4xl lg:text-6xl uppercase">
+							<span class="font-light">El </span>
+							<span class="font-bold">Hombre </span>
+							<span class="font-light">y El </span>
+							<span class="font-bold">Turismo </span>
+						</p>
+					</div>
+				  	<div class="px-28">
+					  	<p class="font-medium text-lg md:text-xl lg:text-2xl" style="font-family: Montserrat;">
+							Las necesidades del hombre a través de la historia han sido viajar,
+							y trasladarse en búsqueda de nuevas aventuras.
+						</p>
+					</div>
+					<div class="w-full flex flex-col items-center">
+						<a href="#" class="py-4 px-12 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 border border-green-600 rounded">
+							Ver Tours
+						</a>
+					</div>
+			  	</div>
+				<!-- add an overlay to darken the image -->
+				<div class="z-10 bg-black bg-opacity-50 absolute w-full h-full pointer-events-none"></div>
+			</div>
+		</ng-template>
 	</swiper>
 	<!--	<div class="absolute bottom-6 w-full flex justify-center z-20">-->
 	<!--		<span class="material-icons material-icons-outlined max-w-sm w-8 margin-auto animate-bounce">expand_more</span>-->
@@ -34,61 +138,11 @@
 		Conoce nuestras increíbles promociones
 	</p>
 </div>
-<div class="w-5/6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-10">
-	<div class="flex shadow-md hover:shadow-lg transition-shadow flex-col bg-white rounded-lg gap-3">
-		<div class="h-40 w-full bg-cover bg-center relative" style="background-image: url(https://blog.seccionamarilla.com.mx/wp-content/uploads/2017/09/festivales-de-globos-770x578.jpg);">
-		  <a class="absolute bottom-0 left-0 px-2 py-1 bg-black bg-opacity-50 text-white hover:underline"
-			 title="Ciudad de México">
-			CDMX
-		  </a>
-		  <p class="absolute bottom-0 right-0 px-2 py-1 bg-black bg-opacity-50 text-white"></p>
-		</div>
-		<div class="flex flex-col items-start px-4 lg:px-6 gap-3">
-		  <div class="w-full flex flex-wrap justify-center items-center gap-2">
-		  </div>
-		  <p class="text-xl font-md text-green-500">Globo aerostático</p>
-		  <p class="text-sm font-light text-gray-500">Viaja en globo aerostático y vive una aventura única</p>
-		</div>
-		<div class="grid grid-cols-2 gap-3 justify-center px-4 lg:px-6 text-sm font-light text-gray-500">
-		  <div>
-		  </div>
-		  <div>
-		  </div>
-		</div>
-		<div class="w-full flex flex-col items-center mb-4">
-			<a class="btn">Ver promoción</a>
-			<!--<a class="p-2 leading-none rounded-lg font-medium mt-3 bg-green-500 text-xs text-white uppercase" href="#">Ver tour</a>-->
-		</div>
-	</div>
-	<div class="flex shadow-md hover:shadow-lg transition-shadow flex-col bg-white rounded-lg gap-3">
-		<div class="h-40 w-full bg-cover bg-center relative" style="background-image: url(https://www.ciudadespatrimonio.mx/wp-content/uploads/2019/02/QH-Gto-callejondelbeso.jpg);">
-		  <a class="absolute bottom-0 left-0 px-2 py-1 bg-black bg-opacity-50 text-white hover:underline"
-			 title="Ciudad de México">
-			CDMX
-		  </a>
-		  <p class="absolute bottom-0 right-0 px-2 py-1 bg-black bg-opacity-50 text-white"></p>
-		</div>
-		<div class="flex flex-col items-start px-4 lg:px-6 gap-3">
-		  <div class="w-full flex flex-wrap justify-center items-center gap-2">
-		  </div>
-		  <p class="text-xl font-md text-green-500">Callejón del Beso</p>
-		  <p class="text-sm font-light text-gray-500">LLeva a tu novi@ al callejón del beso a vivir una experiencia inolvidable</p>
-		</div>
-		<div class="grid grid-cols-2 gap-3 justify-center px-4 lg:px-6 text-sm font-light text-gray-500">
-		  <div>
-		  </div>
-		  <div>
-		  </div>
-		</div>
-		<div class="w-full flex flex-col items-center mb-4">
-			<a class="btn">Ver promoción</a>
-			<!--<a class="p-2 leading-none rounded-lg font-medium mt-3 bg-green-500 text-xs text-white uppercase" href="#">Ver tour</a>-->
-		</div>
-	</div>
+<div *ngFor="let promo of promotions">
+	<app-promotion-card [promotion]="promo"></app-promotion-card>
 </div>
 
-<div class="grid grid-cols-1 p-0 m-0 md:grid-cols-2 lg:grid-cols-3 bg-white mt-16">
-	<!-- Who we are? -->
+<!-- <div class="grid grid-cols-1 p-0 m-0 md:grid-cols-2 lg:grid-cols-3 bg-white mt-16">
 	<div class="h-full bg-cover bg-center"
 	     title="Image goes here"
 	     style="background-image: url('https://images.pexels.com/photos/3722817/pexels-photo-3722817.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');">
@@ -107,7 +161,7 @@
 	     title="Image goes here"
 	     style="background-image: url('https://images.pexels.com/photos/784707/pexels-photo-784707.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
 	</div>
-</div>
+</div> -->
 
 <!-- Paquetes -->
 <div class="w-5/6 mx-auto text-center mt-16">
@@ -118,57 +172,8 @@
 		Conoce nuestros paquetes y lo que incluyen
 	</p>
 </div>
-<div class="w-5/6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-10">
-	<div class="flex shadow-md hover:shadow-lg transition-shadow flex-col bg-white rounded-lg gap-3">
-		<div class="h-40 w-full bg-cover bg-center relative" style="background-image: url(http://mx.hola.com/imagenes/realeza/201410308468/principe-carlos-visita-secundaria-mexicana/0-33-424/real-del-del-monte--z.jpg);">
-		  <a class="absolute bottom-0 left-0 px-2 py-1 bg-black bg-opacity-50 text-white hover:underline"
-			 title="Ciudad de México">
-			CDMX
-		  </a>
-		  <p class="absolute bottom-0 right-0 px-2 py-1 bg-black bg-opacity-50 text-white"></p>
-		</div>
-		<div class="flex flex-col items-start px-4 lg:px-6 gap-3">
-		  <div class="w-full flex flex-wrap justify-center items-center gap-2">
-		  </div>
-		  <p class="text-xl font-md text-green-500">Mineral de Monte y Huasca de Ocampo</p>
-		  <p class="text-sm font-light text-gray-500">Salida a Mineral del Monte, visitando Huasca de Ocampo y la Hacienda Santa María Regla</p>
-		</div>
-		<div class="grid grid-cols-2 gap-3 justify-center px-4 lg:px-6 text-sm font-light text-gray-500">
-		  <div>
-		  </div>
-		  <div>
-		  </div>
-		</div>
-		<div class="w-full flex flex-col items-center mb-4">
-			<a class="btn">Ver paquete</a>
-			<!--<a class="p-2 leading-none rounded-lg font-medium mt-3 bg-green-500 text-xs text-white uppercase" href="#">Ver tour</a>-->
-		</div>
-	</div>
-	<div class="flex shadow-md hover:shadow-lg transition-shadow flex-col bg-white rounded-lg gap-3">
-		<div class="h-40 w-full bg-cover bg-center relative" style="background-image: url(https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/a4/30/ff/20160809-115246-largejpg.jpg?w=700&h=500&s=1);">
-		  <a class="absolute bottom-0 left-0 px-2 py-1 bg-black bg-opacity-50 text-white hover:underline"
-			 title="Ciudad de México">
-			CDMX
-		  </a>
-		  <p class="absolute bottom-0 right-0 px-2 py-1 bg-black bg-opacity-50 text-white"></p>
-		</div>
-		<div class="flex flex-col items-start px-4 lg:px-6 gap-3">
-		  <div class="w-full flex flex-wrap justify-center items-center gap-2">
-		  </div>
-		  <p class="text-xl font-md text-green-500">México - Morelos - Guerrero</p>
-		  <p class="text-sm font-light text-gray-500">Disfruta de este gran paquete con toda tu familia</p>
-		</div>
-		<div class="grid grid-cols-2 gap-3 justify-center px-4 lg:px-6 text-sm font-light text-gray-500">
-		  <div>
-		  </div>
-		  <div>
-		  </div>
-		</div>
-		<div class="w-full flex flex-col items-center mb-4">
-			<a class="btn">Ver paquete</a>
-			<!--<a class="p-2 leading-none rounded-lg font-medium mt-3 bg-green-500 text-xs text-white uppercase" href="#">Ver tour</a>-->
-		</div>
-	</div>
+<div *ngFor="let pack of packs">
+	<app-pack-card [pack]="pack"></app-pack-card>
 </div>
 
 <!-- Tours por categoría -->
@@ -180,41 +185,11 @@
 		Conoce nuestras categorías de Tours
 	</p>
 </div>
-<div class="w-5/6 mx-auto grid grid-cols-2 lg:grid-cols-4 gap-2 my-10">
-	<div class="h-96 bg-cover bg-center relative flex justify-center items-center" style="background-image: url(https://images.pexels.com/photos/1024984/pexels-photo-1024984.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
-		<a href="#" class="text-white font-semibold text-2xl">Romance</a>
-	</div>
-	<div class="h-96 bg-cover bg-center relative flex justify-center items-center" style="background-image: url(https://images.pexels.com/photos/7112826/pexels-photo-7112826.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
-		<a href="#" class="text-white font-semibold text-2xl">Urbanos</a>
-	</div>
-	<div class="h-96 bg-cover bg-center relative flex justify-center items-center" style="background-image: url(https://images.pexels.com/photos/1020016/pexels-photo-1020016.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
-		<a href="#" class="text-white font-semibold text-2xl">Aventura</a>
-	</div>
+<div class="w-5/6 mx-auto container mt-10">
+	<app-tour-categories class="w-full"></app-tour-categories>
 </div>
 
-<div class="grid grid-cols-1 p-0 m-0 md:grid-cols-2 lg:grid-cols-3 bg-white mt-20">
-	<!--Mission-->
-	<div id="mision" class="p-12 bg-gray-100">
-		<p class="text-2xl font-semibold uppercase text-red-500 text-left">Tus opinión es importante</p>
-		<p class="mt-5 text-sm font-light text-left text-gray-500 tracking-widest">
-			Tus valoraciones ayudarán a nuestro <span class="font-semibold">crecimiento</span> y tus recomendaciones
-			nos motivarán a ser cada día más <span class="font-semibold">profesionales</span> con cada uno de
-			nuestros clientes.
-		</p>
-	</div>
-	<div class="bg-cover bg-center"
-	     title="Image goes here"
-	     style="background-image: url('https://images.pexels.com/photos/5862697/pexels-photo-5862697.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
-	</div>
 
-	<div id="vision" class="p-12 bg-gray-100">
-		<p class="text-2xl font-semibold uppercase text-red-500 text-left">Nuestra meta es ayudarte</p>
-		<p class="mt-5 text-sm font-light text-left text-gray-500 tracking-widest">
-			Cuéntanos qué tipo de experiencia quieres vivir y será un placer
-			brindarte apoyo profesional para encontrar el tour que necesitas.
-		</p>
-	</div>
-</div>
 
 <!-- Tours por ubicación -->
 <!-- Tours por categoría -->

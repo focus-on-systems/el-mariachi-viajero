@@ -22,13 +22,12 @@
 </div>
 
 <header id="header"
-        class="top-0 flex h-14 justify-between items-center shadow z-40 w-full bg-white bg-opacity-80 bg-opacity-90-no-blur backdrop-filter backdrop-blur pointer-events-auto"
+        class="top-0 flex h-16 justify-between items-center shadow z-40 w-full bg-white bg-opacity-90-no-blur backdrop-filter backdrop-blur pointer-events-auto"
         [ngClass]="{'sticky': type === 'contact-bar', 'fixed': type === 'normal'}">
 	<div class="h-full flex items-center py-1.5 px-2 md:px-4 lg:px-6">
-    <button class="pr-2 grid" *ngIf="!isRootUrl()" (click)="goBack()" title="Ir atrás">
-      <span class="material-icons material-icons-outlined">arrow_back</span>
-    </button>
-
+		<button class="pr-2 grid" *ngIf="!isRootUrl()" (click)="goBack()" title="Ir atrás">
+		<span class="material-icons material-icons-outlined">arrow_back</span>
+		</button>
 		<img class="h-full w-full" src="assets/img/logoV9.svg" alt="">
 	</div>
 
@@ -50,11 +49,11 @@
 		<app-nav-option class="h-full w-full mx-2"
 		                link="/inicio"
 		                optionTxt="Inicio"
-		                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center"></app-nav-option>
+		                optionTxtClass="px-3 py-2 md:text-md lg:text-lg font-medium text-center"></app-nav-option>
 		<app-nav-option class="h-full w-full mx-2"
 		                link="/tours"
 		                optionTxt="Categorías"
-		                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center">
+		                optionTxtClass="px-3 py-2 md:text-md lg:text-lg font-medium text-center">
       <div>
         <app-nav-option *ngFor="let category of categories"
                         class="w-full h-full"
@@ -68,7 +67,7 @@
 		<app-nav-option class="h-full w-full mx-2"
 		                link="/ubicaciones"
 		                optionTxt="Ubicaciones"
-		                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center">
+		                optionTxtClass="px-3 py-2 md:text-md lg:text-lg font-medium text-center">
       <div>
         <app-nav-option *ngFor="let state of states"
                         class="w-full"
@@ -80,7 +79,7 @@
 		<app-nav-option class="h-full w-full mx-2"
 		                link="/nosotros"
 		                optionTxt="Nosotros"
-		                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center">
+		                optionTxtClass="px-3 py-2 md:text-md lg:text-lg font-medium text-center">
 			<app-nav-option class="w-full"
 			                link="/nosotros#contacto"
 			                optionTxt="Contacto"
@@ -97,7 +96,7 @@
 		<app-nav-option class="h-full w-full mx-2"
 		                link="/blog"
 		                optionTxt="Blog"
-		                optionTxtClass="px-3 py-2 md:text-lg lg:text-xl text-center"></app-nav-option>
+		                optionTxtClass="px-3 py-2 md:text-md lg:text-lg font-medium text-center"></app-nav-option>
 	</nav>
 </header>
 

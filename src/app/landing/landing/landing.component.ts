@@ -3,9 +3,9 @@ import SwiperCore, {Navigation, Pagination} from "swiper";
 import {Subscription} from "rxjs";
 import {SwiperComponent} from "swiper/angular";
 import {CONTACT_EMAIL, CONTACT_PHONE_NUMBER} from "../../globals";
-import {LandingPromo} from '../LandingPromo';
-import {LandingPack} from "../LandingPack";
-import {LandingPacksNPromosService} from "../landing-packs-n-promos.service";
+import {LandingPromo} from '../../modules/promotions/LandingPromo';
+import {LandingPack} from "../../modules/packs/LandingPack";
+import {LandingPacksNPromosService} from "../../utils/landing-packs-n-promos.service";
 
 
 SwiperCore.use([Pagination, Navigation]);

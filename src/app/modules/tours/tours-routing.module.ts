@@ -6,7 +6,7 @@ import {TourCategoryComponent} from "./tour-category/tour-category.component";
 
 const routes: Routes = [
 	{path: "", component: ToursComponent},
-  {path: "categoria/:categoryId", component: TourCategoryComponent},
+  	{path: "categoria/:categoryId", component: TourCategoryComponent},
 	{path: ":tourId", component: TourDetailsComponent}
 ];
 

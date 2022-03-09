@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {LandingPack} from "./LandingPack";
-import {LandingPromo} from "./LandingPromo";
+import {LandingPack} from "../modules/packs/LandingPack";
+import {LandingPromo} from "../modules/promotions/LandingPromo";
 import {Apollo} from "apollo-angular";
 import {ApolloQueryResult, gql} from "@apollo/client/core";
 

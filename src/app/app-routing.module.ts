@@ -13,10 +13,18 @@ const routes: Routes = [
 		path: "tours",
 		loadChildren: () => import("./modules/tours/tours.module").then(loaded => loaded.ToursModule)
 	},
-  {
-    path: "ubicaciones",
-    loadChildren: () => import("./modules/locations/locations.module").then(loaded => loaded.LocationsModule)
-  },
+	{
+		path: "promotions",
+		loadChildren: () => import("./modules/promotions/promotions.module").then(loaded => loaded.PromotionsModule)
+	},
+	{
+		path: "packs",
+		loadChildren: () => import("./modules/packs/packs.module").then(loaded => loaded.PacksModule)
+	},
+	{
+		path: "ubicaciones",
+		loadChildren: () => import("./modules/locations/locations.module").then(loaded => loaded.LocationsModule)
+	},
 	{
 		path: "blog",
 		loadChildren: () => import("./modules/blog/blog.module").then(loaded => loaded.BlogModule)
