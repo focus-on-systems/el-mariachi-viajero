@@ -1,9 +1,11 @@
 import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import { PackDetailsComponent } from "./pack-details/pack-details.component";
+import { PacksComponent } from "./packs/packs.component";
 
 const routes: Routes = [
-	{path: ":packId", component: PackDetailsComponent}
+	{path: "", component: PacksComponent},
+	{path: ":packId", component: PackDetailsComponent},
 ];
 
 @NgModule({

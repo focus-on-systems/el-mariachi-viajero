@@ -14,11 +14,11 @@ const routes: Routes = [
 		loadChildren: () => import("./modules/tours/tours.module").then(loaded => loaded.ToursModule)
 	},
 	{
-		path: "promotions",
+		path: "promociones",
 		loadChildren: () => import("./modules/promotions/promotions.module").then(loaded => loaded.PromotionsModule)
 	},
 	{
-		path: "packs",
+		path: "paquetes",
 		loadChildren: () => import("./modules/packs/packs.module").then(loaded => loaded.PacksModule)
 	},
 	{

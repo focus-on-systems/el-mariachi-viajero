@@ -24,7 +24,7 @@ export class PromotionCardComponent implements OnInit {
       return;
 
 		this.bgImageStyle = `background-image: url(${data.img.url})`;
-		this.link = `/promotions/${data.id}`;
+		this.link = `/promociones/${data.id}`;
 		this._promotion = data;
 		this.changeDetectorRef.markForCheck();
 	}

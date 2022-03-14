@@ -10,6 +10,7 @@ import {ToursService} from "../tours.service";
 })
 export class TourCategoriesComponent implements OnInit {
   public categories: CategoryInfo[] = [];
+  public _isState: boolean = false;
 
   private subscriptions: Subscription[] = [];
 

@@ -23,7 +23,7 @@ export class PackCardComponent implements OnInit {
     if (!data)
       return;
     this.bgImageStyle = `background-image: url(${data.img.url})`;
-    this.link = `/packs/${data.id}`;
+    this.link = `/paquetes/${data.id}`;
     this._pack = data;
     this.changeDetectorRef.markForCheck();
   }

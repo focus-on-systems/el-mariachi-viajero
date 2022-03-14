@@ -24,6 +24,9 @@ export class BgImgCardComponent implements OnInit {
 	@Input()
 	public linkTitle: string = '';
 
+	@Input()
+	public isState: boolean = true;
+
 	constructor() {
 	}
 

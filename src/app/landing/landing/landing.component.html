@@ -134,12 +134,17 @@
 	<p class="text-md font-semibold italic text-green-500 md:text-md lg:text-md">
 		Viaja a buen precio
 	</p>
-	<p class="text-2xl font-semibold text-black md:text-4xl lg:text-5xl mt-2">
+	<p class="font-semibold text-black text-2xl md:text-3xl lg:text-4xl mt-2">
 		Conoce nuestras increíbles promociones
 	</p>
 </div>
-<div *ngFor="let promo of promotions">
+<div *ngFor="let promo of promotions.slice(0, 3)">
 	<app-promotion-card [promotion]="promo"></app-promotion-card>
+</div>
+<div class="flex justify-center items-center mt-10">
+	<a href="promociones" class="btn py-4 px-12 ">
+		Ver todas las promociones
+	</a>
 </div>
 
 <!-- <div class="grid grid-cols-1 p-0 m-0 md:grid-cols-2 lg:grid-cols-3 bg-white mt-16">
@@ -168,12 +173,17 @@
 	<p class="text-md font-semibold italic text-green-500 md:text-md lg:text-md">
 		Todo en uno
 	</p>
-	<p class="text-2xl font-semibold text-black md:text-3xl lg:text-4xl">
+	<p class="font-semibold text-black text-2xl md:text-3xl lg:text-4xl">
 		Conoce nuestros paquetes y lo que incluyen
 	</p>
 </div>
-<div *ngFor="let pack of packs">
+<div *ngFor="let pack of packs.slice(0, 3)">
 	<app-pack-card [pack]="pack"></app-pack-card>
+</div>
+<div class="flex justify-center items-center mt-10">
+	<a href="paquetes" class="btn py-4 px-12 ">
+		Ver todos los paquetes
+	</a>
 </div>
 
 <!-- Tours por categoría -->

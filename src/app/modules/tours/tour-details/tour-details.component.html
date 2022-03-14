@@ -1,6 +1,6 @@
-<app-heading [bgImage]="bgImage" [isBgFixed]="false" class="flex justify-center items-center">
+<!-- <app-heading [bgImage]="bgImage" [isBgFixed]="false" class="flex justify-center items-center">
   <h1 class="heading-title">{{details.name}}</h1>
-  <!-- <h2 class="heading-subtitle">{{details.price}}</h2> -->
+  <h2 class="heading-subtitle">{{details.price}}</h2>
 </app-heading>
 
 <div class="p-4 md:py-6 md:px-8 lg:py-8 lg:px-12 flex flex-col gap-4 lg:gap-8">
@@ -63,4 +63,66 @@
       <span class="text-sm">contacto@elmariachiviajero.com.mx</span>
     </div>
   </div>
+</div> -->
+
+<!-- New Design -->
+<div class="mt-16 w-full h-60 text-center flex flex-col justify-end items-start gap-4 bg-cover bg-center"
+style="background-image: url({{bgImage}});">
+  <div class="m-auto">
+    <p class="text-5xl font-bold uppercase text-white ml-5">{{details.name}}</p>  
+  </div>
+</div>
+<div class="bg-white h-full px-20 py-10">
+    <div class="w-full flex flex-wrap justify-start items-center gap-2">
+      <a *ngFor="let category of categories"
+        class="chip hover:underline"
+        routerLink="/tours/categoria/{{category.id}}">
+        {{category.name}}
+      </a>
+    </div>
+    <div class="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-2">
+        <div class="mt-5 flex flex-col items-start">
+            <p class="text-2xl font-medium text-green-500">{{details.name}}</p>
+        </div>
+    </div>
+    <div class="mt-5">
+      <p class="text-md font-semibold">{{details.price}}</p>
+    </div>
+    <div class="mt-5">
+        <p class="text-md font-xs text-gray-500">{{details.description}}</p>
+    </div>
+    <div class="mt-10 w-full flex flex-wrap gap-x-6 justify-around text-base lg:text-lg">
+      <div class="text-center" *ngIf="places.length > 0">
+        <span class="text-green-500 font-medium">Lugares a visitar</span>
+        <br/>
+        <ul>
+          <li *ngFor="let place of places">
+            <a [routerLink]="'/ubicaciones/lugares/' + place.id" class="hover:underline">{{place.name}}</a>,
+            <a [routerLink]="'/ubicaciones/estado/' + place.state.id" class="hover:underline">{{place.state.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 w-full flex flex-wrap gap-x-6 justify-around text-base lg:text-lg">
+      <div class="text-center">
+        <span class="text-green-500 font-medium">Incluye</span>
+        <br/>
+        <p *ngFor="let feature of details.featuresIncluded" class="flex items-center">
+          <span class="material-icons material-icons-outlined text-green-500">done</span>
+          <span>{{feature}}</span>
+        </p>
+      </div>
+      <div class="text-center" *ngIf="details.featuresExcluded">
+        <span class="text-red-500 font-medium">No incluye</span>
+        <br/>
+        <p *ngFor="let feature of details.featuresExcluded" class="flex items-center">
+          <span class="material-icons material-icons-outlined text-red-700">close</span>
+          <span>{{feature}}</span>
+        </p>
+      </div>
+    </div>
+    <div class="mt-10 mb-10 justify-items-center grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+      <div *ngFor="let img of images" class="bg-cover bg-center h-60 w-80" style="background-image: url({{img.thumb.url}});">
+      </div>
+    </div>
 </div>
