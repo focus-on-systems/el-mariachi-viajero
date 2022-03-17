@@ -6,19 +6,19 @@ import { PromotionDetailsComponent } from './promotion-details/promotion-details
 import { PromotionsComponent } from './promotions/promotions.component';
 
 
-
 @NgModule({
   declarations: [
     PromotionCardComponent,
     PromotionDetailsComponent,
-    PromotionsComponent
+    PromotionsComponent,
   ],
   exports: [
-    PromotionCardComponent
+    PromotionCardComponent,
   ],
   imports: [
     CommonModule,
-    PromotionsRoutingModule
-  ]
+    PromotionsRoutingModule,
+  ],
 })
-export class PromotionsModule { }
+export class PromotionsModule {
+}

@@ -1,22 +1,20 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
-import {Apollo} from "apollo-angular";
-import {TourCardInfo} from "./TourCardInfo";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { TourCardInfo } from './TourCardInfo';
 
 @Component({
   selector: 'app-tour-card',
   templateUrl: './tour-card.component.html',
   styleUrls: ['./tour-card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TourCardComponent implements OnInit {
+export class TourCardComponent {
   private _data!: TourCardInfo;
 
-  public bgImageStyle: string = "";
-  public link: string = "";
+  public bgImageStyle: string = '';
+  public link: string = '';
 
-  constructor(private _apollo: Apollo, private _changeDetectorRef: ChangeDetectorRef) { }
-
-  ngOnInit(): void {
+  constructor(private _apollo: Apollo, private _changeDetectorRef: ChangeDetectorRef) {
   }
 
   @Input()

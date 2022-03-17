@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {LandingPack} from "../modules/packs/LandingPack";
-import {LandingPromo} from "../modules/promotions/LandingPromo";
-import {Apollo} from "apollo-angular";
-import {ApolloQueryResult, gql} from "@apollo/client/core";
+import { LandingPack } from '../modules/packs/LandingPack';
+import { LandingPromo } from '../modules/promotions/LandingPromo';
+import { Apollo } from 'apollo-angular';
+import { ApolloQueryResult, gql } from '@apollo/client/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LandingPacksNPromosService {
   private packs: LandingPack[] = [];
@@ -46,8 +46,8 @@ export class LandingPacksNPromosService {
           }
         }`,
         variables: {
-          limit
-        }
+          limit,
+        },
       }).subscribe({
         next: (res: ApolloQueryResult<GQLPacksQuery>) => {
           subscription.unsubscribe();
@@ -57,7 +57,7 @@ export class LandingPacksNPromosService {
         error: err => {
           subscription.unsubscribe();
           return reject(err);
-        }
+        },
       });
     });
   }
@@ -97,8 +97,8 @@ export class LandingPacksNPromosService {
           }
         }`,
         variables: {
-          limit
-        }
+          limit,
+        },
       }).subscribe({
         next: (res: ApolloQueryResult<GQLPromosQuery>) => {
           subscription.unsubscribe();
@@ -108,7 +108,7 @@ export class LandingPacksNPromosService {
         error: err => {
           subscription.unsubscribe();
           return reject(err);
-        }
+        },
       });
     });
   }
@@ -119,7 +119,7 @@ interface GQLPacksQuery {
     edges: {
       node: LandingPack
     }[];
-  }
+  };
 }
 
 interface GQLPromosQuery {
@@ -128,5 +128,5 @@ interface GQLPromosQuery {
     edges: {
       node: LandingPromo
     }[];
-  }
+  };
 }

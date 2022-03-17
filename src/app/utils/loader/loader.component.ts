@@ -1,18 +1,16 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoaderComponent implements OnInit {
+export class LoaderComponent {
   @Input()
   public class: string = '';
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
 
 }

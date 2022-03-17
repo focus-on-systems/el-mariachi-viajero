@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import {LandingPack} from "./LandingPack";
-import {Apollo} from "apollo-angular";
-import {ApolloQueryResult, gql} from "@apollo/client/core";
+import { LandingPack } from './LandingPack';
+import { Apollo } from 'apollo-angular';
+import { ApolloQueryResult, gql } from '@apollo/client/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PacksService {
   private packs: LandingPack[] = [];
 
-  constructor(private _apollo: Apollo) { }
+  constructor(private _apollo: Apollo) {
+  }
 
   /**
    * Get packs from backend and populate the cache.
@@ -43,8 +44,8 @@ export class PacksService {
           }
         }`,
         variables: {
-          limit
-        }
+          limit,
+        },
       }).subscribe({
         next: (res: ApolloQueryResult<GQLPacksQuery>) => {
           subscription.unsubscribe();
@@ -54,7 +55,7 @@ export class PacksService {
         error: err => {
           subscription.unsubscribe();
           return reject(err);
-        }
+        },
       });
     });
   }
@@ -66,5 +67,5 @@ interface GQLPacksQuery {
     edges: {
       node: LandingPack
     }[];
-  }
+  };
 }

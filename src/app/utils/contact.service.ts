@@ -1,15 +1,16 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 /**
  * Service to allow other components to control the open/closed state of the contact form and other things
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContactService {
   public readonly formOpenStateEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor() {
+  }
 
   /**
    * Opens the contact form

@@ -1,21 +1,18 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild, Input } from '@angular/core';
-import {LandingPack} from "../LandingPack";
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
+import { LandingPack } from '../LandingPack';
 
 @Component({
   selector: 'app-pack-card',
   templateUrl: './pack-card.component.html',
-  styleUrls: ['./pack-card.component.scss']
+  styleUrls: ['./pack-card.component.scss'],
 })
-export class PackCardComponent implements OnInit {
-
-  public bgImageStyle: string = "";
-	public link: string = "";
+export class PackCardComponent {
+  public bgImageStyle: string = '';
+  public link: string = '';
 
   private _pack!: LandingPack;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) { }
-
-  ngOnInit(): void {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
 
   @Input()
@@ -31,5 +28,4 @@ export class PackCardComponent implements OnInit {
   get pack(): LandingPack {
     return this._pack;
   }
-
 }

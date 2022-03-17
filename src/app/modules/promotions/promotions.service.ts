@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import {LandingPromo} from "./LandingPromo";
-import {Apollo} from "apollo-angular";
-import {ApolloQueryResult, gql} from "@apollo/client/core";
+import { LandingPromo } from './LandingPromo';
+import { Apollo } from 'apollo-angular';
+import { ApolloQueryResult, gql } from '@apollo/client/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PromotionsService {
   private promos: LandingPromo[] = [];
 
-  constructor(private _apollo: Apollo) { }
+  constructor(private _apollo: Apollo) {
+  }
 
   /**
    * Get promotions from backend and populate the cache.
@@ -47,8 +48,8 @@ export class PromotionsService {
           }
         }`,
         variables: {
-          limit
-        }
+          limit,
+        },
       }).subscribe({
         next: (res: ApolloQueryResult<GQLPromosQuery>) => {
           subscription.unsubscribe();
@@ -58,7 +59,7 @@ export class PromotionsService {
         error: err => {
           subscription.unsubscribe();
           return reject(err);
-        }
+        },
       });
     });
   }
@@ -71,5 +72,5 @@ interface GQLPromosQuery {
     edges: {
       node: LandingPromo
     }[];
-  }
+  };
 }

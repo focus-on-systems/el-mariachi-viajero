@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {Apollo} from "apollo-angular";
-import {ApolloQueryResult, gql} from "@apollo/client/core";
-import {StateInfo} from "./states/StateInfo";
-import {TourCardInfo} from "../modules/tours/tour-card/TourCardInfo";
-import {StateCompleteInfo} from "../modules/locations/state/StateCompleteInfo";
-import {ToursService} from "./tours.service";
+import { Injectable } from '@angular/core';
+import { Apollo } from 'apollo-angular';
+import { ApolloQueryResult, gql } from '@apollo/client/core';
+import { StateInfo } from './states/StateInfo';
+import { TourCardInfo } from '../modules/tours/tour-card/TourCardInfo';
+import { StateCompleteInfo } from '../modules/locations/state/StateCompleteInfo';
+import { ToursService } from './tours.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocationsService {
   public static stateInfoProjection = `
@@ -24,7 +24,8 @@ export class LocationsService {
 
   private states: StateInfo[] = [];
 
-  constructor(private _apollo: Apollo) { }
+  constructor(private _apollo: Apollo) {
+  }
 
   /**
    * Get state cards from cache or from backend (in this case cache will be populated)
@@ -53,7 +54,7 @@ export class LocationsService {
               }
             }
           }
-        }`
+        }`,
       }).subscribe({
         next: (res: ApolloQueryResult<GQLStatesQuery>) => {
           subscription.unsubscribe();
@@ -63,7 +64,7 @@ export class LocationsService {
         error: err => {
           subscription.unsubscribe();
           reject(err);
-        }
+        },
       });
     });
   }
@@ -99,13 +100,13 @@ export class LocationsService {
           }
         }`,
         variables: {
-          stateId
-        }
+          stateId,
+        },
       }).subscribe({
         next: (res: ApolloQueryResult<GQLStateCompleteQuery>) => {
           subscription.unsubscribe();
 
-          const uniqueTours: {[tourId: string]: TourCardInfo} = {};
+          const uniqueTours: { [tourId: string]: TourCardInfo } = {};
           for (const tourPlace of res.data.tourPlaces.edges) {
             for (const tour of tourPlace.node.tourId.edges) { // a place can be related to several tours
               const tourId = tour.node.id;
@@ -116,7 +117,7 @@ export class LocationsService {
 
           const state: StateCompleteInfo = {
             state: res.data.state,
-            tours: Object.values(uniqueTours)
+            tours: Object.values(uniqueTours),
           };
 
           return resolve(state);
@@ -124,7 +125,7 @@ export class LocationsService {
         error: err => {
           subscription.unsubscribe();
           reject(err);
-        }
+        },
       });
     });
   }
@@ -142,7 +143,7 @@ interface GQLStateCompleteQuery {
         }
       };
     }[];
-  }
+  };
 }
 
 interface GQLStatesQuery {
@@ -150,5 +151,5 @@ interface GQLStatesQuery {
     edges: {
       node: StateInfo
     }[];
-  }
+  };
 }

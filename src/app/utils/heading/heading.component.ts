@@ -1,20 +1,18 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-heading',
   templateUrl: './heading.component.html',
   styleUrls: ['./heading.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeadingComponent implements OnInit {
+export class HeadingComponent {
   private _bgImageStyle: string = '';
 
   @Input()
   public isBgFixed: boolean = true;
 
-  constructor(private _changeDetectorRef: ChangeDetectorRef) { }
-
-  ngOnInit(): void {
+  constructor(private _changeDetectorRef: ChangeDetectorRef) {
   }
 
   @Input()

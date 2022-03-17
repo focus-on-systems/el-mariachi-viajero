@@ -1,5 +1,5 @@
-import {CategoryInfo} from "../../../utils/tour-categories/CategoryInfo";
-import {StateInfo} from "../../../utils/states/StateInfo";
+import { CategoryInfo } from '../../../utils/tour-categories/CategoryInfo';
+import { StateInfo } from '../../../utils/states/StateInfo';
 
 export interface TourCardInfo {
   id: string;
@@ -8,7 +8,7 @@ export interface TourCardInfo {
   featuresIncluded?: string[];
   featuresExcluded?: string[];
   price: string;
-  thumbs: {url: string}[];
+  thumbs: { url: string }[];
   categories?: CategoryInfo[];
   state?: StateInfo;
 }

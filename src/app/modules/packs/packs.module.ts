@@ -6,20 +6,20 @@ import { PackDetailsComponent } from './pack-details/pack-details.component';
 import { PacksComponent } from './packs/packs.component';
 
 
-
 @NgModule({
   declarations: [
     PackCardComponent,
     PackDetailsComponent,
-    PacksComponent
+    PacksComponent,
   ],
   exports: [
     PackCardComponent,
-    PacksComponent
+    PacksComponent,
   ],
   imports: [
     CommonModule,
-    PacksRoutingModule
-  ]
+    PacksRoutingModule,
+  ],
 })
-export class PacksModule { }
+export class PacksModule {
+}

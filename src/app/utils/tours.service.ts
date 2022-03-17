@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import {Apollo} from "apollo-angular";
-import {ApolloQueryResult, gql} from "@apollo/client/core";
-import {TourCardInfo} from "../modules/tours/tour-card/TourCardInfo";
-import {Subscription} from "rxjs";
-import {CategoryInfo} from "./tour-categories/CategoryInfo";
-import {CategoryCompleteInfo} from "../modules/tours/tour-category/CategoryCompleteInfo";
-import {LocationsService} from "./locations.service";
-import {StateInfo} from "./states/StateInfo";
+import { Apollo } from 'apollo-angular';
+import { ApolloQueryResult, gql } from '@apollo/client/core';
+import { TourCardInfo } from '../modules/tours/tour-card/TourCardInfo';
+import { Subscription } from 'rxjs';
+import { CategoryInfo } from './tour-categories/CategoryInfo';
+import { CategoryCompleteInfo } from '../modules/tours/tour-category/CategoryCompleteInfo';
+import { LocationsService } from './locations.service';
+import { StateInfo } from './states/StateInfo';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToursService {
   /**
@@ -84,13 +84,13 @@ export class ToursService {
           }
         }`,
         variables: {
-          categoryId
-        }
+          categoryId,
+        },
       }).subscribe({
         next: async (res: ApolloQueryResult<GQLCategoryCompleteQuery>) => {
           subscription.unsubscribe();
 
-          const uniqueTours: {[tourId: string]: TourCardInfo} = {};
+          const uniqueTours: { [tourId: string]: TourCardInfo } = {};
           for (const tourCategory of res.data.tourCategories.edges) {
             for (const tour of tourCategory.node.tourId.edges) { // a category can be related to several tours
               const tourId = tour.node.id;
@@ -104,7 +104,7 @@ export class ToursService {
                   featuresExcluded: (tour.node.featuresExcluded as string | undefined || undefined)?.trim().split('\n'),
                   featuresIncluded: (tour.node.featuresIncluded as string | undefined || undefined)?.trim().split('\n'),
 
-                  categories: withToursMeta ? [] /*fillToursMetadata should fill the array*/ : [res.data.category]
+                  categories: withToursMeta ? [] /*fillToursMetadata should fill the array*/ : [res.data.category],
                 };
               }
             }
@@ -117,7 +117,7 @@ export class ToursService {
 
           const category: CategoryCompleteInfo = {
             category: res.data.category,
-            tours: uniqueToursArr
+            tours: uniqueToursArr,
           };
 
           return resolve(category);
@@ -125,7 +125,7 @@ export class ToursService {
         error: err => {
           subscription.unsubscribe();
           reject(err);
-        }
+        },
       });
     });
   }
@@ -159,7 +159,7 @@ export class ToursService {
               }
             }
           }
-        }`
+        }`,
       }).subscribe({
         next: (res: ApolloQueryResult<GQLCategoriesQuery>) => {
           subscription.unsubscribe();
@@ -169,7 +169,7 @@ export class ToursService {
         error: err => {
           subscription.unsubscribe();
           reject(err);
-        }
+        },
       });
     });
   }
@@ -205,13 +205,13 @@ export class ToursService {
               }
             }
           }
-        }`
+        }`,
       }).subscribe({
         next: (res: ApolloQueryResult<GQLToursThumbsQuery>) => {
           subscription.unsubscribe();
 
           // map the id of the tour with its index inside the tours array
-          const toursIdIdxMap: {[id: string]: number} = {};
+          const toursIdIdxMap: { [id: string]: number } = {};
           for (let i = 0; i < tours.length; ++i)
             toursIdIdxMap[tours[i].id] = i;
 
@@ -229,7 +229,7 @@ export class ToursService {
         error: err => {
           subscription.unsubscribe();
           reject(err);
-        }
+        },
       });
     });
   }
@@ -249,7 +249,7 @@ export class ToursService {
    * @return the same array received after the update
    */
   public fillToursMetadata(tours: TourCardInfo[]): Promise<TourCardInfo[]> {
-    const query = `[${tours.map(t => `{tourId: {have: {objectId: {equalTo: "${t.id}"}}}}`).join(',')}]`
+    const query = `[${tours.map(t => `{tourId: {have: {objectId: {equalTo: "${t.id}"}}}}`).join(',')}]`;
     return new Promise<TourCardInfo[]>((resolve, reject) => {
       const subscription: Subscription = this._apollo.query<GQLToursMetadataQuery>({
         query: gql`query {
@@ -317,13 +317,13 @@ export class ToursService {
               }
             }
           }
-        }`
+        }`,
       }).subscribe({
         next: (res: ApolloQueryResult<GQLToursMetadataQuery>) => {
           subscription.unsubscribe();
 
           // map the id of the tour with its index inside the tours array
-          const toursIdIdxMap: {[id: string]: number} = {};
+          const toursIdIdxMap: { [id: string]: number } = {};
           for (let i = 0; i < tours.length; ++i)
             toursIdIdxMap[tours[i].id] = i;
 
@@ -359,7 +359,7 @@ export class ToursService {
         error: err => {
           subscription.unsubscribe();
           reject(err);
-        }
+        },
       });
     });
   }
@@ -376,10 +376,10 @@ interface GQLToursThumbsQuery {
             }
           }[]
         };
-        thumb: {url: string};
+        thumb: { url: string };
       };
     }[];
-  }
+  };
 }
 
 interface GQLCategoriesQuery {
@@ -387,7 +387,7 @@ interface GQLCategoriesQuery {
     edges: {
       node: CategoryInfo;
     }[];
-  }
+  };
 }
 
 interface GQLCategoryCompleteQuery {
@@ -402,7 +402,7 @@ interface GQLCategoryCompleteQuery {
         }
       };
     }[];
-  }
+  };
 }
 
 interface GQLToursMetadataQuery {
@@ -460,8 +460,8 @@ interface GQLToursMetadataQuery {
             }
           }[]
         };
-        thumb: {url: string};
+        thumb: { url: string };
       }
     }[];
-  }
+  };
 }

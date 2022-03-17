@@ -1,17 +1,17 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {TourCardInfo} from "../tour-card/TourCardInfo";
-import {Subscription} from "rxjs";
-import {Apollo} from "apollo-angular";
-import {ToursService} from "../../../utils/tours.service";
-import {ApolloQueryResult, gql} from "@apollo/client/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { TourCardInfo } from '../tour-card/TourCardInfo';
+import { Subscription } from 'rxjs';
+import { Apollo } from 'apollo-angular';
+import { ToursService } from '../../../utils/tours.service';
+import { ApolloQueryResult, gql } from '@apollo/client/core';
 
 @Component({
   selector: 'app-tours',
   templateUrl: './tours.component.html',
   styleUrls: ['./tours.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ToursComponent implements OnInit {
+export class ToursComponent implements OnInit, OnDestroy {
   public tours: TourCardInfo[] = [];
 
   private subscriptions: Subscription[] = [];
@@ -22,8 +22,9 @@ export class ToursComponent implements OnInit {
   constructor(
     private _apollo: Apollo,
     private _changeDetectorRef: ChangeDetectorRef,
-    private _toursService: ToursService
-  ) { }
+    private _toursService: ToursService,
+  ) {
+  }
 
   ngOnInit(): void {
     this.loadTours();
@@ -49,12 +50,12 @@ export class ToursComponent implements OnInit {
       }`,
       variables: {
         limit: this.pageSize,
-        lastQueriedId: this.lastQueriedId
-      }
+        lastQueriedId: this.lastQueriedId,
+      },
     }).subscribe(async (res: ApolloQueryResult<GQLToursCardQuery>) => {
       subscription.unsubscribe();
 
-      this.tours = res.data.tours.edges.map(node => ({...node.node, thumbs: []}));
+      this.tours = res.data.tours.edges.map(node => ({ ...node.node, thumbs: [] }));
 
       // get images for each tour
       this.tours = await this._toursService.fillToursThumbs(this.tours);
@@ -71,5 +72,5 @@ interface GQLToursCardQuery {
     edges: {
       node: TourCardInfo;
     }[];
-  }
+  };
 }

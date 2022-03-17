@@ -1,14 +1,14 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Apollo} from "apollo-angular";
-import {ApolloQueryResult, gql} from "@apollo/client/core";
-import {Subscription} from "rxjs";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Apollo } from 'apollo-angular';
+import { ApolloQueryResult, gql } from '@apollo/client/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tour-details',
   templateUrl: './tour-details.component.html',
   styleUrls: ['./tour-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TourDetailsComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
@@ -18,12 +18,12 @@ export class TourDetailsComponent implements OnInit, OnDestroy {
   public places: TourPlace[] = [];
   public images: TourImage[] = [];
 
-  public bgImage: string = "";
+  public bgImage: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private apollo: Apollo,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
   ) {
   }
 
@@ -104,12 +104,12 @@ export class TourDetailsComponent implements OnInit, OnDestroy {
         }
       }`,
       variables: {
-        tourId
-      }
+        tourId,
+      },
     }).subscribe((res: ApolloQueryResult<GQLTourDetailsQuery & GQLTourMetadataQuery>) => {
       if (!res.data.tour) {
         // TODO improve UX
-        alert("El tour con id " + tourId + " no existe");
+        alert('El tour con id ' + tourId + ' no existe');
         return;
       }
 
@@ -117,7 +117,7 @@ export class TourDetailsComponent implements OnInit, OnDestroy {
       this.details = {
         ...res.data.tour,
         featuresExcluded: (res.data.tour.featuresExcluded as string | undefined || undefined)?.trim().split('\n'),
-        featuresIncluded: (res.data.tour.featuresIncluded as string | undefined || undefined)?.trim().split('\n')
+        featuresIncluded: (res.data.tour.featuresIncluded as string | undefined || undefined)?.trim().split('\n'),
       };
       this.changeDetectorRef.markForCheck();
 
@@ -130,8 +130,8 @@ export class TourDetailsComponent implements OnInit, OnDestroy {
           name: place.name,
           state: {
             id: place.stateId.edges[0].node.id,
-            name: place.stateId.edges[0].node.name
-          }
+            name: place.stateId.edges[0].node.name,
+          },
         };
       });
 
@@ -163,7 +163,7 @@ interface TourDetails {
 interface TourCategory {
   id: string;
   name: string;
-  img: {url: string};
+  img: { url: string };
 }
 
 interface TourPlace {
@@ -172,12 +172,12 @@ interface TourPlace {
   state: {
     id: string;
     name: string;
-  }
+  };
 }
 
 interface TourImage {
-  thumb: {url: string};
-  img: {url: string};
+  thumb: { url: string };
+  img: { url: string };
 }
 
 interface GQLTourMetadataQuery {
@@ -218,9 +218,9 @@ interface GQLTourMetadataQuery {
     edges: {
       node: TourImage
     }[];
-  }
+  };
 }
 
 interface GQLTourDetailsQuery {
-  tour: TourDetails
+  tour: TourDetails;
 }
