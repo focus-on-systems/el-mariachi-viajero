@@ -4,6 +4,7 @@ import { PacksRoutingModule } from './packs.routing.module';
 import { PackCardComponent } from './pack-card/pack-card.component';
 import { PackDetailsComponent } from './pack-details/pack-details.component';
 import { PacksComponent } from './packs/packs.component';
+import { UtilsModule } from '../../utils/utils.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { PacksComponent } from './packs/packs.component';
   imports: [
     CommonModule,
     PacksRoutingModule,
+    UtilsModule,
   ],
 })
 export class PacksModule {

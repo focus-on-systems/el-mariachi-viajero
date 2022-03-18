@@ -39,6 +39,9 @@ export class PackDetailsComponent implements OnInit, OnDestroy {
           featuresExcluded: packFeaturesExcluded
           price: packPrice
           isActive: packIsActive
+          img: packImg {
+            url
+          }
         }
         packPlaces(where: {packId: {have: {
           objectId: {equalTo: $packId},
@@ -66,7 +69,7 @@ export class PackDetailsComponent implements OnInit, OnDestroy {
           }
         }
         packImages(where: {packId: {have: {
-          objectId: {equalTo: $packId},
+          OR: [{id: {equalTo: $packId}, objectId: {equalTo: $packId}}],
           packIsActive: {equalTo: true}}
         }}) {
           edges {
@@ -99,7 +102,6 @@ export class PackDetailsComponent implements OnInit, OnDestroy {
       };
       this.changeDetectorRef.markForCheck();
 
-      //this.categories = res.data.tourCategories.edges.map(tourCategory => tourCategory.node.categoryId.edges[0].node);
       this.images = res.data.packImages.edges.map(packImg => packImg.node);
       this.places = res.data.packPlaces.edges.map(packPlace => {
         const place = packPlace.node.placeId.edges[0].node;
@@ -113,7 +115,7 @@ export class PackDetailsComponent implements OnInit, OnDestroy {
         };
       });
 
-      this.bgImage = this.images[0].img.url;
+      this.bgImage = this.details.img.url;
       this.changeDetectorRef.markForCheck();
 
       subscription.unsubscribe();
@@ -137,6 +139,7 @@ interface PackDetails {
   featuresExcluded?: string[];
   price: string;
   isActive: boolean;
+  img: {url: string};
 }
 
 interface PackPlace {
