@@ -44,7 +44,7 @@ export class PackDetailsComponent implements OnInit, OnDestroy {
           }
         }
         packPlaces(where: {packId: {have: {
-          objectId: {equalTo: $packId},
+          OR: [{id: {equalTo: $packId}, objectId: {equalTo: $packId}}],
           packIsActive: {equalTo: true}}
         }}) {
           edges {
