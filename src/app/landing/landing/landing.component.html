@@ -9,14 +9,14 @@
 			   style="background-image: url('../../../assets/img/mv2.png')">
 			<div class="flex flex-col gap-y-4 md:gap-y-5 lg:gap-y-6 justify-center items-center text-center text-white z-20">
 				<div class="w-full flex flex-wrap gap-4 items-center justify-center">
-					<p class="text-2xl md:text-4xl lg:text-6xl uppercase">
+					<p class="text-2xl md:text-4xl lg:text-7xl uppercase" style="font-family: 'Lobster';">
 						<span class="font-medium">El </span>
 						<span class="font-bold">Mariachi </span>
 						<span class="font-medium">Viajero</span>
 					</p>
 				</div>
-				<div class="px-28">
-					<p class="font-medium text-lg md:text-xl lg:text-2xl" style="font-family: Montserrat;">
+				<div class="px:14 md:px:24 lg:px-64">
+					<p class="font-normal text-lg md:text-xl lg:text-xl" style="font-family: Montserrat;">
 						Nos dedicamos a realizar todo tipo de transportación turística a nivel
 						nacional, con la calidad y garantía que usted y sus familiares merecen.
 					</p>
@@ -40,13 +40,13 @@
 				 style="background-image: url('../../../assets/img/mv5.png')">
 				<div class="flex flex-col gap-y-4 md:gap-y-5 lg:gap-y-6 justify-center items-center text-center text-white z-20">
 					<div class="w-full flex flex-wrap gap-4 items-center justify-center">
-						<p class="text-2xl md:text-4xl lg:text-6xl uppercase">
+						<p class="text-2xl md:text-4xl lg:text-6xl uppercase" style="font-family: 'Lobster';">
 							<span class="font-light">Nuestros </span>
 							<span class="font-bold">Servicios </span>
 						</p>
 					</div>
-				  	<div class="px-56">
-					  	<p class="font-medium text-lg md:text-xl lg:text-2xl" style="font-family: Montserrat;">
+				  	<div class="px:14 md:px:24 lg:px-48">
+					  	<p class="font-normal text-lg md:text-xl lg:text-2xl">
 							Transportación para todo tipo de necesidades y gustos individuales, familiares o grupales.
 						</p>
 					</div>
@@ -138,8 +138,10 @@
 		Conoce nuestras increíbles promociones
 	</p>
 </div>
-<div *ngFor="let promo of promotions.slice(0, 3)">
-	<app-promotion-card [promotion]="promo"></app-promotion-card>
+<div class="w-5/6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-10">
+	<div *ngFor="let promo of promotions.slice(0, 3)">
+		<app-promotion-card [promotion]="promo"></app-promotion-card>
+	</div>
 </div>
 <div class="flex justify-center items-center mt-10">
 	<a href="promociones" class="btn py-4 px-12 ">

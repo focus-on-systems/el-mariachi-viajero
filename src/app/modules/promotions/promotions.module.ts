@@ -4,6 +4,7 @@ import { PromotionsRoutingModule } from './promotions.routing.module';
 import { PromotionCardComponent } from './promotion-card/promotion-card.component';
 import { PromotionDetailsComponent } from './promotion-details/promotion-details.component';
 import { PromotionsComponent } from './promotions/promotions.component';
+import { UtilsModule } from '../../utils/utils.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { PromotionsComponent } from './promotions/promotions.component';
   imports: [
     CommonModule,
     PromotionsRoutingModule,
+    UtilsModule,
   ],
 })
 export class PromotionsModule {

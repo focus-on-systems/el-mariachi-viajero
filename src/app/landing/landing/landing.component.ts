@@ -52,7 +52,9 @@ export class LandingComponent implements OnInit, OnDestroy {
   async ngOnInit() {
     try {
       this.promotions = await this.promotionsService.getPromos(this.nCards);
+      this._changeDetectorRef.markForCheck();
       this.packs = await this.packsService.getPacks(this.nCards);
+      this._changeDetectorRef.markForCheck();
     } catch (e) {
       alert('Error al obtener los paquetes y promociones disponibles. Los detalles se encuentran en la consola');
       console.error(e);

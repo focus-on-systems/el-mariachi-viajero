@@ -1,38 +1,57 @@
-<div class="mt-20 w-full h-60 text-center flex flex-col justify-end items-start gap-4 bg-cover bg-center"
-    title="Image goes here" style="background-image: url('https://images.pexels.com/photos/604661/pexels-photo-604661.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
-    <div class="m-auto">
-    <p class="text-5xl font-bold uppercase text-white ml-5">Nombre de la promoción</p>  
-    </div>
-</div>
+<app-heading [bgImage]="bgImage">
+    <h1 class="heading-title">{{details.name}}</h1>
+</app-heading>
 <div class="bg-white h-full px-20 py-10">
+    <!-- <div class="w-full flex flex-wrap justify-start items-center gap-2">
+      <a *ngFor="let category of categories"
+        class="chip hover:underline"
+        routerLink="/tours/categoria/{{category.id}}">
+        {{category.name}}
+      </a>
+    </div> -->
     <div class="grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-2">
         <div class="mt-5 flex flex-col items-start">
-            <p class="text-2xl font-medium text-green-500">Llamada a la acción de la promoción</p>
+            <p class="text-2xl font-medium text-green-500">{{details.name}}</p>
         </div>
     </div>
     <div class="mt-5">
-        <p class="text-md font-xs text-gray-500">Lorem Ipsum is simply dummy text of the printing and typesetting 
-            industry. Lorem Ipsum has been the industry's standard dummy text 
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s 
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus 
-            PageMaker including versions of Lorem Ipsum.</p>
+      <p class="text-md font-semibold">{{details.price}}</p>
     </div>
-    <div class="mt-10">
-        <p class="text-md font-semibold">Precio: $1200 p/persona</p>
+    <div class="mt-5">
+        <p class="text-md font-xs text-gray-500">{{details.description}}</p>
     </div>
-    <div class="mt-10 mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <div class="">
-            <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-        </div>
-        <div>
-            <img src="https://images.pexels.com/photos/1268855/pexels-photo-1268855.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-        </div>
-        <div>
-            <img src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-        </div>
+    <div class="mt-10 w-full flex flex-wrap gap-x-6 justify-around text-base lg:text-lg">
+      <div class="text-center" *ngIf="places.length > 0">
+        <span class="text-green-500 font-medium">Lugares a visitar</span>
+        <br/>
+        <ul>
+          <li *ngFor="let place of places">
+            <a [routerLink]="'/ubicaciones/lugares/' + place.id" class="hover:underline">{{place.name}}</a>,
+            <a [routerLink]="'/ubicaciones/estado/' + place.state.id" class="hover:underline">{{place.state.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-10 w-full flex flex-wrap gap-x-6 justify-around text-base lg:text-lg">
+      <div class="text-center">
+        <span class="text-green-500 font-medium">Incluye</span>
+        <br/>
+        <p *ngFor="let feature of details.featuresIncluded" class="flex items-center">
+          <span class="material-icons material-icons-outlined text-green-500">done</span>
+          <span>{{feature}}</span>
+        </p>
+      </div>
+      <div class="text-center" *ngIf="details.featuresExcluded">
+        <span class="text-red-500 font-medium">No incluye</span>
+        <br/>
+        <p *ngFor="let feature of details.featuresExcluded" class="flex items-center">
+          <span class="material-icons material-icons-outlined text-red-700">close</span>
+          <span>{{feature}}</span>
+        </p>
+      </div>
+    </div>
+    <div class="mt-10 mb-10 justify-items-center grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+      <div *ngFor="let img of images" class="bg-cover bg-center h-60 w-80" style="background-image: url({{img.thumb.url}});">
+      </div>
     </div>
 </div>

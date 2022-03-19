@@ -5,6 +5,7 @@ export interface LandingPromo {
     url: string;
   };
   description: string;
+  shortDescription: string;
   featuresIncluded: string;
   featuresExcluded?: string;
   price: string;
