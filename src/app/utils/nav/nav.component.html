@@ -26,7 +26,7 @@
         [ngClass]="{'sticky': type === 'contact-bar', 'fixed': type === 'normal'}">
 	<div class="h-full flex items-center py-1.5 pl-2 md:pl-4 lg:pl-6">
 		<button class="pr-2 grid" *ngIf="!isRootUrl()" (click)="goBack()" title="Ir atrás">
-		<span class="material-icons material-icons-outlined">arrow_back</span>
+		  <span class="material-icons material-icons-outlined">arrow_back</span>
 		</button>
 		<a class="h-full w-full" routerLink="/inicio">
 			<img class="h-full w-full" src="assets/img/logoV9.svg" alt="">
@@ -34,9 +34,9 @@
 	</div>
 
 	<!-- Nav bar for small screens -->
-	<div class="md:hidden h-full flex justify-center items-center w-14" (click)="isSmallNavOpen = !isSmallNavOpen">
+	<button class="md:hidden h-full flex justify-center items-center w-14" (click)="isSmallNavOpen = !isSmallNavOpen">
 		<span class="material-icons material-icons-outlined">menu</span>
-	</div>
+	</button>
 	<div [@smallOpenClose]="isSmallNavOpen ? 'open' : 'closed'"
 	     class="md:hidden font-medium absolute w-full max-w-full left-0 top-14 flex flex-col gap-8 justify-center items-center text-center bg-white bg-opacity-90">
 		<a routerLink="/inicio" (click)="isSmallNavOpen = false" routerLinkActive="text-green-500">Inicio</a>

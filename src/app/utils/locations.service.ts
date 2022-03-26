@@ -24,7 +24,7 @@ export class LocationsService {
 
   private states: StateInfo[] = [];
 
-  constructor(private _apollo: Apollo) {
+  constructor(private apollo: Apollo, private toursService: ToursService) {
   }
 
   /**
@@ -37,7 +37,7 @@ export class LocationsService {
       if (this.states.length > 0)
         return resolve(this.states);
 
-      const subscription = this._apollo.query<GQLStatesQuery>({
+      const subscription = this.apollo.query<GQLStatesQuery>({
         query: gql`query {
           states {
             edges {
@@ -75,7 +75,7 @@ export class LocationsService {
    */
   public getState(stateId: string): Promise<StateCompleteInfo> {
     return new Promise<StateCompleteInfo>((resolve, reject) => {
-      const subscription = this._apollo.query<GQLStateCompleteQuery>({
+      const subscription = this.apollo.query<GQLStateCompleteQuery>({
         query: gql`query($stateId: ID!) {
           state(id: $stateId) {
             name: stateName
@@ -103,7 +103,7 @@ export class LocationsService {
           stateId,
         },
       }).subscribe({
-        next: (res: ApolloQueryResult<GQLStateCompleteQuery>) => {
+        next: async (res: ApolloQueryResult<GQLStateCompleteQuery>) => {
           subscription.unsubscribe();
 
           const uniqueTours: { [tourId: string]: TourCardInfo } = {};
@@ -111,7 +111,13 @@ export class LocationsService {
             for (const tour of tourPlace.node.tourId.edges) { // a place can be related to several tours
               const tourId = tour.node.id;
               if (!(tourId in uniqueTours))
-                uniqueTours[tourId] = tour.node;
+                uniqueTours[tourId] = {
+                  ...tour.node,
+                  // features come separated by line spaces
+                  // think carefully, and you'll see the code covers the case when there is an empty string ("" || undefined)
+                  featuresExcluded: (tour.node.featuresExcluded as string | undefined || undefined)?.trim().split('\n'),
+                  featuresIncluded: (tour.node.featuresIncluded as string | undefined || undefined)?.trim().split('\n')
+                }; // deep copy so graphql cache remains intact
             }
           }
 
@@ -119,6 +125,12 @@ export class LocationsService {
             state: res.data.state,
             tours: Object.values(uniqueTours),
           };
+
+          try {
+            await this.toursService.fillToursThumbs(state.tours);
+          } catch (e) {
+            console.error(e);
+          }
 
           return resolve(state);
         },
