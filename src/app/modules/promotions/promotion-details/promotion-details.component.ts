@@ -29,7 +29,7 @@ export class PromotionDetailsComponent {
     const promoId: string = this.route.snapshot.params.promoId;
     const subscription = this.apollo.query<GQLPromotionDetailsQuery & GQLPromotionMetadataQuery>({
       query: gql`query($promoId: ID!) {
-        promotion(id: $promoId) {
+        promo: promotion(id: $promoId) {
           id: objectId
           name: promoName
           description: promoDescription
@@ -41,7 +41,7 @@ export class PromotionDetailsComponent {
             url
           }
         }
-        promotionPlaces(where: {promoId: {have: {
+        promoPlaces: promotionPlaces(where: {promoId: {have: {
           OR: [{id: {equalTo: $promoId}, objectId: {equalTo: $promoId}}]}
         }}) {
           edges {
@@ -65,7 +65,7 @@ export class PromotionDetailsComponent {
             }
           }
         }
-        promotionImages(where: {promotionId: {have: {
+        promoImages: promotionImages(where: {promotionId: {have: {
           OR: [{id: {equalTo: $promoId}, objectId: {equalTo: $promoId}}]}
         }}) {
           edges {
@@ -84,6 +84,7 @@ export class PromotionDetailsComponent {
         promoId,
       },
     }).subscribe((res: ApolloQueryResult<GQLPromotionDetailsQuery & GQLPromotionMetadataQuery>) => {
+      //console.log(res.data.promo);
       if (!res.data.promo) {
         // TODO improve UX
         alert('La promoción con id ' + promoId + ' no existe');

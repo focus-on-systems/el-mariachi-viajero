@@ -24,6 +24,10 @@ body {
 	position: relative;
 }
 
+.extravagantText{
+    font-family: 'Lobster';
+}
+
 .heading-title {
   @apply text-3xl lg:text-4xl font-black px-3 sm:px-5;
 }
