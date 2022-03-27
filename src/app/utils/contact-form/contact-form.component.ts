@@ -51,10 +51,10 @@ export class ContactFormComponent implements OnInit, OnDestroy {
   public isOpen: boolean = false;
 
   public formControls = {
-    name: new FormControl(!environment.production ? 'Benjamín Guzmán' : undefined),
-    email: new FormControl(!environment.production ? 'example@example.com' : undefined),
-    message: new FormControl(!environment.production ? 'Quiero salir con mi novia' : undefined),
-    phone: new FormControl(!environment.production ? '+52 5555 5555' : undefined),
+    name: new FormControl(!environment.production ? '' : undefined),
+    email: new FormControl(!environment.production ? '' : undefined),
+    message: new FormControl(!environment.production ? '' : undefined),
+    phone: new FormControl(!environment.production ? '' : undefined),
     'contact-via': new FormControl('Whatsapp'),
     'form-name': new FormControl('contact'), // form name. Required for netlify forms
     honey: new FormControl(), // honeypot field
